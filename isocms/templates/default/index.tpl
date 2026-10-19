@@ -1,0 +1,128 @@
+{if $mod eq 'unknow'}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{$global_title_page|html_entity_decode|strip_tags}</title>
+        <!-- META TAG -->
+        <meta http-equiv="content-language" content="{$_LANG_ID}"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="Description" content="{$global_description_page|truncate:400}"/>
+    </head>
+    <body>
+    <div id="page">
+        {$clsISO->getModule($mod,$sub,$act)}
+    </div>
+    </body>
+    </html>
+{else}
+    {assign var=page_content value=$clsISO->getModule($mod,$sub,$act)}
+    <!DOCTYPE html>
+    <html lang="{if $_LANG_ID eq 'vn'}vi{else}{$_LANG_ID}{/if}">
+    <head>
+        <title>{$global_title_page|html_entity_decode|strip_tags}</title>
+        <!-- META TAG -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="csrf-token" content="{$clsISO->generateCsrfToken()}">
+        <meta name="Description" content="{$global_description_page|truncate:400}"/>
+        <meta name="google-site-verification" content="{$clsConfiguration->getValue('SiteGoogleVerifyKey')}">
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+        {$clsISO->getBlock('box_share_social')}
+        
+        {if empty($page)}
+            {if $mod eq 'home'}
+                <link rel="canonical" href="{$DOMAIN_NAME}"/>
+            {else}
+                <link rel="canonical" href="{$DOMAIN_NAME}{$REQUEST_URI}"/>
+            {/if}
+        {/if}
+        
+        {if !empty($noindex) && $noindex eq 'noindex'}
+            <meta name="robots" content="noindex,nofollow"/>
+        {else}
+            <meta name="robots" content="{$index},{$follow},noodp,noydir"/>
+        {/if}
+
+        <meta name="revisit-after" content="1 days"/>
+        <meta name="google" content="nositelinkssearchbox"/>
+        <meta property="fb:app_id" content="{$appID}"/>
+
+        {*Xử lý load css chính*}
+        {if $lstCssStylesheet} 
+            {foreach $lstCssStylesheet key=key item=item} 
+                <link rel="stylesheet" href="{$item}"/>
+            {/foreach}
+        {/if}
+
+        {if $lstCssPreload} 
+            {foreach $lstCssPreload key=key item=item} 
+                <link rel="preload" href="{$item}" as="style" onload="this.rel='stylesheet'">
+                <noscript><link rel="stylesheet" href="{$item}"></noscript>
+            {/foreach}
+        {/if}
+
+        {$clsISO->getBlock('var_javascript')}
+
+        {if $lstJsAsync}
+            {foreach from=$lstJsAsync key=key item=item} 
+                <script src="{$item}" async></script>
+            {/foreach}
+        {/if}
+
+        {if $lstJsDefer} 
+            {foreach from=$lstJsDefer key=key item=item} 
+                <script src="{$item}"></script>
+            {/foreach}
+        {/if}
+
+        {$clsISO->getBlock('script_application_ld_json')}
+        {$clsISO->getBlock('box_google_analytics')}
+
+        {if !empty($uncopy)}
+            {$clsISO->getBlock('uncopy')}
+        {/if}
+
+        {*<script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/chatbot.js?id=67e0d461c6968574d10d0461" async="async"></script>*}
+    </head>
+    <body class="{$mod}_{$act}_body page{$_LANG_ID}{$mod}Body{$deviceType}">
+        <div id="fb-root"></div>
+        {literal}
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://connect.facebook.net/" + facebook_plugin_lang + "/sdk.js#xfbml=1&version=v19.0";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+            </script>
+        {/literal}
+        {if !empty($customerchat)}
+            <div class="fb-customerchat" attribution=setup_tool page_id="170710566975353"></div>
+            {literal}
+                <script>
+                    (function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/" + facebook_plugin_lang + "/sdk/xfbml.customerchat.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
+            {/literal}
+        {/if}
+        <div id="page">
+            {$core->getHeader($mod, $packageClient.header_file|default:'_header')}
+            {$page_content}
+            {$core->getHeader($mod, $packageClient.footer_file|default:'_footer')}
+        </div>
+        {if $fb_livechat|default:'' != ''}
+            {$clsISO->getBlock('fb_livechat')}
+        {/if}
+    </body>
+    </html>
+{/if}

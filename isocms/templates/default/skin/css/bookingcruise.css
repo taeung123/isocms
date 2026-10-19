@@ -1,0 +1,170 @@
+label.error{margin-top:5px;font-weight:400}
+.table-service{margin:10px 0;width:100%;border-collapse:collapse;width:100%}
+.table-service th{background:#eee;font-weight:700;padding:10px;border:1px solid #d8d8d8;overflow:hidden}
+.table-service td{border:1px solid #d8d8d8;padding:15px 10px;overflow:hidden}
+.table-service .toggle-Link{display:inline-block;text-decoration:none;color:#303030;font-size:13px;transition:all .5s ease;-moz-transition:all .5s ease;-webkit-transition:all .5s ease;-khtml-transition:all .5s ease;-o-transition:all .5s ease}
+.table-service .toggle-Link span{display:block;margin:2px 5px 0 0;float:left;width:12px;height:12px;background:url(../images/a25.png) no-repeat 0 1px;transition:all .5s ease;-moz-transition:all .5s ease;-webkit-transition:all .5s ease;-khtml-transition:all .5s ease;-o-transition:all .5s ease}
+.table-service .toggle-Link.open span{display:block;margin:2px 5px 0 0;float:left;width:12px;height:12px;background:url(../images/a25.png) no-repeat -13px 1px}
+.table-service .cabin_detail{display:none}
+.table-service .select-lg{border:1px solid #d2d2d2;height:30px;width:70px!important;padding:0 10px 0 5px;border-radius:3px}
+.table-service label{font-size:15px;font-weight:400}
+.list-dot li{position:relative;padding-left:18px;margin-bottom:10px}
+.list-dot li:last-child{margin-bottom:0}
+.list-dot li:before{content:'';display:inline-block;width:5px;height:5px;-webkit-border-radius:50%;-khtml-border-radius:50%;-moz-border-radius:50%;-ms-border-radius:50%;-o-border-radius:50%;border-radius:50%;position:absolute;left:0;top:11.5px;background-color:#666}
+.bk-media{margin-bottom:40px;padding:35px;background-color:#f7f7f7}
+.bk-media .photo{width:35%;float:left}
+.bk-media .infobooking{width:65%;float:left;padding-left:30px}
+.bk-media .infobooking h1{font-size:30px;margin:0 0 5px}
+.bk-media .infobooking .fa-calendar,.bk-media .infobooking .fa-clock-o,.bk-media .infobooking .fa-user-plus,.bk-media .infobooking .fa-check{font-size:18px;color:var(--main-color);width:18px;margin-right:12px}
+.bk-media .box-review{padding-top:2px}
+.bk-media .box-review label{display:inline-block;vertical-align:middle}
+.bk-page-title{color:#666;margin-bottom:25px}
+.bk-page-title h3{font-size:20px;margin:0 0 10px;color:#333}
+.bk-page-title h4{font-size:18px;margin:0 0 20px;color:#333}
+.bk-form-info{margin-bottom:70px}
+.bk-info{margin-bottom:37px}
+.bk-info h4{color:#333;margin:0 0 20px;font-size:18px}
+.bk-info h4 span{color:#666}
+.bk-info-body{padding:18px}
+.bk-info-body .pre{color:rgba(0,0,0,0.7)}
+.bk-contact-info .bk-info-body{width:100%;padding:0!important}
+.bk-room-info .bk-info-body a.photo{width:200px;height:150px;display:inline-block;float:left;margin-right:15px}
+.bk-room-info .bk-info-body .body{vertical-align:top;margin-left:215px}
+.bk-room-info .bk-info-body .body h5{font-size:20px;color:#333;margin:0 0 15px}
+.bk-contact-info .form-group{margin-bottom:28px}
+.bk-contact-info .form-control{height:60px;padding:9px 15px;width:100%;line-height:20px;outline:none;border:1px solid #ddd;-webkit-border-radius:0;-khtml-border-radius:0;-moz-border-radius:0;-ms-border-radius:0;-o-border-radius:0;border-radius:0;-webkit-appearance:none;-moz-appearance:none;appearance:none}
+.bk-contact-info textarea.form-control{height:auto}
+.bk-contact-info .has-feedback .form-control{padding-right:40px}
+.bk-contact-info .control-label{display:inline-block;margin-bottom:5px}
+.bk-contact-info .form-control-feedback{width:36px;height:36px;line-height:36px;top:25px!important}
+.bk-contact-info .w-left{float:left;margin-right:34px}
+.bk-contact-info .w-block{clear:both}
+.bk-contact-info .vb-1{width:100px}
+.bk-contact-info .vb-2{width:193px}
+.bk-contact-info .vb-3{width:327px;position:relative}
+.bk-contact-info .vb-caption{position:absolute;left:111%;bottom:0;min-height:38px;line-height:38px;white-space:nowrap;font-style:italic;color:#666}
+.bk-contact-info .vb-caption.active{padding-left:12px;padding-right:12px;border:1px solid #dbd1ad;background-color:#fff4cc;color:#000;-webkit-border-radius:4px;-khtml-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px}
+.bk-contact-info .vb-caption.active:after,.bk-contact-info .vb-caption.active:before{right:100%;top:50%;border:solid transparent;content:" ";height:0;width:0;position:absolute;pointer-events:none}
+.bk-contact-info .vb-caption.active:after{border-color:rgba(255,244,204,0);border-right-color:#fff4cc;border-width:6px;margin-top:-6px}
+.bk-contact-info .vb-caption.active:before{border-color:rgba(219,209,173,0);border-right-color:#dbd1ad;border-width:7px;margin-top:-7px}
+.bk-contact-info .form-horizontal .form-control-feedback{right:0!important;top:0!important}
+.bk-contact-info .form-horizontal .vb-caption{left:100%}
+.bk-room-info .bk-info-body{padding:0}
+.bk-room-info .bk-info-body .item{background-color:#f1e8d6;margin-top:13px;padding:30px 35px;overflow:hidden}
+.bk-room-info .bk-info-body .item h5{font-weight:700;margin-bottom:10px}
+.bk-room-info .bk-info-body .item h5 span{font-weight:400}
+.bk-room-info .bk-info-body .item .box-hidden{padding-top:15px}
+.bk-room-info .bk-info-body .re-non{color:#d60000}
+.bk-transfer .bk-info-body,.bk-extra .bk-info-body{padding:5px 0 0}
+.bk-transfer .re-checkbox-green,.bk-extra .re-checkbox-green{margin-top:15px}
+.bk-transfer .re-checkbox-green li,.bk-extra .re-checkbox-green li{margin-bottom:10px}
+.bk-transfer .re-checkbox-green li label,.bk-extra .re-checkbox-green li label{position:relative;min-width:462px;padding-left:20px}
+.bk-transfer .re-checkbox-green li input[type="checkbox"] + label::before,.bk-extra .re-checkbox-green li input[type="checkbox"] + label::before{position:absolute;left:0;top:5px}
+.bk-transfer .re-checkbox-green .new-ques{cursor:pointer;color:#4dbdee}
+.bk-info-body .number_room{width:25px;text-align:right;background:none;border:0;outline:none}
+.bk-info-body .number_adult{width:10px;text-align:left;background:none;border:0;outline:none}
+.bk-info-body .number_child{width:15px;text-align:right;background:none;border:0;outline:none}
+.billingInfo{display:inline-block;width:100%}
+.billingInfo h3{display:none!important}
+.billingInfo h5.title{font-size:18px;margin:0 0 15px;line-height:24px}
+.payment-choice .radio{margin:15px 0}
+.payment-choice lable{font-size:15px;line-height:21px}
+.termPayment h3{color:#333;margin:0 0 20px;font-size:18px;text-transform:uppercase}
+.btnBookCabin{font-size:30px;text-transform:uppercase;line-height:70px;height:70px;padding:0 12px;border-radius:3px;border:0;font-weight:400!important;display:inline-block;width:-moz-max-content;width:-webkit-max-content;}
+.btnBookCabin i{font-size:42px;line-height:42px;margin-left:10px;vertical-align:text-bottom;}
+.bk-btn{color:rgba(0,0,0,0.5)}
+.bk-price{margin-bottom:27px}
+.bk-price-info{border:1px solid #e0e4e6;padding:20px 13px;font-size:15px!important}
+.bk-price-info .no-card{color:var(--main-color);border:1px solid var(--main-color);padding:15px;font-size:18px;line-height:22px;-webkit-border-radius:3px;-khtml-border-radius:3px;-moz-border-radius:3px;-ms-border-radius:3px;-o-border-radius:3px;border-radius:3px;margin-bottom:20px}
+.bk-price-info .list-dot li,.bk-price-info .sub-approval .sub-body ul li,.sub-approval .sub-body .bk-price-info ul li{margin:0;color:#0889af;list-style:none;font-size:15px;line-height:28px}
+.bk-price-info .list-dot li:before,.bk-price-info .sub-approval .sub-body ul li:before,.sub-approval .sub-body .bk-price-info ul li:before{background-color:#0889af}
+.bk-price-info hr{margin:12px 0}
+.bk-price-info table{width:100%}
+.bk-price-info table tr td{padding:5px 0}
+.bk-price-info table tr td:first-child{padding-left:0}
+.bk-price-info table tr td:last-child{text-align:right;padding-right:0}
+.bk-price-total,.bk-price-code{background-color:#f1e8d6;border:1px solid #ccc;margin-top:-1px;margin-bottom:7px;color:#333}
+.bk-price-total table,.bk-price-code table{width:100%}
+.bk-price-total table tr td,.bk-price-code table tr td{font-weight:700;padding:12px}
+.bk-price-total table tr td:first-child,.bk-price-code table tr td:first-child{color:#333}
+.bk-price-total table tr td:last-child,.bk-price-code table tr td:last-child{font-size:24px;text-align:right}
+.bk-price.fixed{position:fixed;top:74px}
+@media (max-width: 991px) {
+.booking-wrap{margin-top:48px}
+.nav-book-step ul{text-align:center;margin:-19px auto 0;position:static}
+.nav-book-step ul li{display:inline-block;float:none}
+}
+@media (max-width: 767px) {
+.bk-header .pull-left,.bk-header .pull-right{float:none!important}
+.bk-header .pull-left{font-size:14px;margin-bottom:5px}
+.bk-media .pull-left{float:none!important;margin:0 0 12px}
+.bk-media .media-body h2{font-size:18px}
+.bk-info h4{padding-left:12px;padding-right:12px}
+.bk-contact-info .form-control{padding-left:6px}
+.bk-contact-info .has-feedback .form-control{padding-right:34px}
+.bk-contact-info .form-control-feedback{width:34px}
+.bk-contact-info .bk-info-body{padding:17px 12px 5px;display:block}
+.bk-contact-info .vb-caption{position:relative;left:unset;margin-top:5px;bottom:unset;line-height:1;min-height:unset;white-space:normal}
+.bk-contact-info .vb-caption.active{margin-top:13px;text-align:center;padding:10px;left:0}
+.bk-contact-info .vb-caption.active:after,.bk-contact-info .vb-caption.active:before{right:unset;top:unset;bottom:100%;left:50%;border:solid transparent;content:" ";height:0;width:0;position:absolute;pointer-events:none}
+.bk-contact-info .vb-caption.active:after{border-color:rgba(255,244,204,0);border-right-color:transparent;border-bottom-color:#fff4cc;border-width:7px;margin-left:-7px}
+.bk-contact-info .vb-caption.active:before{border-color:rgba(219,209,173,0);border-right-color:transparent;border-bottom-color:#dbd1ad;border-width:8px;margin-left:-8px}
+.bk-contact-info .vb-1{width:71px;margin-right:10px}
+.bk-contact-info .vb-2{width:185px;margin-right:0}
+.bk-contact-info .vb-3,.bk-contact-info .vb-2full{width:100%}
+.bk-room-info .bk-info-body .item .box-hidden .pull-left,.bk-room-info .bk-info-body .item .box-hidden .pull-right{float:none!important}
+.bk-room-info .bk-info-body .item .box-hidden .pull-right{margin-top:10px}
+.bk-request .bk-info-body{padding:12px 12px 20px}
+.btnBookCabin {
+    font-size: 27px;
+}
+
+}
+@media (max-width: 600px) {
+.btnBookCabin {
+	margin-top:10px;
+}
+.bk-btn.text-right{text-align:left}
+.bk-btn .col-xs-7,.bk-btn .col-xs-5{width:100% !important}
+.bk-media {
+    margin-bottom: 40px;
+    padding:15px 10px;
+    background-color: #f7f7f7;
+}
+.bk-room-info .bk-info-body .item {
+    padding: 15px 10px;
+}
+.bk-media .photo {
+	width: 100%;
+	float: none;
+	margin-bottom:10px;
+}
+.bk-media .infobooking {
+	width:100%;
+	float: none;
+	padding-left:0px;
+}
+.bk-room-info .bk-info-body a.photo {
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    float: none;
+    margin-right: 0px;
+	margin-bottom:10px;
+}
+.bk-room-info .bk-info-body .body {
+    width:100%;
+	margin:0;
+}
+}
+@media (max-width: 500px) {
+.bk-media{padding:15px 10px 20px;overflow:visible}
+.bk-media .pull-left{width:100%}
+.bk-media .media-body{overflow:visible}
+.bk-media-table tr td{padding:4px;vertical-align:top}
+.bk-media-table tr .change{padding-right:79px}
+.bk-media-table tr .change .btn-default{padding:4px;right:-10px}
+.bk-room-info .bk-info-body .item{padding:25px 12px 12px;position:relative}
+.bk-room-info .bk-info-body .item .close{position:absolute;top:8px;right:12px}
+.bk-room-info .bk-info-body .item .box-hidden .pull-right li:first-child{display:block;margin-bottom:5px}
+}

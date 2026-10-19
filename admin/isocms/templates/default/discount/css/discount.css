@@ -1,0 +1,68 @@
+.right_pop, .modal-header, .modal-footer{
+	z-index:1;
+	position:relative;
+}
+.right_pop > .p-4{
+	z-index:1;
+	position:relative;
+}
+.right_pop:after{
+	content: "";
+	position: absolute;
+	left: 0; top: -16px;
+	width: 100%;
+	height: calc(100% + 32px);
+	background: rgba(245, 131, 33, 0.1);
+}
+.list-igroup{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+.discount-suffix {
+	line-height: 50px;
+    padding-left: 16px;
+
+}
+.list-igroup > li{
+	position:relative;
+	padding:6px 20px 6px 6px;
+	background:#FFF;
+	border:1px solid #DDD;
+	margin-bottom:6px;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-khtml-border-radius:3px;
+	-webkit-border-radius:3px;
+}
+.list-igroup > li a.remove{
+	position:absolute;
+	top:10px; right:10px;
+	width:14px;
+	height:14px;
+	background:url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2214%22%20height%3D%2214%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M13%201L1%2013%22%20stroke%3D%22%23333333%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M1%201L13%2013%22%20stroke%3D%22%23333333%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+.has-search{
+	width:100%;
+	position:relative;
+}
+.has-search .form-control {
+	border:0;
+	border-radius:3px; 
+	-moz-border-radius:3px;
+	-khtml-border-radius:3px;
+	-webkit-border-radius:3px;
+    padding-left: 4.375rem;
+}
+.has-search .form-control-feedback {
+    position: absolute;
+	left:0; right:auto;
+    z-index: 2;
+    display: block;
+    width: 4.375rem;
+    height: 4.375rem;
+    line-height: 4.675rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}

@@ -1,0 +1,26 @@
+# isoCMS Security -- KHONG CHINH SUA
+# File anh duoc phep: jpg jpeg png gif webp svg ico bmp tiff
+# File bi chan: php sh py perl asp exe va cac file thuc thi
+
+# Tat PHP engine
+RemoveHandler .php .php3 .php4 .php5 .php7 .php8 .phtml .phar
+RemoveType   .php .php3 .php4 .php5 .php7 .php8 .phtml .phar
+<IfModule mod_php5.c>
+    php_flag engine off
+</IfModule>
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Chan file thuc thi - Apache 2.2
+<FilesMatch "\.(php|php3|php4|php5|php7|php8|phtml|phar|sh|bash|py|pl|rb|cgi|fcgi|asp|aspx|jsp|jspx|exe|elf|bin|lua|com)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Chan file thuc thi - Apache 2.4
+<IfModule mod_authz_core.c>
+  <FilesMatch "\.(php|php3|php4|php5|php7|php8|phtml|phar|sh|bash|py|pl|rb|cgi|fcgi|asp|aspx|jsp|jspx|exe|elf|bin|lua|com)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>

@@ -1,0 +1,264 @@
+﻿body{font-size:16px; font-family:"Open Sans", sans-serif}
+.container{max-width:960px;}
+.container_full{max-width:1218px; margin:0 auto}
+#banner{
+	height:549px;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+#infomation{padding:60px 0}
+#infomation .title_box{text-align:center;}
+#infomation .title_box h2{
+    color: rgb(1, 71, 142);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    display: inline-block;
+    position: relative;
+	margin:0 0 20px;
+	padding-bottom:10px;
+}
+#infomation .intro_box{width:100%; max-width:900px; position:relative; margin:0 auto; font-size:16px; text-align:center; margin-bottom:50px;}
+#infomation .intro_box h6{font-size:16px; font-weight:normal; line-height:1.4; text-align:center; margin:0}
+#infomation .title_box h2:after{position:absolute; content:""; bottom:0; left:-30px; width:104px;
+border-top: 3px solid rgb(31, 91, 155);
+    border-right: 3px solid rgb(31, 91, 155);
+    border-left: 0px !important;
+    filter: brightness(124%);}
+.list_element{position:relative; display:inline-block; width:100%}
+.list_element .line-element{
+    position:absolute;
+    content:"";
+    border-top: 1px solid rgb(61, 61, 61);
+    border-right: 1px solid rgb(61, 61, 61);
+    border-bottom: 1px solid rgb(61, 61, 61);
+    border-left: 0px !important;
+    top: 90px;
+    left: 140px;
+    right: 140px;
+    }
+.list_element .line-element .shape1{position:absolute; width:12.5px; height:12.5px; left:-6px; top:-6px; border-radius:100%; background:rgba(1,69,142,1); }
+.list_element .line-element .shape2{position:absolute; width:12.5px; height:12.5px; left:0; right:0; margin:0 auto; top:-6px; border-radius:100%; background:rgba(1,69,142,1); }
+.list_element .line-element .shape3{position:absolute; width:12.5px; height:12.5px; right:-6px; top:-6px; border-radius:100%; background:rgba(1,69,142,1); }
+#infomation .element_icon{width:69px; height:70px;background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+	margin:0 auto 50px;
+	}
+#infomation .element_intro{text-align:justify}
+
+#congress{
+	height:624px;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    background-position: left top;
+    background-repeat: no-repeat;
+	position:relative
+}
+#congress .title_box{text-align:center; width:100%; max-width:733px; margin:0 auto}
+#congress .title_box h2{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+    display: inline-block;
+    position: relative;
+	margin:0 0 20px;
+	padding-bottom:10px;
+}
+#congress .title_box h2:after{position:absolute;content:"";bottom:0;left: 75px;width: 230px;border-top: 3px solid rgb(255, 255, 255);}
+#congress .ladi-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+	background-color: rgba(31, 91, 155, 0.4);
+}
+#congress .container{position:relative; height:100%}
+.congress_element{
+	position: absolute;
+	top: 77.5px;
+    left: 0px;
+    width: 960px;
+    height: 464.5px;
+}
+.congress_box_left{
+	position:absolute;
+	top: 165px;
+    left: 0px;
+    width: 528px;
+	color:#fff;
+}
+.congress_box_right{
+	position:absolute;
+	top:165px;
+	left:610px;
+	width:350px;
+	border-top:1px solid rgb(223, 210, 210);
+	border-bottom:1px solid rgb(223, 210, 210);
+}
+.congress_item {display:inline-block; width:100%; padding:8px 0; position:relative}
+.congress_item:after{position:absolute; height:1px; border-top: 1px solid rgb(223, 210, 210); width:300px; bottom:0; right:0; content:"";}
+.congress_item:last-child:after{display:none !important}
+.congress_item .congress_icon{display:inline-block; width:48px; height:48px; float:left}
+.congress_text{display:inline-block; width:calc(100% - 48px); padding-left:25px; float:left; font-size:18px; line-height:1.6; color:#fff}
+#people_hutc{height:1395px; position:relative;margin-bottom: 80px}
+#people_hutc .chair_congress{padding:50px 0;}
+.chair_congress .list_chair{max-width:605px; margin:0 auto}
+.expert_congress  .list_chair{max-width:100%; margin:0 auto}
+#people_hutc .people_background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+#people_hutc .people_background {
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url(https://w.ladicdn.com/s1440x1395/5d1adca…/vvv-20191206020024.jpg);
+    background-position: left top;
+    background-repeat: no-repeat;
+}
+#people_hutc .title_box{text-align:center; width:100%; max-width:733px; margin:0 auto}
+#people_hutc .title_box h2{
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.4;
+    display: inline-block;
+    position: relative;
+	margin:50px 0 50px;
+	padding-bottom:10px;
+}
+#people_hutc .title_box h2:after{position:absolute;content:"";bottom:0;left: -35px;width: 110px;border-top: 3px solid rgb(255, 255, 255);}
+
+.list_chair{display:block; width:100%; margin:0 auto}
+.list_chair .chair_item{display:inline-block; width:50%; float:left}
+.list_expert .chair_item{display:inline-block; width:25%; float:left}
+.list_chair .chair_item.chair_item1{float:left;}
+.list_chair .chair_item.chair_item2{float:right}
+.list_chair .chair_item {position:relative; padding:0 22px;}
+.list_chair .chair_item .chair_image_background {
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    background-attachment: scroll;
+    background-origin: content-box;
+    position: absolute;
+    margin: 0 auto;
+    pointer-events: none;
+	width:100%;
+	height:100%;
+}
+.list_chair .chair_item .chair_image_background {
+    top: 0px;
+    left: 0px;
+    width: 260.963px;
+    height: 265.401px;
+}
+.list_chair .chair_item .chair_info{display:inline-block; width:100%; color:#fff;padding-left: 10px}
+.list_chair .chair_item .chair_info h3 a{font-size:20px; color:#fff;}
+.list_chair .chair_item .chair_info h3{font-weight: bold;margin-top: 0}
+
+/*--------Gallery--------*/
+.gallery .list_gallery{padding: 50px 0;display: inline-block}
+.list_Item_gallery{float: left}
+.title_gallery .title_before{display: inline-block}
+.list_gallery .gallery_item{margin: 7.5px;float: left;width: 240px;height: 331px}
+.list_gallery .gallery_item img{height: 100%}
+.gallery_item_02, .gallery_item_04{width: 240px;height: 158px;margin-bottom: 15px}
+#ITEM_GALLERY05, #ITEM_GALLERY06, #ITEM_GALLERY07, #ITEM_GALLERY08, #ITEM_GALLERY09{width: 240px;height: 158px;}
+#ITEM_GALLERY10{clear: left !important}
+.list_Item_gallery_01{max-width: 1020px}
+.list_item_child{float: left}
+.list_item_child .gallery_item{clear: left}
+@media (min-width: 1200px){
+.containerGallery {
+    width: 1275px;
+	margin: 0 auto;
+}
+}
+/*-----------------------*/
+/*-------Partner---------*/
+#partner{padding-bottom: 50px}
+.boxPartner .Partner_Item{display: inline-block;height: 136px;position: relative;margin-bottom: 40px}
+.Partner_Item .logo_partner{position: absolute;display: inline-block;width: 100%;transform: translate(50%,0);right: 50%;bottom: 0}
+.text-center{text-align: center}
+.boxPartner .title_before{display: inline-block;margin-bottom: 50px}
+#ITEM01{
+	width: 200px;
+}
+#ITEM02{
+	    width: 123.407px;
+}
+#ITEM03{
+	    width: 200px;
+}
+#ITEM04{
+	    width: 280.244px;
+}
+#ITEM05{
+	    width: 200px;
+}
+#ITEM06{
+	    width: 211.702px;
+}
+#ITEM07{
+	    width: 181.092px;
+}
+#ITEM08{
+	    width: 152.679px;
+}
+#ITEM09{
+	    width: 245.192px;
+}
+.title_before{position: relative;color: #01468e;padding-bottom: 8px;font-weight: bold;font-size: 30px;text-transform: uppercase}
+.title_before:before{content:" ";background: #01468e;position: absolute;bottom: 0;left: -30px;width: 80px;height: 3px;}
+/*-------------------------*/
+#footer_2019 {background-image: url(../images/bb-20191205035457.png);background-repeat: no-repeat;color: #fff;background-size: 100% 100%;padding: 50px 0;font-size: 14px}
+#footer_2019 svg{width: 21px;height: auto;position: absolute;left: 0}
+.company_info_2019 .contact_info{border-bottom: 1px solid #ccc;padding-bottom: 10px;padding-top: 20px}
+.company_info_2019 .title_info{font-size: 30px;font-weight: bold;position: relative;}
+.title_before{position: relative;color: #01468e;padding-bottom: 5px;font-weight: bold;font-size: 30px;text-transform: uppercase}
+.title_before:before{content:" ";background: #01468e;position: absolute;bottom: 0;left: -30px;width: 80px;height: 3px;}
+.company_info_2019 .contact_info:last-child{border-bottom: 0}
+.company_info_2019 .contact_info .name{color: #01468e;font-weight: bold;font-size: 14px}
+.company_info_2019 .contact_info a{color: #fff;position: relative;padding-left: 30px}
+.contact_info p{margin-bottom: 5px}
+#footer_2019 .google_maps{padding-top: 95px;width: 600px;height: auto;box-sizing: none}
+#footer_2019 .copy_right{padding-top: 30px;margin-top: 50px;border-top: 1px solid #c7c5c5cc;color: #c7c5c5cc}
+.sm_menu_outer{display: none}
+/*--------------------------------*/
+/*-----------------Contact----------------*/
+#contact .sign_up{padding: 30px 20px;border:1px solid #86a5d5;border-radius: 23px;position: relative;height: 602px;margin-bottom: 60px}
+#contact .sign_up .bottom_sign_up{
+	font-size: 16px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    background: #e83a30;
+    color: #fff;
+	margin-top: 30px;
+	text-transform: uppercase;font-weight: bold;
+}
+#contact .sign_up_free{border: 1px solid #85a5d5; color: #1f5b9b !important;background: #fff !important}
+#contact .h3_contact{margin-top: 0;font-weight: bold}
+#contact .vip_image{padding: 10px 0;}
+.border_dashed{border-bottom: 1px dashed #ccc;height: 1px;width: 365px;margin-bottom: 15px;margin-left: 20px;margin-right: 20px}
+#contact  .box_top{width: 449px;height: 19px;position: absolute;top: 0;border-top-left-radius: 23px;border-top-right-radius: 23px;background: #1f5b9b;left: 0}
+#contact .intro{max-height: 205px;height: 205px;overflow: hidden;line-height: 30px}

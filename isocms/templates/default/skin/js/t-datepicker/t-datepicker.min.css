@@ -1,0 +1,63 @@
+.t-check-in,.t-check-out,.t-datepicker{display:inline-block;position:relative;float:left}
+.t-datepicker{clear:both;width:100%;font-size:14px;line-height:1.4em;max-width:650px;border-radius: 4px;border: 1px solid #fff;}
+.hotel_detail_box .t-datepicker{border: 1px solid #cccccc}
+.t-datepicker.open{border: 1px solid #ec1c47;}
+.t-check-in,.t-check-out{border:0;width:50%;box-sizing:border-box}
+.t-check-in .t-date-info-title,.t-check-out .t-date-info-title{position:absolute;top:10px;left: 70px;display:block;font-weight:400;font-size: 15px;cursor:pointer;color: #1c1c1c;}
+.t-check-in .text_day,.t-check-out .text_day{position:absolute;top:30px;left: 70px;display: inline-block;font-weight:400;font-size: 13px;cursor:pointer;color: #666;white-space: nowrap;}
+.t-check-in .fa,.t-check-out .fa{top:-1px;position:relative}
+.t-check-in{border:0;border-right:1px solid #ccc}
+.t-picker-only{border-radius:4px;width:100%}
+.t-check-out{border-left-width:0;border-radius:0 4px 4px 0}
+.t-check-out .t-datepicker-day{left:-100%}
+.t-arrow-top{top:32px;z-index:9999}
+.t-arrow-top,.t-arrow-top::after{border-width:10px;border-style:solid;border-color:transparent transparent #ddd;display:inline-block;position:absolute}
+.t-arrow-top::after{top:-9px;left:-10px;content:'';border-width:10px;border-bottom-color:#fff}
+.t-dates{padding:10px 15px 10px 65px;padding-left: 65px;height: 53px;box-sizing:border-box;}
+.t-date-check-in:before{width: 33px; height: 26px; content: ""; background: url("/isocms/templates/default/skin/images/icon/sprite_icon_form_search.png") no-repeat; background-position:0 -57px; position: absolute; left: 20px; top: 14px;}
+.t-date-check-out:before{width: 33px; height: 26px; content: ""; background: url("/isocms/templates/default/skin/images/icon/sprite_icon_form_search.png") no-repeat; background-position:0 -84px; position: absolute; left: 20px; top: 14px;}
+.text_day_check-in
+.t-datepicker-day{border-width:1px;border-style:solid;top:51px;overflow:hidden;position:absolute;z-index:9998;padding:10px 0;border-radius:4px;box-shadow:0 7px 15px rgba(0,0,0,.25); background: #fff;}
+.t-table-wrap{width:100%;padding:0 10px;font-size:inherit;display:inline-block;vertical-align:top}
+.t-datepicker-days{width:650px; position: absolute;z-index: 99; top: 70px; padding: 20px;}
+.t-datepicker-days:before {
+	position: absolute;
+	top:-11px;
+	left: 160px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid #fff;
+    content: "";
+    transition: margin-left .3s ease-out;
+}
+.t-datepicker-days .t-table-wrap{padding:0;width: 50%;margin: 0;float: left;padding-right: 20px;}
+.t-datepicker-days .t-table-wrap:nth-child(2){padding-right: 0; padding-left: 20px;}
+@media (max-width:480px) {
+.t-datepicker-days{    width: 320px;padding: 20px 0;}
+.t-datepicker-days .t-table-wrap{margin-left:0;width:100%;padding:0 10px !important;}
+}
+@media (max-width:320px) {
+.t-datepicker-days{width:290px}
+.t-datepicker-days .t-table-wrap{padding:0 5px}
+}
+.t-table-condensed{width:100%;border-spacing:0;border-collapse:collapse;vertical-align:top}
+.t-next,.t-prev,.t-table-condensed td,.t-table-condensed th{text-align:center;padding:10px}
+.t-date-title{clear:both;width:100%;text-align:center;display:inline-block;margin:0;padding:15px 0 10px}
+.t-day,.t-disabled,.t-end,.t-range,.t-start{border-width:2px;border-style:solid}
+.t-arrow{border:none}
+.t-arrow.t-next,.t-arrow.t-prev{background: #e6e6e6;
+    border-radius: 3px;
+    color: #ed1c46;}
+.t-arrow.t-next.t-disabled,.t-arrow.t-prev.t-disabled{opacity: 0}
+.t-hover-day::after,.t-special-day:before{content:'';border-style:solid}
+.t-arrow,.t-dates,.t-day,.t-end,.t-end-limit,.t-range,.t-start{cursor:pointer}
+.t-special-day{position:relative}
+.t-special-day:before{height:3px;width:3px;top:0;right:0;position:absolute;display:block;border-width:3px;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}
+.t-hover-day{position:relative}
+.t-hover-day-content{top:-30px;width:70px;right:calc(50% - 35px);position:absolute;font-size:12px;font-weight:700;padding:3px 5px;border-radius:4px;z-index:9999}
+.t-hover-day::after{position:absolute;top:-8px;right:calc(50% - 7px);border-width:7px}
+.t-today .t-hover-day-content{z-index:9998}
+.t-check-in .t-end-limit,.t-disabled{opacity:.25;cursor:auto}

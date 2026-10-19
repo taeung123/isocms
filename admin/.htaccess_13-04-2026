@@ -1,0 +1,173 @@
+# /admin/.htaccess — Security patch
+
+RewriteEngine On
+
+# ============================================================
+# [1] BLOCK HTTP METHOD NGUY HIỂM
+# ============================================================
+<LimitExcept GET POST>
+    Require all denied
+</LimitExcept>
+
+# ============================================================
+# [2] BLOCK TRUY CẬP TRỰC TIẾP FILE NHẠY CẢM
+# ============================================================
+<FilesMatch "\.(tpl|inc|cfg|log|sql|bak|backup|old|swp|tmp|env)$">
+    Require all denied
+</FilesMatch>
+
+# Block file ẩn
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# ============================================================
+# [3] BLOCK TRUY CẬP TRỰC TIẾP THƯ MỤC NHẠY CẢM
+# ============================================================
+<IfModule mod_rewrite.c>
+    # Block truy cập thẳng vào cache, logs, tmp, classes
+    RewriteRule ^(cache|logs|tmp|classes)(/.*)?$ - [F,L,NC]
+
+    # Block file PHP nguy hiểm ngoài index.php
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteCond %{REQUEST_FILENAME} \.php$
+    RewriteCond %{REQUEST_URI} !^/admin/index\.php$
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+# ============================================================
+# [4] SECURITY HEADERS
+# ============================================================
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
+
+# ============================================================
+# [5] REWRITE RULES — GIỮ NGUYÊN TỪ FILE GỐC
+# ============================================================
+RewriteRule ^admin-lock$                                        index.php?mod=home&act=admin_lock [L]
+
+RewriteRule ^editor/tiny_mce/plugins/advimage/image.htm$        index.php?mod=editor&act=image [L]
+RewriteRule ^editor/tiny_mce/plugins/advlink/link.htm$          index.php?mod=editor&act=link [L]
+RewriteRule ^isomanager/$                                        index.php?mod=editor&act=manager [L]
+
+#--ads--
+RewriteRule ^ads/insert/([0-9]*)/(.*)/(.*)$         index.php?mod=ads&act=insert&ads_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^ads/insert/([0-9]*)/(.*)$              index.php?mod=ads&act=insert&ads_id=$1&panel=$2 [QSA,L]
+
+#--blog--
+RewriteRule ^blog/insert/([0-9]*)/(.*)/(.*)$        index.php?mod=blog&act=insert&blog_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^blog/insert/([0-9]*)/(.*)$             index.php?mod=blog&act=insert&blog_id=$1&panel=$2 [QSA,L]
+
+#--cruise--
+RewriteRule ^cruise/insert/([0-9]*)/(.*)/(.*)$      index.php?mod=cruise&act=insert&cruise_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^cruise/insert/([0-9]*)/(.*)$           index.php?mod=cruise&act=insert&cruise_id=$1&panel=$2 [QSA,L]
+RewriteRule ^cruise/insert/([0-9]*)/(.*)/(.*)&message=(.*)$    index.php?mod=cruise&act=insert&cruise_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^cruise/insert/([0-9]*)/(.*)&message=(.*)$         index.php?mod=cruise&act=insert&cruise_id=$1&panel=$2 [QSA,L]
+
+#--combo--
+RewriteRule ^combo/insert/([0-9]*)/(.*)/(.*)$       index.php?mod=combo&act=insert&table_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^combo/insert/([0-9]*)/(.*)$            index.php?mod=combo&act=insert&table_id=$1&panel=$2 [QSA,L]
+
+#--city--
+RewriteRule ^city/insert/([0-9]*)/(.*)/(.*)$        index.php?mod=city&act=insert&city_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^city/insert/([0-9]*)/(.*)$             index.php?mod=city&act=insert&city_id=$1&panel=$2 [QSA,L]
+
+#--country--
+RewriteRule ^country/insert/([0-9]*)/(.*)/(.*)$     index.php?mod=country&act=insert&country_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^country/insert/([0-9]*)/(.*)$          index.php?mod=country&act=insert&country_id=$1&panel=$2 [QSA,L]
+
+#--hotel--
+RewriteRule ^hotel/insert/([0-9]*)/(.*)/(.*)$       index.php?mod=hotel&act=insert&hotel_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^hotel/insert/([0-9]*)/(.*)$            index.php?mod=hotel&act=insert&hotel_id=$1&panel=$2 [QSA,L]
+
+#--voucher--
+RewriteRule ^voucher/insert/([0-9]*)/(.*)/(.*)$     index.php?mod=voucher&act=insert&voucher_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^voucher/insert/([0-9]*)/(.*)$          index.php?mod=voucher&act=insert&voucher_id=$1&panel=$2 [QSA,L]
+
+#--region--
+RewriteRule ^region/insert/([0-9]*)/(.*)/(.*)$      index.php?mod=region&act=insert&region_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^region/insert/([0-9]*)/(.*)$           index.php?mod=region&act=insert&region_id=$1&panel=$2 [QSA,L]
+
+#--guide--
+RewriteRule ^guide/insert/([0-9]*)/(.*)/(.*)$           index.php?mod=guide&act=insert&guide_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^guide/insert/([0-9]*)/(.*)$                index.php?mod=guide&act=insert&guide_id=$1&panel=$2 [QSA,L]
+RewriteRule ^guide/category/insert/([0-9]*)/(.*)/(.*)$  index.php?mod=guide&act=insertCat&guidecat_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^guide/category/insert/([0-9]*)/(.*)$       index.php?mod=guide&act=insertCat&guidecat_id=$1&panel=$2 [QSA,L]
+RewriteRule ^guide/insertCat/([0-9]+)/([^/]+)/?([^/]*)$ index.php?mod=guide&act=insertCat&guidecat_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^guide/compose/insert/([0-9]*)/(.*)/(.*)$   index.php?mod=guide&act=insert2&guide2_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^guide/compose/insert/([0-9]*)/(.*)$        index.php?mod=guide&act=insert2&guide2_id=$1&panel=$2 [QSA,L]
+
+#--faqs--
+RewriteRule ^faqs/insert/([0-9]*)/(.*)$             index.php?mod=faqs&act=insert&faq_id=$1&panel=$2 [QSA,L]
+
+#--news--
+RewriteRule ^news/insert/([0-9]*)/(.*)/(.*)$        index.php?mod=news&act=insert&news_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^news/insert/([0-9]*)/(.*)$             index.php?mod=news&act=insert&news_id=$1&panel=$2 [QSA,L]
+
+#--meta--
+RewriteRule ^meta/insert/([0-9]*)/(.*)$             index.php?mod=meta&act=insert&meta_id=$1&panel=$2 [QSA,L]
+
+#--partner--
+RewriteRule ^partner/insert/([0-9]*)/(.*)/(.*)$             index.php?mod=partner&act=insert&partner_id=$1&type=$2&panel=$3 [QSA,L]
+RewriteRule ^partner/insert/([0-9]*)/(.*)$                  index.php?mod=partner&act=insert&partner_id=$1&panel=$2 [QSA,L]
+RewriteRule ^partner/insertcat/([0-9]*)/(.*)/([0-9]*)/(.*)$ index.php?mod=partner&act=insert&partner_id=$1&type=$2&cat_id=$3&panel=$4 [QSA,L]
+RewriteRule ^partner/insertcat/([0-9]*)/([0-9]*)/(.*)$      index.php?mod=partner&act=insert&partner_id=$1&cat_id=$2&panel=$3 [QSA,L]
+
+#--page--
+RewriteRule ^page/insert/([0-9]*)/(.*)/(.*)$        index.php?mod=page&act=insert&page_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^page/insert/([0-9]*)/(.*)$             index.php?mod=page&act=insert&page_id=$1&panel=$2 [QSA,L]
+
+#--property activities--
+RewriteRule ^property/activities/insert/([0-9]*)/(.*)/(.*)$    index.php?mod=property&act=insert_activities&activities_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^property/activities/insert/([0-9]*)/(.*)$         index.php?mod=property&act=insert_activities&activities_id=$1&panel=$2 [QSA,L]
+
+#--tour--
+RewriteRule ^tour/categorycountry/insert/([0-9]*)/(.*)/(.*)$   index.php?mod=tour_exhautive&act=insert_category_country&category_country_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^tour/categorycountry/insert/([0-9]*)/(.*)$        index.php?mod=tour_exhautive&act=insert_category_country&category_country_id=$1&panel=$2 [QSA,L]
+RewriteRule ^tour/edit$                         index.php?mod=tour_exhautive&act=edit [QSA,L]
+RewriteRule ^tour/savedata$                     index.php?mod=tour_exhautive&act=ajSaveDataasdsad [QSA,L]
+RewriteRule ^tour/edit/([0-9]*)/(.*)/(.*)$      index.php?mod=tour_exhautive&act=edit&tour_id=$1&cat_run=$2&run_ajax=$3 [QSA,L]
+RewriteRule ^tour/edit/([0-9]*)/(.*)$           index.php?mod=tour_exhautive&act=edit&tour_id=$1&run_ajax=$2 [QSA,L]
+RewriteRule ^tour/edit/([0-9]*)$                index.php?mod=tour_exhautive&act=edit&tour_id=$1 [QSA,L]
+RewriteRule ^tour/edit/(.*)$                    index.php?mod=tour_exhautive&act=edit&run_ajax=$1 [QSA,L]
+
+#--member--
+RewriteRule ^member/view/([0-9]*)/(.*)/(.*)$    index.php?mod=member&act=insert&profile_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^member/view/([0-9]*)/(.*)$         index.php?mod=member&act=insert&profile_id=$1&panel=$2 [QSA,L]
+
+#--slide--
+RewriteRule ^slide/insert/([0-9]*)/(.*)$        index.php?mod=slide&act=insert&slide_id=$1&panel=$2 [QSA,L]
+
+#--service--
+RewriteRule ^service/insert/([0-9]*)/(.*)/(.*)$ index.php?mod=service&act=insert&service_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^service/insert/([0-9]*)/(.*)$      index.php?mod=service&act=insert&service_id=$1&panel=$2 [QSA,L]
+
+#--testimonial--
+RewriteRule ^testimonial/insert/([0-9]*)/(.*)/(.*)$     index.php?mod=testimonial&act=insert&testimonial_id=$1&panel=$2&step=$3 [QSA,L]
+RewriteRule ^testimonial/insert/([0-9]*)/(.*)$          index.php?mod=testimonial&act=insert&testimonial_id=$1&panel=$2 [QSA,L]
+
+#--user--
+RewriteRule ^user/insert/([0-9]*)/(.*)$         index.php?mod=user&act=insert&user_id=$1&panel=$2 [QSA,L]
+
+#--usergroup--
+RewriteRule ^usergroup/edit/([0-9]*)$           index.php?mod=usergroup&act=edit&usergroup_id=$1 [QSA,L]
+
+# Ticket
+RewriteRule ^ticket/$                           index.php?mod=ticket&act=home [QSA,L]
+RewriteRule ^my_ticket/$                        index.php?mod=ticket&act=my_ticket [QSA,L]
+RewriteRule ^list_ticket/$                      index.php?mod=ticket&act=list_ticket [QSA,L]
+RewriteRule ^detail_ticket/(.*)$                index.php?mod=ticket&act=detail_ticket&ticket_id=$1 [QSA,L]
+RewriteRule ^detail_ticket2/(.*)$               index.php?mod=ticket&act=detail_ticket2&ticket_id=$1 [QSA,L]
+
+#--why--
+RewriteRule ^why/insert/([0-9]*)/(.*)$          index.php?mod=why&act=insert&why_id=$1&panel=$2 [QSA,L]
+
+#--Homenew2024--
+RewriteRule ^homenew2024$                       index.php?mod=homenew2024&act=default [QSA,L]
+RewriteRule ^homenew2024/setting$               index.php?mod=homenew2024&act=setting [QSA,L]
+RewriteRule ^homenew2024/setting/(.*)$          index.php?mod=homenew2024&act=setting&action=$1 [QSA,L]

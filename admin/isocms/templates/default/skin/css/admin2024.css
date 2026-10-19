@@ -1,0 +1,197 @@
+
+/* KHÔNG FORMAT FONT CHỮ */
+@font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 700;
+    src: url("https://fonts.cdnfonts.com/s/12165/Roboto-Black.woff");
+}
+
+@font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    src: url("https://fonts.cdnfonts.com/s/12165/Roboto-Medium.woff") ;
+}
+
+@font-face {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://fonts.cdnfonts.com/s/12165/Roboto-Regular.woff");
+}
+
+@font-face {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 700;
+    src: url("https://fonts.cdnfonts.com/s/15051/Segoe UI Bold.woff");
+}
+
+@font-face {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 500;
+    src: url("https://fonts.cdnfonts.com/s/15051/Segoe UI Bold.woff") ;
+}
+
+@font-face {
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: 400;
+    src: url("https://fonts.cdnfonts.com/s/15051/Segoe UI.woff");
+}
+
+ /* END FORMAT FONT */
+
+:root {
+    --primary-1-d-2-d-53: #1D2D53;
+    --primary-18-babd: #18BABD;
+    --secondary-00818-a: #00818A;
+    --secondary-26456-e: #26456E;
+    --secondary-c-81-e-3-a: #C81E3A;
+    --secondary-177-fa-4: #177FA4;
+    --secondary-e-8-f-8-f-8:#E8F8F8;
+    --chroma-717171: #717171;
+    --chroma-a-5-a-5-a-5: #A5A5A5;
+    --chroma-c-8-cbd-0: #C8CBD0;
+    --chroma-dadfe-6: #DADFE6;
+    --chroma-f-6-f-6-fa: #F6F6FA;
+    --chroma-ffffff: #FFF;
+}
+
+body {
+    font-family: "Roboto" !important;
+    background: #F0F5FB;
+}
+
+.dashboard .container-fluid {
+    padding: unset;
+}
+
+
+#sidebar #sidebar-nav li {
+    width: 100%;
+}
+
+#sidebar #sidebar-nav .dropdown-toggle::after {
+    display: none;
+}
+
+#sidebar #sidebar-nav .nav-list, #sidebar #sidebar-nav .nav-list a {
+    color: #CDCDCD;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+/* CSS Header */
+
+.menu_header li {
+    display: inline-block;
+    position: relative;
+    color: #464856;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 21px */
+}
+
+.menu_header li a:hover {
+    text-decoration: underline;
+}
+
+.menu_header li:not(:last-child)::after {
+    content: "|";
+    margin: 0 10px; /* Khoảng cách trước và sau dấu ngăn cách */
+    color: #E1E1E1;
+}
+
+.header .header_right {
+    display: flex !important;
+    align-items: center;
+}
+
+/* CSS Langguage Option Of Header */
+.menu_lang {
+    min-height: 35px;
+    flex-shrink: 0;
+    border-radius: 80px;
+    border: 1px solid #E1E1E1;
+}
+
+.menu_lang .txt_language {
+    color: #343643;
+    font-family: "Segoe UI";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    text-transform: uppercase;
+}
+.menu_lang .btn, .menu_lang .btn.show {
+    border-radius: 80px;
+    /*border-color: #E1E1E1;*/
+}
+
+.flag-circle {
+    border-radius: 50%; /* Để làm tròn góc, tạo thành hình tròn */
+    width: 24px;       /* Đặt kích thước của ảnh */
+    height: 24px;      /* Đặt kích thước của ảnh */
+    object-fit: cover; /* Đảm bảo ảnh phủ kín khung hình tròn */
+}
+
+/* CSS Button Docs and Support */
+.btn_questionall {
+    display: flex;
+    gap: 12px;
+}
+
+.btn_questionall > div:not(:last-child)::after {
+    content: "|";
+    margin-left: 8px; /* Khoảng cách giữa nội dung và dấu | */
+    color: #E1E1E1;
+}
+
+.header_right .question_btn a {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.header_right .question_btn i {
+    margin-right: 5px; /* Khoảng cách giữa icon và chữ */
+}
+
+.header_right .question_btn p {
+    margin: 0; /* Loại bỏ khoảng cách mặc định của <p> */
+}
+
+.btn_notes a, .question_btn a{
+    color: #464856;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    text-decoration: unset;
+}
+
+.btn_notes a:hover, .question_btn a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.fa-angle-down:before {
+    font-size: 16px;
+}
+
+
+/* End CSS Header */
+
+

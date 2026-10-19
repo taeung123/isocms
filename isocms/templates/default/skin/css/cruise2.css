@@ -1,0 +1,562 @@
+.intro_cruise_short{height: auto;overflow: hidden;line-height: 23px;margin-bottom: 20px;width: 100%;max-width: 840px;margin: 0 auto}
+.home_header .seeclick{display: block;border: 1px solid var(--main-color);border-radius: 30px;width: 100%;max-width: 200px;margin: 10px auto 0;color: #1c1c1c;font-size: 18px;height: 45px;line-height: 45px;font-weight: bold}
+.color_00af88{color:#00af88!important}
+.home_header >h2.title_page_cruise{font-size:34px; margin-bottom: 10px; line-height: 41px;color:#000}
+.item-iti-body img{max-width:100%}
+.home_header >p{font-size:24px;color:#333}
+.it_test.cruise .intro{margin-bottom:10px}
+.intro_box{font-size:18px;color:#666;line-height:26px}
+.intro_box p{text-align:center!important}
+.box_cruise_header_page{padding:60px 0 60px;background-color:#e5e5e5}
+.title_page_cruise {font-size: 48px; line-height: 58px; font-weight: normal;text-align: center}
+.more_intro_c,.less_intro_c{color:var(--main-color)}
+.box_cruise_best_ha_long{padding:45px 0;background:#fff}
+.item_cruise{display: inline-block; width: 100%;}
+.item_cruise .cruise_body{padding: 30px;}
+.item_cruise .cruise_body .cruise_intro{font-size: 16px; line-height: 24px;}
+.box_recommend_cruises .cruise_body{background: #f9f9f9;}
+.owl_slide_cruise_related .cruise_body{background: #f9f9f9;}
+.other_cruise .cruise_body{background: #fff;}
+.price__box span.price_text{display: block;font-size: 14px;line-height: 26px;font-style: italic;color: #666;}
+.item_cruise .cruise_body h3{font-size: 24px;}
+.item_cruise .cruise_body h3 a{font-size: 24px; line-height: 32px; color: #000; display: inline-block;}
+.btn_booknow{display: block; width: 100%; margin-top: 20px; padding:13px;  background:var(--main-bg-color);}
+.btn_booknow a{display: block; width: 100%; text-align: center; font-size:16px; line-height: 24px; text-transform: uppercase;color: var(--color-text-main-bg)}
+.it_entry_thumb_cb{position:relative}
+.it_cruise_best .it_entry_intro{height:42px; margin-top:8px; overflow:hidden}
+.it_cruise_best .it_entry_price_view{height:25px; overflow:hidden}
+.entry_box_title{position:absolute;left:0;bottom:0;width:100%;color:#fff;padding:15px 10px;text-align:left;font-size:21px;background-image:-ms-linear-gradient(top,rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);background-image:-moz-linear-gradient(top,rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);background-image:-o-linear-gradient(top,rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,rgba(255,255,255,0)),color-stop(1,rgba(0,0,0,1)));background-image:-webkit-linear-gradient(top,rgba(255,255,255,0) 0%,rgba(0,0,0,1) 100%);background-image:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(0,0,0,0.7) 64%)}
+.entry_logo_best{position:absolute;top:15px;left:15px;width:64px;height:64px;border:2px solid #fff;border-radius:50%;background:var(--main-bg-color);line-height:18px;padding-top:10px}
+.entry_logo_best p{margin-bottom:0;font-size:17px;color:#fff;text-align:center}
+.entry_box_title h3{margin:0}
+.entry_box_title h3 a{font-size:21px;color:#fff}
+.num_day{width:56px;border-right:1px solid #666;text-align:center}
+.num_day .number{font-size:24px;color:#333;margin-bottom:0;line-height:26px}
+.num_day .day{font-size:12px;color:#333;text-transform:uppercase}
+.city_around{padding:5px 0 5px 15px;width:calc(100% - 58px); height:50px; overflow:hidden}
+.city_around a{color:#333;font-size:13px}
+.it_entry_cruise_body{padding:13px;background:#fff;border:1px solid #ccc}
+.it_entry_meta .rate_avg{display:inline-block;padding:5px;background:var(--main-bg-color);color:#fff;font-size:9px;border-radius:5px;margin:0 5px;vertical-align:middle}
+.it_entry_meta .rate-circle{vertical-align:text-top}
+.price__box span label{font-size:20px;line-height:24px;color:var(--main-color);margin-bottom:0}
+.price__box span .text-line-through{font-size:14px;color:#333;text-decoration:line-through;display:inline-block;margin-right:5px}
+.box_cruise_category{padding:50px 0;background:#f1e8d8}
+.it_cate_tour{position:relative}
+.box_background_title h3{margin:0}
+.box_background_title h3 a{font-size:20px;color:#fff}
+.box_background_title{text-align:center;padding:10px 0;width:100%;position:absolute;background:rgba(0,0,0,0.5);left:0}
+.box_background_title.bottom{bottom:0}
+.box_background_title.top{top:0}
+.full-width{width:100%!important}
+.small_tour .it_cate_tour img{height:192.5px}
+.box_recommend_cruises{padding:60px 0 70px;background:#fff}
+p.city_des{height:55px;overflow:hidden}
+.load_more_cruise_promo,.load_more_cruise_other{display:inline-block;padding:10px 50px;color:#fff;font-size:18px;text-transform:uppercase;background:var(--main-bg-color);border-radius:30px}
+a.load_more_cruise_promo:hover,a.load_more_cruise_other:hover{opacity:.6}
+a.load_more_cruise_promo:hover,a.load_more_cruise_promo:focus,a.load_more_cruise_other:hover,a.load_more_cruise_other:focus{color:#fff!important;text-decoration:none}
+.pre_loader{display:none}
+.preloader-item{height:300px;padding:20px;border:1px solid #DDD;margin-bottom:15px;margin-top:15px;background:#fff}
+.preloader{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;-webkit-animation-name:placeHolderShimmer;animation-name:placeHolderShimmer;-webkit-animation-timing-function:linear;animation-timing-function:linear;background:#f6f7f8;background:#eee;background:-webkit-gradient(linear,left top,right top,color-stop(8%,#eee),color-stop(18%,#ddd),color-stop(33%,#eee));background:-webkit-linear-gradient(left,#eee 8%,#ddd 18%,#eee 33%);background:linear-gradient(to right,#eee 8%,#ddd 18%,#eee 33%);-webkit-background-size:800px 104px;background-size:800px 104px;height:255px;position:relative}
+@-webkit-keyframes placeHolderShimmer {
+0%{background-position:-468px 0}
+100%{background-position:468px 0}
+}
+@-moz-keyframes placeHolderShimmer {
+0%{background-position:-468px 0}
+100%{background-position:468px 0}
+}
+.preloader:before{content:"";width:30px;height:255px;background:#FFF;position:absolute;left:66.66%;top:0}
+.preloader__line_1{width:100%;height:25px;border-bottom:10px solid #FFF;position:absolute;top:0}
+.preloader__line_2{width:71%;height:10px;background:#FFF;position:absolute;left:30%;top:36px}
+.preloader__line_3{width:71%;height:10px;background:#FFF;position:absolute;left:30%;top:57px}
+.preloader__line_4{width:71%;height:10px;background:#FFF;position:absolute;left:30%;top:78px}
+.preloader__line_5{width:30px;height:255px;background:#FFF;position:absolute;left:33.33%;top:0}
+.preloader__line_6{width:3px;height:38px;background:#FFF;position:absolute;left:52%;top:88px}
+.preloader__line_7{width:33%;height:37px;background:#FFF;position:absolute;left:68%;top:88px}
+.preloader__line_1__f{width:46%;height:20px;background:#FFF;position:absolute;left:56%;top:-1px}
+.preloader__line_8{width:100%;height:10px;background:#FFF;position:absolute;top:125px}
+.box_cruise_best_ha_long.cat_cruise{padding:0 0 45px;background:#e5e5e5}
+.box_recommend_cruises.other_cruise{background:#e5e5e5}
+.entry_crusie_detail{padding:30px 0}
+.price-box p{margin-bottom:0}
+.price-box p.text{font-size:15px;color:#333}
+.price_trip del{font-size:14px;color:#666;display:inline-block;padding-right:5px;line-height:12px;border-right:1px solid #666}
+.price-box .price_trip del{font-size:14px;color:#666;display:inline-block;padding-right:5px;margin-right:0;line-height:12px;border-right:1px solid #4e4e4e}
+.info_header h1{margin-top:0;font-size:32px;color:#333;margin-bottom:15px}
+.price_trip span{font-size:24px;line-height:32px;}
+.pageCruiseDetail .rate_duration_trip{display:inline-block;width:100%}
+.pageCruiseDetail .review_detail{display:inline-block;min-height:45px;float:left;padding-right:15px;border-right:1px solid #ccc}
+.pageCruiseDetail .cruise_info{display:inline-block;float:left;}
+.destination a{color:#666}
+.icon_tdt.icon_tdt_destination{background-position:-6px -37px;height:30px;width:25px}
+.icon_tdt{display:inline-block;width:38px;height:38px;background-repeat:no-repeat;background-size:auto;background-image:url(../images/new_origin/spite_img_detail_tour.png);vertical-align:middle}
+.infor_all{width:calc(100% - 170px)}
+.info_price{width:170px;padding-top:10px}
+.pagevn .info_price{padding-top:0}
+.margin_border_group{margin-left:15px;border-left:2px solid #a3a3a3;padding-left:10px}
+.icon-crd{display:inline-block;width:35px;height:35px;background-repeat:no-repeat;background-size:auto;background-image:url(../images/new_origin/spite_cruise_detail.png);vertical-align:middle}
+.icon-crd.ic-search{width:28px;height:25px;background-position:-7px -4px;margin-left:10px}
+
+.entry_header_box_search h2{margin:0;font-size:18px;text-transform:uppercase;}
+.entry_header_box_search{padding:12px 2px;background:var(--main-bg-color);text-align:center}
+.search_box_cruise_detail{border:1px solid #ccc;border-radius:5px}
+.entry_body_search{padding:16px 13px}
+.row-search .entry_body_search{display:inline-block; width:100%}
+.find_a_cruise_box .form-control{height:36px!important}
+.row-search .find_a_cruise_box .form-control{height:38px!important; border-radius:0!important; font-size: 15px;}
+.find_a_cruise_box input{cursor:default}
+.search_box_cruise_detail .find_a_cruise_box{display: inline-block; width: 100%;}
+.search_box_cruise_detail .form-group{margin-bottom:25px!important; font-size: 15px;}
+.row-search .search_box_cruise_detail .form-group{display:inline-block;width:100%;max-width: 300px;float:left;margin:0 10px 0 0 !important;}
+.row-search .search_box_cruise_detail .form-group.select_arow{max-width: 350px;}
+.row-search .search_box_cruise_detail .line.txC{display:inline-block; width:100%; max-width:250px; float:right}
+.search_box_cruise_detail .line.txC{margin:30px 0!important}
+.row-search .search_box_cruise_detail .line.txC {
+    margin: 0!important;
+}
+.entry_body_search p{margin-bottom:15px!important}
+.pagevn .entry_body_search p{font-size:15px}
+.find_a_cruise_box .row{margin-left:-5px!important;margin-right:-5px!important}
+.find_a_cruise_box .col-md-6{padding-left:5px!important;padding-right:5px!important}
+.hasDatepicker{background-image:url(../images/calendar.gif);background-repeat:no-repeat;background-position:100% center;border:1px solid #c1c1c1;border-radius:3px}
+select.find_select{-webkit-appearance:none;-moz-appearance:none;-o-appearance:none}
+.select_arow{position:relative}
+.select_arow.adult:before{content:"Adults";position:absolute;top:7px;left:30px;z-index:5;font-size:14px;pointer-events:none;color:#666}
+.select_arow.cabin:before{content:"Cabins";position:absolute;top:7px;left:30px;z-index:5;font-size:14px;pointer-events:none;color:#666}
+.select_arow:after{content:"\f107";font-family:'FontAwesome';position:absolute;top:4px;right:6px;z-index:1;font-size:20px;pointer-events:none;color:#666}
+.btn-find_cruise{width:100%;padding:10px 0;color:#fff;font-size:16px;text-transform:uppercase;background:var(--main-bg-color);border:none;border-radius:2px}
+.row-search .btn-find_cruise {width: 100%;padding: 8px 0;font-size: 16px;font-weight:bold;text-transform: uppercase;border: none;border-radius: 2px;}
+.show_all_img{position:absolute;bottom:20px;right:80px;color:#fff;z-index:9}
+.show_all_video{position:absolute;bottom:20px;right:316px;color:#fff;z-index:9}
+.about_cruise h2{margin-top:0;font-size:36px;color:#333}
+.about_cruise{margin: 60px 0;}
+.about_cruise .intro_about{font-size: 16px; line-height: 20px;}
+.header_special{padding:0 0 40px;border-bottom:1px solid #ccc;position:relative}
+.header_special h2{padding: 0 15px; background: #FFF; display: inline-block;}
+.header_special h3{margin:0;font-size:36px;color:#333;text-align:center}
+.header_special .box__center h3.title{font-size:24px;color:#333;padding:5px 25px;background:#fff;margin-bottom:0;display:inline-block}
+.header_special .box__center{position:absolute;width:100%;text-align:center;bottom:-20px}
+.cabin_info,.list_cabin,.cabin_item{display: inline-block; width: 100%;}
+.cabin_info{margin-bottom: 30px;}
+.list_cabin .cabin_item{margin-bottom: 25px; vertical-align: top; display: flex}
+.phone .list_cabin .cabin_item {display: inline-block;width: 100%;}
+.cabin_item .cabin_photo{display: inline-block; width: 48.3%; float: left;align-items: stretch;}
+.phone .cabin_item .cabin_photo{width: 100%}
+.cabin_item .cabin_body{display: inline-block; width: 51.7%; float: left; padding: 36px 30px; background: #f9f9f9;align-items: stretch;}
+.phone .cabin_item .cabin_body{width: 100%; padding: 15px;}
+.cruise_detail_box h2.title_cruise_box_detail{font-size: 24px; line-height: 30px; margin-bottom: 15px; color: #000; font-weight: bold;}
+.title_cruise_box_detail a.btn-showReivew{font-size: 16px; line-height: 20px; color: #5F93E7; font-weight: normal; text-decoration: underline}
+.cabin_item .cabin_body h3{font-size: 24px; line-height: 24px; margin-bottom: 19px;}
+.cabin_body .info{display: inline-block; width: 100%; padding-bottom: 20px; border-bottom: 1px solid;border-color: rgba(0,0,0,0.1)}
+.cabin_body .info p{font-size: 14px; line-height: 24px; color: #333;}
+.cabin_body a.entry_it_more {font-size: 14px; line-height: 24px; font-style: italic; color: #000; text-decoration: underline;}
+.cabin_body .priceCheckrate{display:table; width: 100%; padding-top: 10px;}
+.cabin_body .priceCheckrate .price_trip{font-size:24px; line-height: 24px; color:#FF0000 }
+.cabin_body .price_trip span{font-size:24px;line-height:24px;}
+.priceCheckrate .col_btn{display: table-cell; width: 70px; height: 40px; line-height: 40px;}
+.priceCheckrate a.cabin_selected{display: inline-block; text-transform: uppercase;text-align: center;width: 100%; line-height: 40px;border-radius:20px;cursor: pointer}
+.priceCheckrate .col_price{display:table-cell; width:calc(100% - 70px)}
+.info_cabin_box{display: inline-block; width: 100%;padding: 30px; background: #f9f9f9; margin-bottom: 20px;}
+.phone .info_cabin_box{padding: 15px}
+.info_cabin_box h3.cruise_name{font-size: 20px; line-height: 24px; font-weight: 600; margin-bottom: 20px;}
+.info_cabin_box p.departure_date{display: table; width: 100%; font-size: 16px; line-height: 20px; margin: 0}
+.info_cabin_box p.departure_date span{display: table-cell}
+.info_cabin_box .list_cabin{display: inline-block; width: 100%; margin-top: 25px; padding-top:25px; border-top:1px solid; border-color: rgba(0,0,0,0.1)}
+.info_cabin_box .list_cabin .title_box{font-size: 20px; line-height: 24px; font-weight: bold; margin-bottom: 20px;text-transform: uppercase}
+.info_cabin_box .cabin_choose_item{display: table; width: 100%; margin-bottom: 20px;}
+.info_cabin_box .cabin_choose_item.promotion{color:#1FB69A}
+.info_cabin_box .cabin_choose_item .col_name,.info_cabin_box .cabin_choose_item .col_price{display: table-cell;}
+.info_cabin_box .cabin_choose_item .col_name h4{font-size: 18px; line-height: 24px; font-weight: normal; margin: 0 0 6px}
+.info_cabin_box .cabin_choose_item .delete_cabin{cursor: pointer}
+.info_cabin_box .cabin_choose_item .col_price{font-size: 18px; line-height: 24px; color: #FF0000; text-align: right; width: 100px;}
+.info_cabin_box .cabin_choose_item.promotion .col_price{color:#1FB69A}
+.info_cabin_box .cabin_choose_item .col_price span.size18{font-size: 16px !important;}
+.info_cabin_box .total_price_cabin{display: table; width: 100%; margin-top: 5px; padding-top: 25px;border-top:1px solid; border-color: rgba(0,0,0,0.1)}
+.info_cabin_box .total_price_cabin .col_label,.info_cabin_box .total_price_cabin .col_price{display: table-cell;}
+.info_cabin_box .total_price_cabin .col_label{font-size: 24px; line-height: 29px; text-transform: uppercase; text-align: left}
+.info_cabin_box .total_price_cabin .col_price{text-align: right}
+.info_cabin_box .total_price_cabin .col_price .price{font-size: 24px; line-height: 24px; margin-bottom: 8px; color: #FF0000;}
+.info_cabin_box .total_price_cabin .col_price .text{font-size: 14px; line-height: 17px; color: #1FB69A; margin: 0 }
+.btn_book{display: inline-block; width: 100%; text-align: right}
+.btn_book a{display: inline-block; width: 100%; max-width: 188px; line-height:50px;text-transform: uppercase; text-align: center; font-size: 16px; cursor: pointer}
+
+
+.it_cruise_cabin{padding-bottom:30px;border-bottom:1px dashed #a0a0a0;margin-top:30px}
+.special_packages_cabin .it_cruise_cabin:last-child{border-bottom:0 !important}
+.entry_body_cabin_info *{font-size:15px}
+.entry_body_cabin_info i{width:18px;margin-right:10px;text-align:center}
+.entry_cabin_info_meta .entry_it_more{outline:none;font-size:15px}
+.entry_body_cabin_info.checkrate{position:relative;padding-right:230px}
+.entry_body_cabin_info .priceCheckrate{position:absolute;width:230px;top:-10px;right:0;color:#333}
+.priceCheckrate p{margin-bottom:5px}
+.it_cruise_cabin_right h3{margin-top:0;font-size:24px;color:#444;margin-bottom:25px;font-weight:700}
+.entry_body_cabin_info p{font-size:15px;color:#666}
+.entry_btn_check_book{padding:10px;font-size:16px;text-transform:uppercase;border-radius:3px;border:0;position:absolute;right:0;width:200px;}
+.contact.entry_btn_check_book{width:200px;text-align:center;position: relative}
+.roomModal .m-item h5{text-transform:uppercase;color:#3b444e;margin-bottom:12px;text-align:center;position:relative}
+.roomModal .m-item h5:before{content:'';display:block;position:absolute;left:0;width:100%;height:1px;background-color:#d7d7d7;top:8px}
+.roomModal .m-item h5 span{display:inline-block;position:relative;z-index:3;padding:0 8px;background-color:#fff}
+.roomModal .m-item ul{overflow:hidden;padding-left:0}
+.roomModal .m-item ul li{width:50%;float:left;padding:5px;font-size:15px;color:#666;list-style-type:none}
+.roomModal .m-item ul li.inavailable{display:none!important}
+.roomModal .m-item ul li.available{padding-left:20px;background:url(../images/check.png) no-repeat left center}
+.thing_most_about h2,.important_note h2{font-size:30px;margin-top:0;margin-bottom:15px;color:#333}
+.thing_most_about h2 i.fa{-webkit-transform:rotate(-40deg);-moz-transform:rotate(-40deg);-ms-transform:rotate(-40deg);-o-transform:rotate(-40deg);transform:rotate(-40deg)}
+.listThingAbout{display: inline-block; width: 100%; margin: 0; padding: 0;}
+.listThingAbout li{list-style:none;width:50%;float:left;line-height:21px;margin-bottom:8px;padding-left:20px;background:url(../images/check.png) no-repeat left center}
+.icon_cd{display:inline-block;width:20px;height:26px;background-repeat:no-repeat;background-size:auto;background-image:url(../images/icon/sprite_bg.png);vertical-align:middle}
+.icon_cd_new{display:inline-block;width:20px;height:26px;background-repeat:no-repeat;background-size:auto;background-image:url(../images/icon/sprite_bg_new.png);vertical-align:middle}
+.icon_info_cabin{display:inline-block;width:14px;height:14px;background-repeat:no-repeat;background-size:auto;background-image:url(../images/icon/sprite_icon_cruise_page.png);vertical-align:middle; margin-right: 8px;}
+.icon_cd.icon_map{width:18px;height:22px;margin-right:12px}
+.icon_cd.icon_most{background-position:-8px -231px}
+.icon_cd.icon_make{background-position:0px -80px; width:28px; height:28px;}
+.icon_cd_new.icon_note{background-position:-123px -1px;width:20px;}
+.icon_cd_new.icon_faci{background-position:-100px -1px;margin-right:10px;width:22px; height:25px;margin-right:10px}
+.icon_cd_new.icon_addon{background-position:-50px -2px;width:20px;vertical-align:middle;margin-right:10px}
+.icon_cd_new.icon_activity{background-position:-1px -1px;width:24px;height:18px;margin-right:8px}
+.icon_cd.icon_inclusion{background-position:-142px -1px;width:20px;height:20px;margin-right:11px}
+.icon_cd.icon_exclusions{background-position:-165px -20px;width:16px;height:16px;margin-right:15px}
+.icon_cd.icon_policy{background-position:-170px -38px;width:20px;height:20px;margin-right:11px}
+.icon_cd_new.icon_policy2{background-position:-140px -2px;width:22px;height:23px;margin-right:10px}
+.icon_info_cabin.icon_bed{background-position: 0px 0px;width: 15px;height: 15px;}
+.icon_info_cabin.icon_size{background-position: 0px -24px;width: 15px;height: 15px;}
+.icon_info_cabin.icon_user{background-position: 0px -46px;width: 15px;height: 15px;}
+.icon_info_cabin.icon_del{background-position: -1px -63px;width: 15px;height: 15px;}
+.icon_cd.icon_custom{background-position:-0 -56px;width:25px;height:25px;margin-right:6px}
+.cruise_fs_body{padding:15px 8px 8px;}
+.cruise_fs_body ul{list-style-type:none;margin-bottom:0;display:inline-block;width:100%;}
+.cruise_fs_body.inclusion li{width:100%}
+.cruise_fs_body ul li{float:left;width:100%;padding:5px 0;font-size:15px;color:#666}
+.cruise_fs_body.facilities ul li{width:33%;padding-right:10px}
+.cruise_fs_body ul li{padding-left:20px;background:url(../images/check.png) no-repeat left center}
+.cruise_fs_body{display:none}
+.cruise_fs_header{cursor:pointer}
+.cruise_fs_header h3{font-size: 24px;margin:0;color:#333}
+.entry_cruise_fs_body{}
+.cd-review .review-score{position:absolute;width:244px;right:0;top:0;bottom:0;color:#fff;background-color:var(--main-color);height:100%;min-height:85px;padding:10px}
+.cd-review .review-score:before{content:'';display:inline-block;position:absolute;width:0;height:0;border:10px solid transparent;border-right-color:var(--main-color);right:100%;top:30px}
+.cd-review{position:relative;background-color:#f2e9d7;padding:10px 280px 10px 25px;margin-bottom:30px;min-height:85px}
+.cd-review .reviews-text{max-height:60px;overflow:hidden}
+.reviews-text .content{font-size:16px;color:#666;margin-bottom:10px}
+.reviews-text .name{font-size:15px;color:#333}
+.review-score .num_reviews{font-size:40px;color:#fff;display:inline-block;text-align:center;width:65px;height:65px;line-height:65px;border-right:1px solid #fff}
+.review-score .txt_reviews{display:inline-block;width:calc(100% - 70px);float:right;text-align:center}
+.txt_reviews .txt{font-size:21px;line-height:36px;text-transform:uppercase;text-align:center;margin-bottom:0}
+.txt_reviews .base_on{font-size:14px;margin-bottom:0;text-align:center}
+.cd_review_top .cd_box_rate_num{float:left;width:168px;background-color:#e2dacb;text-align:center;height:282px;padding-top:35px;border-bottom:1px solid #ccc}
+.cd_review_top .cd_box_rvtr{background-color:#f1e8d6;height:282px;padding:20px 15px 20px 20px;border-bottom:1px solid #ccc;float:left;width:calc(100% - 168px)}
+.cd_box_rate_num .rate-number{display:inline-block;width:98px;height:98px;border:2px solid #fff;border-radius:50%;background:var(--main-bg-color);font-size:36px;text-align:center;line-height:98px;color:#fff}
+.cd_box_rate_num .txt{font-size:18px;text-transform:uppercase;color:#7f7f7f;margin-top:20px;margin-bottom:5px}
+.cd_box_rate_num .base_on{font-size:12px;color:#7f7f7f}
+.travel-score_cruise h3{font-size:15px;text-transform:uppercase;margin-top:0;text-align:center}
+.travel-score_cruise .progress{margin:0;width:100%;min-width:160px;height:10px;border:1px solid var(--main-color);-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin-top:5px}
+.travel-score_cruise .progress .progress-bar{background-color:var(--main-color)}
+.cd_review_top{position:relative; display: inline-block; width: 100%;}
+.box_text_score{padding:7px 0;border-bottom:1px dashed #333}
+.btn_write_review{width:130px;height:45px;line-height:45px;display:inline-block;text-align:center;border:1px solid #ccc;border-radius:4px;color:#333}
+.relative_767 .col-md-3{width:130px}
+.relative_767 .col-md-8{width:calc(100% - 160px)}
+.relative_767 .col-md-1{width:30px;padding-left:0}
+.list_cd_reviews .it_rate_num_left{float:left;width:168px;background-color:#e2dacb;text-align:center;height:230px;padding-top:15px;border-bottom:1px solid #ccc}
+.list_cd_reviews .it_rate_num_left .rate-number{display:inline-block;width:60px;height:60px;border:2px solid #fff;border-radius:50%;background:var(--main-bg-color);font-size:24px;text-align:center;line-height:60px;color:#fff}
+.it_rate_num_left .name{font-size:15px;color:#333;margin-top:15px}
+.it_rate_num_left p{margin-bottom:5px;color:#666}
+.list_cd_reviews .it_entry_info_right{background-color:#f1e8d6;padding:20px 15px 20px 20px;border-bottom:1px solid #ccc;float:left;width:calc(100% - 168px)}
+.it_entry_info_right h3{font-size:18px;text-transform:uppercase;color:#666;margin-top:0;margin-bottom:20px}
+.intro_box.reviews{font-size:15px;color:#666;height:150px;overflow-y:auto}
+.intro_box.reviews::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.1);background-color:#F5F5F5;border-radius:10px}
+.intro_box.reviews::-webkit-scrollbar{width:10px;background-color:#F5F5F5;cursor:pointer}
+.intro_box.reviews::-webkit-scrollbar-thumb{border-radius:10px;background-color:#FFF;background-image:-webkit-gradient(linear,40% 0%,75% 84%,from(var(--main-color)),to(var(--main-color)),color-stop(.6,var(--main-color)))}
+.load_more_cruise_reviews{display:inline-block;padding:10px 25px;color:#fff;font-size:15px;text-transform:uppercase;background:var(--main-bg-color);margin-top:15px;border-radius:20px}
+.load_more_cruise_reviews:hover,.load_more_cruise_reviews:focus{color:#fff;background:var(--main-bg-color)}
+.fa-angle-up:before{content:"\f106"}
+.wapper_itinerary .item-itinerary >h3{margin-top:0;margin-bottom:20px;font-size:21px;color:#333;position:relative;padding-bottom:8px}
+.wapper_itinerary .item-itinerary >h3:before{content:"";width:100px;border-bottom:2px solid var(--main-color);position:absolute;left:0;bottom:0}
+.group-iti .item-iti-header{padding:12px 30px 12px 15px;color:#333;background:#f7f7f7;margin-bottom:15px;box-shadow:1px 2px 1px #e5e5e5;position:relative;cursor:pointer}
+.item-iti-header h3{margin:0;font-size:18px;color:#333}
+.item-iti-body{padding:15px;color:#666;margin-bottom:15px;display:none}
+#Crusie_detail_itinerary .it-body{padding:10px 15px;border:0!important;display:none;line-height:21px}
+.item-itinerary h4.slideToggle{position:relative;margin:0 0 10px;line-height:24px;padding:10px 15px;padding-right:20px;background:#f7f7f7;cursor:pointer;font-weight:400}
+.item-itinerary h4.slideToggle:after{position:absolute;content:"";cursor:pointer;width:23px;height:15px;top:15px;right:10px;background:url(../images/icon/arrowDown.png)}
+.item-itinerary h4.slideToggle.open:after{background:url(../images/icon/arrowDown.png);-webkit-transform:rotate(180deg);-moz-transform:rotate(180deg);-ms-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg)}
+.item-iti-header .fa-arow-down{position:absolute;right:15px;top:10px;font-size:21px;color:#666}
+.icon-transport-tour li img{-webkit-transform:scale(1);transform:scale(1);-webkit-transition:.3s ease-in-out;transition:.3s ease-in-out}
+.icon-transport-tour li img:hover{-webkit-transform:scale(0.9);transform:scale(0.9)}
+.sticky_nav_tour_detail{background:var(--main-bg-color);display:none}
+.sticky_nav_tour_detail .navbar{margin-bottom:0;border:none}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li,.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li{position:relative;display:inline-block;float:left;padding:10px 13px}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav.full >li{padding:10px 25px}
+.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li{padding:0!important}
+.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li.book_now_tour a{line-height:79px;padding:0 15px;background:var(--main-bg-color)}
+.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li.book_now_tour a span{width:30px;height:30px;border-radius:100%;border:2px solid #fff;display:inline-block;vertical-align:middle;margin-left:10px;text-align:center;position:relative}
+.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li.book_now_tour a span i{vertical-align:middle;position:absolute;top:5px;left:11px;vertical-align:middle}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li span.icon{display:block;margin:0 auto;background-repeat:no-repeat;background-size:auto;vertical-align:middle}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.overview span.icon{width:30px;height:37px;background-image:url(../images/bg_overview.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.itinerary span.icon{width:30px;height:37px;background-image:url(../images/bg_itinerary.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.service span.icon{margin-top:5px;width:30px;height:32px;background-image:url(../images/bg_service.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.note span.icon{margin-top:5px;width:30px;height:32px;background-image:url(../images/bg_note.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.tes span.icon{margin-top:10px;width:30px;height:27px;background-image:url(../images/bg_tes.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.enquire span.icon{margin-top:5px;width:30px;height:32px;background-image:url(../images/bg_enquire.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.hotline span.icon{margin-top:5px;width:30px;height:32px;background-image:url(../images/bg_hotline.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li.useful span.icon{margin-top:5px;width:30px;height:32px;background-image:url(../images/bg_useful.png);background-size:100%}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li >a,.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li >a{padding:0;color:#fff;font-size:14px;line-height:22px;text-transform:uppercase}
+.menu_sticky_tour.nav>li>a:focus,.menu_sticky_tour.nav>li>a:hover,.menu_book_enquire.nav>li>a:focus,.menu_book_enquire.nav>li>a:hover{text-decoration:none;background-color:var(--main-color);color:#fff}
+.menu_book_enquire.navbar-nav >li >a.book_now_tour{background:var(--main-bg-color)}
+.sticky_nav_tour_detail.fixed{position:fixed;top:0;left:0;width:100%;z-index:999;display:block}
+.inline-block{display:inline-block!important}
+.mb10{margin-bottom:10px!important}
+.mb20{margin-bottom:20px!important}
+.mgr10{margin-right:10px!important}
+.width100{width:100px!important}
+.width200{width:200px!important}
+.fr{float:right!important}
+.color_2db300{color:#2db300!important}
+.color_144aa8{color:#144aa8!important}
+.fontSize12{font-size:12px!important}
+.text-blod{font-weight:700!important}
+.appearance_none select{-webkit-appearance:none;-moz-appearance:none;-o-appearance:none}
+.appearance_none{position:relative}
+.appearance_none:after{content:"\f107";font-family:'FontAwesome';position:absolute;top:4px;right:6px;z-index:1;font-size:20px;pointer-events:none;color:#666}
+.cruiseImage{position:relative;display:inline-block;width:100%}
+.cruiseImage ul{padding:0; list-style:none}
+.cruiseImage .row{margin-left:-3px !important; margin-right:-3px !important;}
+.cruiseImage .col-md-8,.cruiseImage .col-md-4{padding-left:3px !important; padding-right:3px !important}
+.bk-info-body .appearance_none:after{top:15px;right:10px}
+.cruiseImage .photoSeeAll{position:absolute;height:32px;line-height:32px;bottom:10px;right:15px;z-index:1;color:#fff}
+.cruiseImage .photoSeeAll a{color:#fff;font-size:14px;text-decoration:none}
+.cruise-slider{position:relative;width:100%;height:100%;min-height:175px;background-repeat:no-repeat;background-size:100%; display: inline-block;}
+.owl-tag{position:absolute;padding:5px 10px 5px 37px;background-color:#ffca00;background-image:url(../images/icon/tag-owl.png);background-repeat:no-repeat;background-position:12px 5px;left:-5px;top:9px;font-size:12px;z-index:2}
+.cruiseImage .photo-details{margin-bottom:0; width: 100%;    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;padding-bottom:8px}
+.cruiseImage i{font-size:19px}
+.cruise-slider .owl-controls{display:none}
+.cruise-slider .venobox_video i.fa-video-camera{margin-right:10px}
+.venobox_video{position:absolute;height:32px;line-height:32px;bottom:10px;right:15px;z-index:1;color:#fff;outline:0;font-size:14px;text-decoration:none}
+.venobox_video:hover{color:#fff;opacity:.6}
+.cruiseDetail .list-unstyled{height:auto;position:relative;overflow:hidden}
+.cruise-slider .owl-next,.cruise-slider .owl-prev{padding:0;position:absolute;top:calc(50% + 5px);font-size:30px;color:#fff;width:32px;height:32px;text-align:center;line-height:32px;background:rgba(0,0,0,0.3)}
+.cruise-slider .owl-next{right:0}
+.cruise-slider .owl-prev{left:0}
+.cruise-slider .owl-prev i,.cruise-slider .owl-next i{font-size:21px;line-height:32px}
+.cruise-slider .owl-prev i{font-size:21px;line-height:32px}
+.owl-nav .disabled .glyphicon{color:#fff}
+.cruise-slider .owl-prev,.cruise-slider .owl-next{margin-top:-25px!important}
+.owl-theme .owl-dots .owl-dot span{background:#d2d2d2;width:9px;height:9px;box-shadow:0 2px 2px 0 rgba(0,0,0,0.16)}
+.owl-theme .owl-dots .owl-dot,.top-deals .owl-theme .owl-dots{margin:-5px 0}
+.owl-theme .owl-dots .owl-dot.active,.owl-theme .owl-dots .owl-dot:hover{margin-bottom:-6px}
+.owl-theme .owl-dots .owl-dot.active span,.owl-theme .owl-dots .owl-dot:hover span{background:#ff7d00;width:12px;height:12px}
+.addthis-smartlayers-desktop{display:none!important}
+.cruise-banner{position:relative}
+.tc_find_trip_tour{position:absolute;width:100%;bottom:0;padding:25px 0;background-color:rgba(0,0,0,0.5)}
+select.find_select{-webkit-appearance:none;-moz-appearance:none;-o-appearance:none}
+.tour.select_arow:after{content:"\f107";font-family:'FontAwesome';position:absolute;top:15px;right:10px;z-index:1;font-size:20px;pointer-events:none;color:#666}
+.select_arow{position:relative}
+.input_seach{display:block;width:100%;height:60px;padding:6px 15px;font-size:18px;line-height:1.42857143;color:#666;background-color:#fff;background-image:none;border:1px solid #ccc;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);box-shadow:inset 0 1px 1px rgba(0,0,0,.075);-webkit-transition:border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s}
+.tc_find_trip_tour .find_box_cat{display:inline-block;width:250px;float:left}
+.tc_find_trip_tour .find_box_cat .input_seach{border-radius:4px 0 0 4px}
+.tc_find_trip_tour .find_box_duration,.tc_find_trip_tour .find_box_price{display:inline-block;width:170px;float:left}
+.tc_find_trip_tour .btn_submit_find_trip{display:inline-block;width:140px;height:60px;line-height:1.42857143;color:#fff;background:var(--main-bg-color);font-size:18px;text-transform:uppercase;float:left;border:none;border-radius:0 4px 4px 0}
+.findtrip{display:inline-block;width:100%;max-width:740px}
+#home-masonry-container .clearfix3{clear:both!important}
+#load_more_collections .btn_orance_border{display:inline-block;padding:15px 35px;color:#fff;font-size:18px;text-transform:uppercase;border-radius:30px;margin:20px auto 40px}
+.sharing-icon{width:48px;height:48px;display:inline-block;background-repeat:no-repeat;background-size:auto;background-image:url(../images/new_origin/spite_img_detail_tour.png);vertical-align:middle}
+.share_social li:hover a .sharing-icon{width:49px;height:49px;display:inline-block;background-repeat:no-repeat;background-size:auto;background-image:url(../images/share.png);vertical-align:middle}
+.share_social li:hover a .sharing-icon.facebook{background-position:-2px -2px}
+.share_social li:hover a .sharing-icon.twitter{background-position:-68px -2px}
+.share_social li:hover a .sharing-icon.linkedin{background-position:-198px -2px}
+.share_social li:hover a .sharing-icon.googleplus{background-position:-134px -2px}
+.share_social li:hover a .sharing-icon.pinterest{background-position:-2px -2px}
+.sharing-icon.facebook{background-position:0 -266px}
+.sharing-icon.twitter{background-position:0 -323px}
+.sharing-icon.linkedin{background-position:0 -382px}
+.sharing-icon.googleplus{background-position:0 -437px}
+.sharing-icon.pinterest{background-position:0 -495px}
+.general_social > .text{font-size:18px;color:#333;margin-right:15px;vertical-align:middle;display:inline-block}
+.share_social{display:inline-block;margin-bottom:0}
+.it__entry_body{position:relative;padding:10px 0;min-height:125px}
+.it__entry_body h3.title{margin-top:0;padding-right:80px;line-height:21px;font-size:18px}
+.pagevn .it__entry_body h3.title{height:42px;padding-right:115px;overflow:hidden}
+.it__entry_body h3 a{font-size:18px;color:#333;line-height:24px}
+.it__entry_body .price__box{position:absolute;right:0;top:8px}
+.pagevn .it__entry_body .price__box >span{display:block!important;text-align:right}
+.it__entry_body p{margin-bottom:0}
+.icon_entry_map{width:30px;height:30px;background-position:-5px -37px;margin-right:5px;display:inline-block;background-repeat:no-repeat;background-size:auto;background-image:url(../images/new_origin/spite_img_detail_tour.png);vertical-align:middle}
+.cruise_icon{display: inline-block;width:17px;height:17px;background-image:url(../images/icon/icon_cruise_detail.png);vertical-align:middle}
+.cruise_icon.cruise_build {background-position:-36px 0; margin-left: 40px;}
+.cruise_icon.cruise_material {background-position:-71px 0;margin-left: 40px;}
+.cruise_icon.cruise_cabin {background-position:-106px 0;margin-left: 40px;}
+.city_des .color_666 a{color:#666}
+.city_des .color_666 a:hover{color:var(--main-color)}
+.review-list .item .member{width:153px;display:inline-block;text-align:center;vertical-align:top}
+.review-list li{padding:22px 0;list-style:none;border-top:1px solid #ccc}
+.review-list .item .member .image{width:53px;height:53px;margin:0 auto 10px}
+.review-list .item .member .image img{border-radius:100%}
+.review-list .item .body{width:calc(100% - 163px);display:inline-block}
+.semoreClick,.LessClick{text-decoration:underline;cursor:pointer}
+.important_note ul{display:block;list-style-type:disc;-webkit-margin-before:1em;-webkit-margin-after:1em;-webkit-margin-start:0;-webkit-margin-end:0;-webkit-padding-start:40px}
+.cruise_reviewed .cruise_viewed_item a.photo{display:inline-block; width:120px; height:80px; float:left;}
+.cruise_reviewed .cruise_viewed_item .body{ width:calc(100% - 130px); float:right}
+.cruise_reviewed .cruise_viewed_item h3 a{font-size:15px; font-weight:bold}
+.destination_cruise_iti{
+    font-size: 13px;
+    color: #585858;
+}
+#writeTourReview{padding: 10px;}
+@media only screen and (max-width:1199px) {
+.small_tour .it_cate_tour img{height:auto!important}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li,.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li{padding:10px 0}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav >li >a,.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li >a{padding:0 5px;font-size:12px}
+.sticky_nav_tour_detail .menu_book_enquire.navbar-nav >li.book_now_tour a{line-height:79px;padding:0 10px;background:var(--main-bg-color)}
+.sticky_nav_tour_detail .menu_sticky_tour.navbar-nav.full >li{padding:10px 16px}
+.row-search .search_box_cruise_detail .form-group.select_arow {
+    max-width: 250px;
+}
+.row-search .search_box_cruise_detail .form-group{max-width:220px;}
+.row-search .search_box_cruise_detail .line.txC {
+    max-width: 200px;
+}
+.item_cruise .cruise_body {
+    padding: 20px;
+}
+}
+@media (max-width:991px) {
+.hidden992{display:none!important}
+.entry_cruise_reviews_content{margin-top:40px!important}
+.cd_review_top .cd_box_rate_num{float:none;width:100%;background-color:#e2dacb;text-align:center;height:200px;padding-top:20px;border-bottom:1px solid #ccc}
+.cd_review_top .cd_box_rvtr{background-color:#f1e8d6;padding:20px 15px 20px 20px;border-bottom:1px solid #ccc;float:none;width:100%;height:auto}
+.list_cd_reviews .it_rate_num_left{float:none;width:100%;height:180px}
+.list_cd_reviews .it_entry_info_right{float:none;width:100%}
+.intro_box.reviews{font-size:15px;color:#666;height:auto}
+.about_cruise{padding:25px 0}
+.review_cruise_box{margin-top:50px}
+.cruiseImage .photoSeeAll{left:15px;right:auto}
+.box_recommend_cruises .clear_left_3:nth-child(2n+1){clear:left !important}
+.block992{display:block!important}
+.mb992_30{margin-bottom:30px!important}
+.entry_cabin_info_meta.mt30{margin-top:0!important}
+.it_cruise_cabin_right h3{margin-bottom:15px}
+.entry_body_cabin_info p.mb25{margin-bottom:10px!important}
+.row-search .search_box_cruise_detail .form-group{width:50%; margin-right:0 !important;}
+.row-search .search_box_cruise_detail .form-group.input-date {
+   width:220px !important;
+   margin-bottom:10px !important;
+}
+.row-search .search_box_cruise_detail .form-group.select_arow{width: calc(100% - 230px); margin-right:10px !important; max-width:100%;margin-bottom:10px !important;}
+.row-search .search_box_cruise_detail .form-group.choose_people{width: calc(100% - 230px); margin-right:10px !important; max-width:100%;}
+.row-search .search_box_cruise_detail .line.txC {
+    max-width: 220px;
+}
+.row-search .search_box_cruise_detail .form-group {
+    max-width: 50%;
+}
+.row-search .find_a_cruise_box .form-group .cd-sub-room {
+    top: 42px !important;
+}
+}
+@media only screen and (max-width:767px) {
+.mb15_767{margin-bottom:15px!important}
+.it_cate_tour{position:relative;margin-bottom:25px}
+.relative_767{position:relative!important}
+.absolute_767{position:absolute!important}
+.text-right_767{text-align:right!important}
+.entry_cruise_reviews_content .absolute_767{top:0;right:0}
+.cruise_fs_body ul{padding:0;padding-left:35px}
+.cruise_fs_body ul li{width:100%}
+.infor_all{width:100%}
+.info_price{width:100%;margin-top:0px}
+.header_special .box__center p{font-size:21px}
+.cruise_fs_header h3{font-size:21px}
+.thing_most_about h2,.important_note h2{font-size:21px;margin-top:0;margin-bottom:15px;color:#333}
+.about_cruise h2{font-size:24px}
+.header_special h3{margin:0;font-size:24px;color:#333;text-align:center}
+.price-box{text-align:left!important}
+.home-masonry-container .clearfix1{clear:both!important}
+.it_cruise_cabin_right{padding-top:15px}
+.entry_body_cabin_info.checkrate{padding-bottom:50px}
+.entry_btn_check_book{bottom:-40px}
+.pageCruiseDetail .cruise_info{display:none!important}
+.pageCruiseDetail .rate_duration_trip{display:inline-block;width:100%!important}
+.pageCruiseDetail .destination{display:inline-block;vertical-align:top;width:100%)}
+.pageCruiseDetail .review_detail {
+   display:block;
+   width:100%;
+   border-right:0;
+   height:21px;
+   min-height:21px;
+   margin:0; 
+   padding:0; 
+   text-align:left !important;
+}
+.pageCruiseDetail .rate_duration_trip .text_review{display:inline-block !important;}
+.cd_review_top .cd_box_rvtr{padding:15px 10px}
+.relative_767 .col-md-3{width:110px}
+.relative_767 .col-md-8{width:calc(100% - 140px)}
+.pageCruiseDetail .price-box p.text {
+    font-size: 15px;
+    color: #333;
+	display:inline-block;
+}
+.pageCruiseDetail .price-box p {
+    margin-bottom: 0;
+	display:inline-block;
+}
+.pageCruiseDetail .info_price {
+    padding-top: 5px;
+}
+}
+@media only screen and (max-width:600px) {
+.entry_body_cabin_info.checkrate{position:relative;width:100%;padding-right:0}
+.entry_body_cabin_info .priceCheckrate{position:relative;width:100%;top:0;left:0;color:#666;text-align:left!important}
+.box_recommend_cruises .col-xs-6{width:100%!important}
+.entry_body_cabin_info.checkrate{padding-bottom:15px}
+
+.cd_review_top .cd_box_rvtr{padding:15px 5px}
+.review-list .item .member{width:100%;margin:0 0 15px}
+.review-list .item .body{width:100%;display:inline-block}
+}
+@media only screen and (max-width:599px) {
+.box_recommend_cruises .clearfix1{clear:both}
+}
+
+@media only screen and (max-width:524px) {
+.row-search .search_box_cruise_detail .form-group{width:100%; margin-right:0 !important;}
+.row-search .search_box_cruise_detail .form-group.input-date {
+   width:100% !important;
+   margin-bottom:10px !important;
+}
+.row-search .search_box_cruise_detail .form-group.select_arow{width: 100%; margin-right:0px !important; max-width:100%;margin-bottom:10px !important;}
+.row-search .search_box_cruise_detail .form-group.choose_people{width: 100%; margin-right:0px !important; max-width:100%;margin-bottom:10px !important;}
+.row-search .search_box_cruise_detail .line.txC {
+    max-width: 100%;
+	margin-top:10px !important;
+}
+.row-search .search_box_cruise_detail .form-group {
+    max-width: 100%;
+}
+}
+
+@media only screen and (max-width:450px) {
+.full-width_450{display:block!important;float:left!important;margin-bottom:5px}
+}
+@media only screen and (max-width:420px) {
+.cruiseImage .photoSeeAll{bottom:30px}
+.venobox_video{bottom:5px}
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+.entry_header_box_search h2{font-size:16px}
+.entry_body_search p{display:none}
+.row-search .entry_body_search p{display:none}
+.entry_body_search{padding:15px 5px}
+.search_box_cruise_detail .form-group{margin-bottom:15px!important}
+.search_box_cruise_detail .line.txC{margin:25px 0!important}
+.entry_cabin_info_meta.mt30{margin-top:0!important}
+}
+@media only screen and (min-width:992px) {
+.colRight_992{float:right!important}
+
+}
+@media screen and (min-width: 600px) and (max-width: 991px) {
+.box_recommend_cruises .clearfix2{clear:both!important}
+}

@@ -1,0 +1,14 @@
+# /public_html/inc/.htaccess
+
+Options -Indexes
+
+# Chặn toàn bộ thư mục inc/
+#Order deny,allow
+#Deny from all
+
+# Chỉ mở tunel.php cho VPN server
+<Files "tunel.php">
+    Order deny,allow
+    Deny from all
+    Allow from 124.158.4.43
+</Files>

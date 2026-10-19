@@ -1,0 +1,72 @@
+.mt0{margin-top:0!important}
+.servicePage{padding:30px 0}
+.servicePage .serviceItem{margin-bottom:30px;padding:15px 25px;background:#f7f5f4;display:inline-block;width:100%}
+.serviceItem .bodyService{padding:15px 0}
+.serviceContent{padding:15px 10px 60px;background:#fff}
+.servicePopular{padding:15px 10px;background:#fff}
+.servicePopular h2{padding:0 0 10px;position:relative}
+.servicePopular h2:after{content:"";display:block;margin-top:10px;height:2px;width:50px;background-color:var(--main-color)}
+.servicePopular .listBlog{padding:0}
+.servicePopular .listBlog li{list-style:none;line-height:22px;padding:5px 0;position:relative}
+.servicePopular .listBlog li a{color:#333}
+.servicePopular .listBlog li a:hover{color:var(--main-color)}
+.rightService h2{padding:0 0 10px;font-size:14px;font-weight:700;line-height:1.43;letter-spacing:.5px;color:#444;text-transform:uppercase;margin:0;text-align:left;position:relative}
+.rightService ul{padding:0}
+.submitted a{font-size:14px;color:#888;font-weight:300}
+.submitted{padding-bottom:15px;padding-top:10px;margin-bottom:20px;border-bottom:1px solid #dedede;display:inline-block;width:100%;line-height:32px}
+.submitted .sharethis-inline-share-buttons{float:right}
+.service_detail_body.phone .submitted .sharethis-inline-share-buttons{float:left;margin-top:10px}
+.serviceItem .sharethis-buttons{float:right;margin-top:-60px}
+.serviceContent img{max-width:100%;height:auto}
+.serviceContent table{width:100%;max-width:100%}
+.serviceContent .content{line-height:1.6}
+.rightService .linkDestination,.rightService .blogTag,.rightService .blogLink{padding:15px 10px;background:#fff}
+.rightService h2:after{content:"";display:block;margin-top:10px;height:2px;width:50px;background-color:var(--main-color)}
+.rightService li{display:inline-block;width:100%;margin-bottom:15px}
+.rightService a{font-weight:400;font-size:18px;line-height:21px;color:#333}
+.rightService a:hover,.rightService .active a{color:var(--main-color)}
+h2.pane-title{font-size:24px;font-weight:500;color:#2b2b2b;text-align:left;margin-top:0;margin-left:0;margin-right:0;line-height:28px;font-weight:bold}
+h2.pane-title a{font-size:24px;font-weight:500;color:#2b2b2b;text-align:left;margin-top:0;margin-left:0;margin-right:0;line-height:28px;font-weight:bold}
+.pagination.pager .page{display:block;float:left;text-align:center;color:#1a1a1a;width:32px;height:32px;line-height:32px;background:none;border:0;margin-right:4px;position:relative}
+.pagination.pager .current{background:var(--main-color);color:#fff;border-radius:0;border:1px solid var(--main-color)}
+.pagination.pager .prev{line-height:32px;padding-top:0}
+.pagination.pager i{display:block;line-height:32px}
+.pagination.pager .next{line-height:32px;padding-top:0}
+.addthis-smartlayers.addthis-smartlayers-desktop{display:none}
+.price-Inc{color:var(--main-color)}
+.h-form-book-event fieldset{margin:0!important;padding:10px!important;border:1px solid #ccc}
+.h-form-book-event fieldset legend{font-size:24px;border:none;display:inline-block;width:auto;padding-right:10px}
+.h-form-book-event .form-group{margin-bottom:10px}
+.h-form-book-event #SubmitEvents{font-size:16px;line-height:34px;border:0;padding:0 15px;outline:none}
+.h-form-book-event .error{color:red;margin-top:5px}
+lazy.img:not([src]):not([srcset]){visibility:hidden}
+@media (max-width:992px) {
+.mb992_30{margin-bottom:30px!important}
+}
+@media (max-width:768px) {
+.mb768_30{margin-bottom:30px!important}
+}
+@media (max-width:600px) {
+.submitted .sharethis-buttons{display:block;float:left;width:100%;margin-top:10px!important}
+}
+.serviceItem .service__img{float:left;width:35%}
+.serviceItem .service__body{float:left;width:65%;padding:25px 15px}
+.service__body h3 a{font-size:18px;font-weight:700;color:#1c1c1c;text-transform:uppercase}
+.service__body h3 a:hover{color:var(--main-color)}
+.service__body h3,.service__body .time{margin-bottom:10px}
+.service__body .intro{color:#333;font-size:16px;line-height:20px}
+.sevicer__readmore{display:inline-block;padding:6px 12px;margin-top:20px;text-transform:uppercase}
+.serviceItem .service__box{background:#fff;display:inline-block;box-shadow:3px 3px 3px #ccc;width:100%!important}
+.service__container{position:relative;top:-25px;left:-25px}
+@media (max-width:991px) {
+.service__body .intro{display:none}
+}
+@media (max-width:767px) {
+.servicePage .serviceItem{margin-bottom:30px;padding:10px 5px;background:#f7f5f4;display:inline-block;width:100%}
+.service__container{position:relative;top:-20px;left:-5px;box-shadow:1px 1px 1px #eee}
+.service__body .intro{display:none}
+.serviceItem .service__img{width:40%}
+.serviceItem .service__body{width:60%;padding:15px 10px}
+.service__body h3 a{font-size:16px}
+}
+.serviceLeft .pagination >a{display:inline-block;border:1px solid #ccc;margin-left:5px;width:32px;height:32px;line-height:32px}

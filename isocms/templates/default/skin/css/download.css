@@ -1,0 +1,7 @@
+.page_container{background: white}
+
+.aboutPage{padding:40px 0}
+.list-brochure{padding: 0; list-style: none}
+.list-brochure li{padding:15px 10px}
+.list-brochure li h3{font-size:18px;margin:0;margin-bottom:10px}
+.list-brochure li h3 a{color:#1c1c1c}

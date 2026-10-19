@@ -1,0 +1,1024 @@
+#Rewrite Automatic by VietISO | Security patch: 07/2026
+# ============================================================
+# isoCMS ROOT .htaccess - isocms.com
+# Comment: Tieng Viet khong dau
+# ============================================================
+SetEnv ISOCMS_DEBUG 0
+SetEnv ISO_ENC_KEY "6d4ff0dd-8de9-4213-8667-37fd0096efb3"
+
+RewriteEngine On
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+# ============================================================
+# CANONICAL DOMAIN: CHI CHO PHEP ISOCMS.COM
+# Phai dat truoc tat ca rule pass-through va module rewrite
+# Lưu ý chỉ chạy đoạn fix domain cho product, nếu đang chạy sub domain thì off đoạn này
+# ============================================================
+RewriteCond %{HTTP_HOST} !^isocms\.com$ [NC]
+RewriteRule ^ https://isocms.com%{REQUEST_URI} [R=301,L,NE]
+
+# Ep HTTPS cho domain chinh
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+RewriteRule ^ https://isocms.com%{REQUEST_URI} [R=301,L,NE]
+
+# ============================================================
+# [1] PASS-THROUGH FILE TINH - DAT DAU TIEN
+# Check extension truc tiep tren URI - khong dung -f de tranh
+# bi false khi co query string (?v=123) hoac path chua resolve
+
+# tunel.php (Navicat HTTP Tunnel) - CHI CHO PHEP IP NOI BO / VPN
+RewriteCond %{REQUEST_URI} ^/inc/tunel\.php$ [NC]
+RewriteCond %{REMOTE_ADDR} !^(127\.0\.0\.1|124\.158\.4\.43)$
+RewriteRule ^ - [F,L]
+RewriteCond %{REQUEST_URI} ^/inc/tunel\.php$ [NC]
+RewriteRule ^ - [L]
+# ============================================================
+# Pass-through file tinh: check THE_REQUEST de tranh match query string
+# (vi du /files/thumb?src=pixel.png co .png trong query, khong phai URI that)
+RewriteCond %{THE_REQUEST} \s[^\s?]*\.(css|js|png|jpg|jpeg|gif|webp|avif|svg|ico|woff|woff2|ttf|otf|eot|pdf|map|swf|mp4|mp3|ogg|webm|txt|json|zip|rar)[\s?] [NC]
+RewriteCond %{REQUEST_URI} !^/inc/timthumb/vietisothumb.php [NC]
+RewriteCond %{REQUEST_URI} !^/inc/timthumb/vietisothumbwebp.php [NC]
+RewriteCond %{REQUEST_URI} !^/files/thumbold/ [NC]
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumb.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumbwebp.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumbupdate.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumb.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumbwebp.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumbupdate.php [NC]
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_URI} ^/inc/editor/tinymce/ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/payment/ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/tunel.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/quocte_php/do.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/noidia_php/do.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/quocte_php/dr.php [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/noidia_php/dr.php [NC]
+RewriteRule ^ - [L]
+
+# ============================================================
+# [2] BAO VE FILE NHAY CAM
+# ============================================================
+<FilesMatch "^(init|config|core|session_bootstrap)\.php$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "(\.env|\.git|\.gitignore|composer\.(json|lock)|package\.json|phpinfo\.php|readme\.(md|txt|html)|license\.(txt|md))$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(bak|sql|log|sh|swp|orig|dist|tmp|phar|phtml)$">
+    Require all denied
+</FilesMatch>
+
+# Chan file backup theo pattern isoCMS (vi du: index.php_5-4-26, init.php_bk)
+<FilesMatch "(_bk$|_bk\.|\.bk$|_[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}$|_tam[0-9]*$)">
+    Require all denied
+</FilesMatch>
+
+# Chan hnv.php - file khong con su dung
+<FilesMatch "^hnv\.php$">
+    Require all denied
+</FilesMatch>
+
+Options -Indexes
+
+# Chan thu muc du lieu he thong
+RewriteRule ^(logs|tmp|cache|json|ratelimit)(/.*)?$ - [F,L,NC]
+
+# ============================================================
+# [3] BLOCK PHP EXECUTION TRONG /uploads VA /files
+# ============================================================
+RewriteCond %{REQUEST_URI} ^/(uploads|files)/ [NC]
+RewriteCond %{REQUEST_URI} \.(php|php3|php4|php5|phtml|phar|shtml|cgi|pl|py|sh|asp|aspx)$ [NC]
+RewriteRule ^ - [F,L]
+
+# ============================================================
+# [4] BLOCK HTTP METHOD NGUY HIEM
+# ============================================================
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK|CONNECT|DEBUG) [NC]
+RewriteRule ^ - [F,L]
+
+# ============================================================
+# [5] BLOCK TAN CONG SQLi / XSS / PATH TRAVERSAL
+# ============================================================
+RewriteCond %{QUERY_STRING} (union.*select|select.*from|insert.*into|drop.*table|update.*set|delete.*from) [NC]
+RewriteRule ^ - [F,L]
+
+RewriteCond %{QUERY_STRING} (<script|javascript:|vbscript:|on(error|load|click|mouse)=) [NC]
+RewriteRule ^ - [F,L]
+
+RewriteCond %{REQUEST_URI} (\.\./|\.\.%2F|%2E%2E%2F|%2e%2e%2f) [NC]
+RewriteRule ^ - [F,L]
+
+RewriteCond %{QUERY_STRING} %00 [NC]
+RewriteRule ^ - [F,L]
+
+# ============================================================
+# [6] SECURITY HEADERS
+# ============================================================
+RewriteRule ^(logs|tmp|cache|json|ratelimit)(/.*)?$ - [F,L,NC]
+<IfModule mod_headers.c>
+    Header unset ETag
+    Header always unset X-Powered-By
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), fullscreen=(self)"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Content-Security-Policy "default-src 'self' https: data: blob:; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https: wss: data: blob:; frame-src 'self' https:; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https:;"
+</IfModule>
+
+# ============================================================
+# [7] WHITELIST FILE PHP DUOC PHEP TRUY CAP TRUC TIEP
+# ============================================================
+<Files "index.php">
+    Require all granted
+</Files>
+
+# Cho phep cac file he thong cu the
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumb\.php$ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/timthumb/vietisothumbwebp\.php$ [NC]
+RewriteRule ^ - [L]
+
+# Thumb endpoints KHONG dung [L] o day - phai di den rule [15] de rewrite
+# Chi bao Apache "dung block 403", khong dung rewrite
+RewriteCond %{REQUEST_URI} ^/inc/editor/tinymce/ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/payment/ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/quocte_php/do\.php$ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/noidia_php/do\.php$ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/quocte_php/dr\.php$ [NC]
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/inc/onepaycredit/noidia_php/dr\.php$ [NC]
+RewriteRule ^ - [L]
+
+
+
+# ============================================================
+# [8] WHITELIST FILE TECH QUA GATEWAY
+# ============================================================
+RewriteRule ^inc/tech/security-gateway\.php$ - [L]
+
+RewriteCond %{REQUEST_URI} ^/inc/tech/.*\.php$ [NC]
+RewriteCond %{REQUEST_URI} !security-gateway\.php$ [NC]
+RewriteRule ^inc/tech/(.*\.php)$ /inc/tech/security-gateway.php?file=$1 [L,QSA]
+
+# ============================================================
+# [9] BLOCK TAT CA PHP KHAC (ngoai whitelist)
+# ============================================================
+# Thumb duoc goi dang /thumb?w=...&h=...&src=... (khong co .php trong URI)
+RewriteRule ^thumb$ thumb.php [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} \.php$
+RewriteCond %{REQUEST_URI} !^/(index|pagination_image|thumb)\.php$
+RewriteCond %{REQUEST_URI} !^/files/thumb [NC]
+RewriteCond %{REQUEST_URI} !^/inc/timthumb/ [NC]
+RewriteRule ^ - [F,L]
+
+# ============================================================
+# [10] HTTPS REDIRECT
+# Mac dinh: BAT SSL
+# Neu site chua co SSL: comment 2 dong RewriteCond/RewriteRule bat SSL
+# va bo comment 2 dong option tat SSL ben duoi
+# ============================================================
+
+# --- OPTION 1: BAT SSL (mac dinh) ---
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# --- OPTION 2: TAT SSL (site chua co chung chi) ---
+# Bo comment 2 dong duoi, dong thoi comment lai option 1 phia tren
+#RewriteCond %{HTTPS} on
+##RewriteRule ^ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ============================================================
+# [11] CANONICAL (chon 1, bo comment khi dung)
+# ============================================================
+# Bo www:
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L,NE]
+# Them www:
+#RewriteCond %{HTTP_HOST} !^www\. [NC]
+#RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ============================================================
+# [12] SEO: CHUAN HOA URL
+# ============================================================
+RewriteCond %{THE_REQUEST} ^GET.*index\.php [NC]
+RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,NE,L]
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^(.*)/index\.html$ /$1/ [R=301,L]
+
+# ============================================================
+# [13] CACHE + NEN
+# Nang TTL CSS/JS len 1 nam - nen dung versioning hash khi deploy
+# Vi du: style.css?v=20260511 hoac style.20260511.css
+# ============================================================
+<IfModule mod_headers.c>
+    <FilesMatch "\.min\.(css|js)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(woff|woff2|ttf|eot|otf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+    Header append Vary Accept-Encoding
+    Header unset ETag
+</IfModule>
+
+FileETag None
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html                  "access 1 hour"
+    ExpiresByType text/css                   "access 1 year"
+    ExpiresByType application/javascript     "access 1 year"
+    ExpiresByType text/javascript            "access 1 year"
+    ExpiresByType image/jpeg                 "access 1 year"
+    ExpiresByType image/jpg                  "access 1 year"
+    ExpiresByType image/png                  "access 1 year"
+    ExpiresByType image/gif                  "access 1 year"
+    ExpiresByType image/webp                 "access 1 year"
+    ExpiresByType image/avif                 "access 1 year"
+    ExpiresByType image/svg+xml              "access 1 year"
+    ExpiresByType image/x-icon               "access 1 year"
+    ExpiresByType font/woff                  "access 1 year"
+    ExpiresByType font/woff2                 "access 1 year"
+    ExpiresByType application/font-woff      "access 1 year"
+    ExpiresByType application/font-woff2     "access 1 year"
+    ExpiresByType application/x-font-ttf     "access 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
+    AddOutputFilterByType DEFLATE application/json application/xml application/rss+xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff font/woff2
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+# ============================================================
+# [14] ERROR DOCUMENTS
+# ============================================================
+ErrorDocument 404 /error.iso
+ErrorDocument 403 /error.iso
+ErrorDocument 500 /error.iso
+RewriteRule ^error\.iso$ index.php?mod=unknow&lang=en [L]
+
+# ============================================================
+# [15] RESIZE IMAGE
+# ============================================================
+RewriteRule ^thumb-([0-9]*)-([0-9]*)-(.*)$ thumb.php?w=$1&h=$2&f=$3 [L]
+RewriteRule ^files/thumb$                                             inc/timthumb/vietisothumb.php [L,QSA]
+RewriteRule ^files/thumbwebp/([0-9]+)/([0-9]+)/(.+)$                 inc/timthumb/vietisothumbwebp.php?w=$1&h=$2&src=$3 [L]
+RewriteRule ^files/thumbold/([0-9]+)/([0-9]+)/(.+)$                  inc/timthumb/vietisothumb.php?w=$1&h=$2&src=$3 [L]
+RewriteRule ^inc/editor/tiny_mce/plugins/advimage/image\.htm$ admin/index.php?mod=editor&act=image [L]
+RewriteRule ^xml_exchange_rate_vcb\.xml$ exchange_rate_vcb.php [QSA,L]
+
+# ============================================================
+# MODULE REWRITE RULES - GIU NGUYEN TU FILE GOC
+# ============================================================
+
+#- Mod API
+RewriteRule ^api/tour/getAll.cfg$ 										index.php?mod=api&sub=tour&act=getAll&lang=vn [QSA,L]
+
+
+RewriteRule ^api-login/okrs/user/login$ 									index.php?mod=api&sub=user&act=login [QSA,L]
+RewriteRule ^api-login/okrs/user/delete$ 									index.php?mod=api&sub=user&act=delete [QSA,L]
+
+#ticket
+RewriteRule ^api/okrs/reply_ticket$ 									index.php?mod=api&sub=ticket&act=reply_ticket [QSA,L]
+RewriteRule ^api/okrs/change_status_ticket$ 						index.php?mod=api&sub=ticket&act=change_status_ticket [QSA,L]
+RewriteRule ^api/okrs/add_ticket$ 										index.php?mod=api&sub=ticket&act=add_ticket [QSA,L]
+
+
+RewriteRule ^homenew$	index.php?mod=homenew&lang=vn [L]
+
+RewriteRule ^$	index.php?mod=homepackage&lang=en [QSA,L]
+RewriteRule ^/$	index.php?mod=homepackage&lang=en [QSA,L]
+
+# Yeu cau chuyen ve ngon ngu mac dinh la "en" (17/4/2025)
+#----------------// LANGUAGE EN //----------------/
+RewriteRule ^login_new$	                            index.php?mod=member&act=signin4_new&noindex=noindex&lang=en [QSA,L]
+RewriteRule ^signup_new$	                            index.php?mod=member&act=signup3_new&noindex=noindex&lang=en [QSA,L]
+
+RewriteRule ^about/(.*).html$							index.php?mod=about&slug=$1&lang=en [L]
+RewriteRule ^contact-us.html$							index.php?mod=tour_new&act=contact&lang=en [L]
+RewriteRule ^about-us.html$							    index.php?mod=about&act=about&lang=en [L]
+RewriteRule ^faqs.html$									index.php?mod=faqs&lang=en [L]
+RewriteRule ^why-travel-with-us.html$					index.php?mod=about&act=why&show=Why&lang=en [L]
+RewriteRule ^our-team.html$								index.php?mod=about&act=team&lang=en [L]
+RewriteRule ^brochure.html$								index.php?mod=about&act=brochure&lang=en [L]
+
+#-- Mod News.
+RewriteRule ^travel-news$ 								index.php?mod=news&lang=en [L]
+RewriteRule ^n([0-9]*)-(.*).html$					index.php?mod=news&act=detail&news_id=$1&slug=$2&lang=en [L]
+RewriteRule ^travel-news&page=([0-9]*)$ 				index.php?mod=news&page=$1&lang=en [L]
+RewriteRule ^travel-news/(.*)$ 							index.php?mod=news&slug=$1&show=cat&lang=en [L]
+RewriteRule ^travel-news/(.*)&page=([0-9]*)$ 			index.php?mod=news&slug=$1&page=$2&show=cat&lang=en [L]
+
+#- Mod Testimonial.
+RewriteRule ^testimonials$								index.php?mod=testimonial&lang=en [L]
+RewriteRule ^testimonials/&page=([0-9]*)$				index.php?mod=testimonial&page=$1&lang=en [L]
+RewriteRule ^te([0-9]*)-(.*).html$					index.php?mod=testimonial&act=detail&testimonial_id=$1&slug=$2&lang=en [L]
+
+#-- Mod Service.
+RewriteRule ^travel-services$							index.php?mod=service&lang=en [L]
+RewriteRule ^travel-services&page=([0-9]*)$				index.php?mod=service&page=$1&lang=en [L]
+RewriteRule ^s([0-9]*)-(.*).html$					index.php?mod=service&act=detail&service_id=$1&slug=$2&lang=en [L]
+
+RewriteRule ^book-service/([0-9]*)$					  	index.php?mod=about&act=contact&service_id=$1&show=service&lang=en [L]
+RewriteRule ^travel-services/(.*)$ 									index.php?mod=service&slug=$1&show=cat&lang=en [L]
+RewriteRule ^travel-services/(.*)&page=([0-9]*)$ 					index.php?mod=service&slug=$1&page=$2&show=cat&lang=en [L]
+
+#- voucher
+RewriteRule ^voucher.html$								index.php?mod=voucher&lang=en [QSA,L]
+RewriteRule ^voucher&page=([0-9]*)$						index.php?mod=voucher&page=$1&lang=en [L]
+RewriteRule ^tim-kiem-voucher/(.*)$						index.php?mod=voucher&act=searchvoucher&cond=$1&lang=en [L]
+RewriteRule ^v([0-9]*)-(.*).html$						index.php?mod=voucher&act=detail&voucher_id=$1&slug=$2&lang=en [L]
+
+#InBound
+RewriteRule ^inbound-tours/(.*)$ 		 			index.php?mod=tour&act=place_inbound2024&slug_city=$1&show=City&lang=en [QSA,L]
+RewriteRule ^inbound-tours/(.*)&page=([0-9]*)$ 	    index.php?mod=tour&act=place_inbound2024&slug_city=$1&page=$2&show=City&lang=en [QSA,L]
+
+#-- Mod Destinations.
+RewriteRule ^destinations/(.*)/(.*)/(.*).html$       index.php?mod=guide&act=cat&slug_country=$1&slug_city=$2&slug_guidecat=$3&show=City&lang=en [L]
+RewriteRule ^destinations/(.*)/(.*)$                 index.php?mod=destination&act=place&slug_country=$1&slug_city=$2&show=City&lang=en [QSA,L]
+RewriteRule ^destinations/(.*)/(.*)&page=([0-9]*)$ 	index.php?mod=destination&act=place&slug_country=$1&slug_city=$2&page=$3&show=City&lang=en [QSA,L]
+RewriteRule ^destinations/(.*)$ 			            index.php?mod=destination&act=place&slug_country=$1&show=Country&lang=en [QSA,L]
+RewriteRule ^destinations/(.*)&page=([0-9]*)$ 	    index.php?mod=destination&act=place&slug_country=$1&page=$2&show=Country&lang=en [QSA,L]
+
+#-- Mod Travel Guide
+RewriteRule ^travel-guide$						    index.php?mod=guide&act=default&lang=en [QSA,L]
+RewriteRule ^travel-guide&page=([0-9]*)$			    index.php?mod=guide&act=default&page=$1&lang=en [QSA,L]
+RewriteRule ^travel-guide/(.*)$			            index.php?mod=guide&act=default&slug_country=$1&lang=en [QSA,L]
+RewriteRule ^destination/(.*)/travel-guide$			            index.php?mod=guide&act=default&slug_country=$1&lang=en [QSA,L]
+RewriteRule ^destination/(.*)/travel-guide&page=([0-9]*)$			    index.php?mod=guide&act=default&slug_country=$1&page=$2&lang=en [L,QSA]
+
+#-- Mod Destination (Hnv)
+RewriteRule ^destination/(.*)/(.*)-c([0-9]*)$ 			            index.php?mod=tour&act=travel_style_by_country&slug_country=$1&slug=$2&cat_id=$3&show=CatCountry&lang=en [QSA,L]
+RewriteRule ^destination/(.*)$ 			            index.php?mod=destination&act=place2&slug_country=$1&show=Country&lang=en [QSA,L]
+#-- Mod tour (Hnv)
+RewriteRule ^tour/(.*)$ 			                    index.php?mod=destination&act=place&slug_country=$1&show=Country&lang=en [QSA,L]
+RewriteRule ^tour/(.*)&page=([0-9]*)$ 	            index.php?mod=destination&act=place&slug_country=$1&page=$2&show=Country&lang=en [QSA,L]
+#-- Mod Blog.
+RewriteRule ^b([0-9]*)-(.*).html$					index.php?mod=blog&act=detail&blog_id=$1&slug=$2&lang=en [L]
+RewriteRule ^blog/tag/(.*)/&page=([0-9]*)$ 				index.php?mod=blog&act=tag&slug=$1&page=$2&show=tag&lang=en [L]
+RewriteRule ^blog/tag/(.*)$ 							index.php?mod=blog&act=tag&slug=$1&show=tag&lang=en [L]
+RewriteRule ^blog/&page=([0-9]*)$ 						index.php?mod=blog&page=$1&show=Default&lang=en [L]
+RewriteRule ^blog$ 										index.php?mod=blog&show=Default&lang=en [L,QSA]
+RewriteRule ^blog/(.*).html&page=([0-9]*)$				index.php?mod=blog&act=cat&slug_cat=$1&page=$2&show=Cat&lang=en [L]
+RewriteRule ^blog/(.*).html$ 							index.php?mod=blog&act=cat&slug_cat=$1&show=Cat&lang=en [L]
+RewriteRule ^blog/(.*)/(.*)/&page=([0-9]*)$ 			index.php?mod=blog&slug_country=$1&slug_city=$2&page=$3&show=City&lang=en [L]
+RewriteRule ^blog/(.*)/&page=([0-9]*)$ 					index.php?mod=blog&slug_country=$1&page=$2&show=Country&lang=en [L]
+RewriteRule ^blog/(.*)/(.*)-rg([0-9]*)$ 				index.php?mod=blog&slug_country=$1&slug_region=$2&region_id=$3&show=Region&lang=en [L]
+RewriteRule ^blog/(.*)/(.*)$ 							index.php?mod=blog&slug_country=$1&slug_city=$2&show=City&lang=en [L]
+RewriteRule ^blog/(.*)$ 								index.php?mod=blog&slug_country=$1&show=Country&lang=en [L]
+
+#
+RewriteRule ^tours/(.*)-c([0-9]*)/(.*)$					index.php?mod=tour&act=cat&slug=$1&cat_id=$2&slug_country=$3&show=CatCountry&lang=en [QSA,L]
+RewriteRule ^tours/(.*)-c([0-9]*)&page=([0-9]*)$		index.php?mod=tour&act=cat2024&slug=$1&cat_id=$2&page=$3&show=Category&lang=en [QSA,L]
+RewriteRule ^tours/(.*)-c([0-9]*)$						index.php?mod=tour&act=cat2024&slug=$1&cat_id=$2&show=Category&lang=en [QSA,L]
+
+RewriteRule ^t([0-9]*)-(.*).html$					    index.php?mod=tour_new&act=detaildeparture2024&tour_id=$1&slug=$2&lang=en [L]
+
+RewriteRule ^cruise/enquiry.html$					    index.php?mod=about&act=contact2&show=CRUISE&lang=en [L]
+
+RewriteRule ^tour/enquiry/(.*).html$ 					index.php?mod=tailor&act=customize&slug=$1&show=Tour&lang=en [L]
+RewriteRule ^tours$ 						        index.php?mod=tour&act=searchtour2024&cond=$1&lang=en [QSA,L]
+RewriteRule ^tours&page=([0-9]*)$ 				index.php?mod=tour&act=searchtour2024&page=$1&lang=en [QSA,L]
+#- Mod Cart.
+RewriteRule ^shopping-cart$								index.php?mod=cart&act=cart&noindex=noindex&lang=en [L]
+RewriteRule ^cart$								        index.php?mod=cart&act=cart&noindex=noindex&lang=en [L]
+RewriteRule ^shopping-cart/booking.html$				index.php?mod=cart&act=book_2024&noindex=noindex&lang=en [L]
+
+#-- Mod Hotel.
+RewriteRule ^hotels/$					            index.php?mod=hotel&act=place2024&lang=en [QSA,L]
+RewriteRule ^hotels/&page=([0-9]*)$					index.php?mod=hotel&act=place2024&page=$1&lang=en [QSA,L]
+RewriteRule ^hotels/(.*)&page=([0-9]*)$				index.php?mod=hotel&act=place2024&slug_country=$1&page=$2&show=Country&lang=en [QSA,L]
+RewriteRule ^hotels/(.*)$							index.php?mod=hotel&act=place2024&slug_country=$1&show=Country&lang=en [QSA,L]
+
+RewriteRule ^h([0-9]*)-(.*).html$					index.php?mod=hotel&act=detail2024&hotel_id=$1&slug=$2&lang=en [L]
+RewriteRule ^hotels/(.*)/booking.html$				index.php?mod=hotel&act=book&slug=$1&lang=en [L]
+RewriteRule ^hotels(.*)&page=([0-9]*)$				index.php?mod=hotel&slug_country=$1&page=$2&lang=en [L]
+RewriteRule ^hotels/(.*)-h([0-9]*).html$				index.php?mod=hotel&act=detail&slug=$1&hotel_id=$2&lang=en [L]
+RewriteRule ^hotels/(.*)/(.*)-rg([0-9]*)$				index.php?mod=hotel&act=place&slug_country=$1&slug_region=$2&region_id=$3&show=Region&lang=en [L]
+RewriteRule ^hotels/(.*)/(.*)$						index.php?mod=hotel&act=place&slug_country=$1&slug_city=$2&show=City&lang=en [L]
+RewriteRule ^search-hotels/(.*)$ 					index.php?mod=hotel&act=search&cond=$1&lang=en [L]
+
+#-- Mod Cruise.
+RewriteRule ^cruise/(.*)-c([0-9]*)/bookingcabin.html$		index.php?mod=cruise&act=bookcabin&slug=$1&cruise_id=$2&lang=en [L]
+RewriteRule ^cruise/$									index.php?mod=cruise&act=search2024&lang=en [QSA,L]
+RewriteRule ^cruise/&page=([0-9]*)$									index.php?mod=cruise&act=search2024&page=$1&lang=en [QSA,L]
+RewriteRule ^cruise/([^-]*-[^/]*)/(.*)/$							index.php?mod=cruise&act=catchild&slug_parent=$1&slug_child=$2&lang=en [QSA,L]
+RewriteRule ^cruise/(.*)/$													index.php?mod=cruise&act=cat2024&slug=$1&lang=en [QSA,L]
+RewriteRule ^cruise/(.*)/&page=([0-9]*)$													index.php?mod=cruise&act=cat2024&slug=$1&page=$2&lang=en [QSA,L]
+RewriteRule ^cruise/tag/(.*)$							index.php?mod=cruise&act=tag&slug=$1&lang=en [L]
+RewriteRule ^cruise/(.*)/services-book.html$				index.php?mod=cruise&act=bookservices&slug_key=$1&lang=en [L]
+RewriteRule ^cruise/(.*)/([0-9]*)-day.html$				index.php?mod=cruise&act=detail&slug=$1&day=$2&show=Itinerary&lang=en [L]
+RewriteRule ^cruise/(.*).html$							index.php?mod=cruise&act=detail&slug=$1&lang=en [L]
+RewriteRule ^c([0-9]*)-(.*).html$					index.php?mod=cruise&act=detail&cruise_id=$1&slug=$2&lang=en [L]
+RewriteRule ^search-cruises/(.*)$						index.php?mod=cruise&act=search&cond=$1&lang=en [L]
+
+#- Successful
+RewriteRule ^booking/booking_id=([0-9]*)&successful$ 					index.php?mod=cart&act=success&show=bookTour&booking_id=$1&lang=en [L]
+RewriteRule ^booking/tours/booking_id=([0-9]*)&successful$ 					index.php?mod=about&act=success&show=bookTour&booking_id=$1&lang=en [L]
+
+RewriteRule ^booking/hotel/successful$ 					index.php?mod=about&act=success&show=bookHotel&lang=en [L]
+RewriteRule ^booking/cruise/successful$ 				index.php?mod=about&act=success&show=bookCruise&lang=en [L]
+RewriteRule ^tailor-made-tour/successful$ 				index.php?mod=about&act=success&show=bookTailor&lang=en [L]
+RewriteRule ^contact-us/success.html$					index.php?mod=about&act=success&show=Feedback&lang=en [L]
+RewriteRule ^booking-services/success.html$					index.php?mod=about&act=success&show=Bookingservices&lang=en [L]
+
+#- Mod Account
+RewriteCond %{QUERY_STRING} (.*)$
+RewriteRule ^account/signin/r=(.*)$		        		index.php?mod=member&act=signin2&return_url=$1&lang=en [L]
+RewriteRule ^checkAccountAJAX/(.*)$						index.php?mod=member&act=checkAccountAJAX&fbAT=$1&lang=en [L]
+RewriteRule ^checkLoginAJAX/(.*)$						index.php?mod=member&act=checkLoginAJAX&lang=en [L]
+RewriteRule ^checkGoogleAccount/$						index.php?mod=member&act=checkGoogleAccount&lang=en [L]
+RewriteRule ^oauth2callback$							index.php?mod=member&act=callback&lang=en [L]
+RewriteRule ^account/signup.html$		                index.php?mod=member&act=signup2&lang=en [L]
+RewriteRule ^account/signup-success.html$		        index.php?mod=member&act=signup&show=success&lang=en [L]
+RewriteRule ^account/signin.html$		                index.php?mod=member&act=signin2&lang=en [L]
+RewriteRule ^account/verify/(.*)$						index.php?mod=member&act=verify&hash=$1&lang=en [QSA,L]
+RewriteRule ^account/setting-profile/success.html$		    index.php?mod=member&act=my_profile&message=success&lang=en [L]
+RewriteRule ^account/profile.html$		            	index.php?mod=member&act=my_profile&lang=en [L]
+RewriteRule ^account/reviews-photo.html$		            	index.php?mod=member&act=my_review&lang=en [L]
+RewriteRule ^account/offers.html$		            		index.php?mod=member&act=my_offer&lang=en [L]
+RewriteRule ^account/booking.html$		            	index.php?mod=member&act=my_booking&lang=en [L]
+RewriteRule ^account/wishlist.html$		            	index.php?mod=member&act=my_wishlist&lang=en [L]
+RewriteRule ^account/my-profile/contact-info.html$		    index.php?mod=member&act=contact_info&lang=en [L]
+RewriteRule ^account/my-profile/success.html$		    	index.php?mod=member&act=my_profile&message=success&lang=en [L]
+RewriteRule ^account/reset-password.html$		            index.php?mod=member&act=reset_pass&lang=en [L]
+RewriteRule ^account/reset-password/(.*)$					index.php?mod=member&act=reset_pass&restorekey=$1&lang=en [L]
+RewriteRule ^account/forgot-password.html$		            index.php?mod=member&act=forgot_pass&lang=en [L]
+RewriteRule ^account/change-password.html$		            index.php?mod=member&act=change_pass&lang=en [L]
+RewriteRule ^account/change-password/error.html$		    index.php?mod=member&act=change_pass&message=error&lang=en [L]
+RewriteRule ^account/logout.html$		                    index.php?mod=member&act=logout&lang=en [L]
+RewriteRule ^g([0-9]*)-(.*).html$				index.php?mod=guide&act=detail&guide_id=$1&slug=$2&lang=en [L]
+#-- Link hotel / cruise cu
+RewriteRule ^old-h([0-9]*)-(.*).html$					index.php?mod=hotel2&act=detail2&hotel_id=$1&slug=$2&lang=en [L]
+#-- Hotel 2024
+RewriteRule ^2024-hotels/h([0-9]*)-(.*).html$			index.php?mod=hotel&act=detail2024&hotel_id=$1&slug=$2&lang=en [QSA,L]
+RewriteRule ^2024-hotels/(.*)&page=([0-9]*)$				index.php?mod=hotel&act=place2024&slug_country=$1&page=$2&show=Country&lang=en [QSA,L]
+RewriteRule ^2024-hotels/(.*)$							index.php?mod=hotel&act=place2024&slug_country=$1&show=Country&lang=en [QSA,L]
+#-- Booking cart new
+RewriteRule ^shopping-cart/booking-old.html$				index.php?mod=cart&act=book&noindex=noindex&lang=en
+RewriteRule ^customize-tour.html$ 						index.php?mod=tailor&act=customize&lang=en [L]
+
+RewriteRule ^contact_new$ 						        index.php?mod=about&act=contact3&lang=en [L]
+RewriteRule ^contact-us-success/fb-([0-9]*).html$					index.php?mod=about&act=success&feedback_id=$1&show=Feedback&lang=en [L]
+
+#----------------** END LANGUAGE EN **----------------/
+
+#----------------// LANGUAGE VN //----------------/
+#zalo zns
+RewriteRule ^zalo/zns$ 									index.php?mod=zalo&act=zalo_zns&lang=vn  [QSA,L]
+RewriteRule ^essential$	index.php?mod=homepro&show=essential&lang=vn [L]
+RewriteRule ^professional$	index.php?mod=homeprofessional&show=professional&lang=vn [L]
+RewriteRule ^3fc0f600e81000ea520761167710f908/(.*)$		index.php?mod=home&act=set_cookie&customer_id=$1&lang=vn [L]
+RewriteRule ^demo.html$									index.php?mod=home&act=set_cookie2&lang=vn [QSA,L]
+RewriteRule ^test_payment.html$								index.php?mod=cart&act=test_payment_method&lang=vn [L]
+RewriteRule ^payment/9pay/success.html$						index.php?mod=cart&act=9pay_success&lang=vn [QSA,L]
+RewriteRule ^monday.com$								index.php?mod=test_html&act=monday&noindex=noindex&lang=vn [L]
+RewriteRule ^test$										index.php?mod=home&act=test_php&noindex=noindex&lang=vn [L]
+RewriteRule ^test_map$									index.php?mod=home&act=test_map_box&noindex=noindex&lang=vn [L]
+
+RewriteRule ^home_new$	                            index.php?mod=home2024&act=home_new&noindex=noindex&lang=en [L]
+RewriteRule ^test_new$	                                index.php?mod=home2024&act=test&noindex=noindex&lang=en [L]
+RewriteRule ^([a-z]{2})/home_new$	                            index.php?mod=home2024&act=home_new&noindex=noindex&lang=$1 [L]
+RewriteRule ^signup_new$	                            index.php?mod=member&act=signup3_new&noindex=noindex&lang=vn [QSA,L]
+RewriteRule ^([a-z]{2})/signup_new$	                            index.php?mod=member&act=signup3_new&noindex=noindex&lang=$1 [QSA,L]
+RewriteRule ^login_new$	                            index.php?mod=member&act=signin4_new&noindex=noindex&lang=vn [QSA,L]
+RewriteRule ^([a-z]{2})/login_new$	                            index.php?mod=member&act=signin4_new&noindex=noindex&lang=$1 [QSA,L]
+
+#--Zoom demo
+RewriteRule ^zoom-live$										index.php?mod=home&act=test_html&noindex=noindex&lang=vn [L]
+
+#-- Ticket Air.
+RewriteRule ^ve-may-bay$								index.php?mod=ticket_air&lang=vn [L]
+RewriteRule ^ve-may-bay/$								index.php?mod=ticket_air&act=fare_result&lang=vn [L]
+RewriteRule ^tra-ve-may-bay-truc-tuyen/$				index.php?mod=ticket_air&act=result&lang=vn [L]
+
+#-- Mod About.
+RewriteRule ^vn/thong-tin/(.*).html$						index.php?mod=about&slug=$1&lang=vn [L]
+RewriteRule ^vn/gioi-thieu.html$							index.php?mod=about&act=about&lang=vn [L]
+RewriteRule ^vn/hoi-dap.html$								index.php?mod=faqs&lang=vn [L]
+RewriteRule ^vn/so-do-trang.html$							index.php?mod=about&act=sitemap&lang=vn [L]
+RewriteRule ^vn/tai-sao-chon-chung-toi.html$				index.php?mod=about&act=why&show=Why&lang=vn [L]
+RewriteRule ^vn/uu-dai.html$								index.php?mod=tour&act=last_hour&lang=vn [L]
+RewriteRule ^vn/an-pham-quang-cao.html$					index.php?mod=download&lang=vn [L]
+
+#- Mod Testimonial.
+RewriteRule ^vn/nhan-xet$									index.php?mod=testimonial&lang=vn [L]
+RewriteRule ^vn/nhan-xet/&page=([0-9]*)$					index.php?mod=testimonial&page=$1&lang=vn [L]
+RewriteRule ^vn/te([0-9]*)-(.*).html$					index.php?mod=testimonial&act=detail&testimonial_id=$1&slug=$2&lang=vn [L]
+
+#- recruitment
+RewriteRule ^tuyen-dung.html$							index.php?mod=recruit&lang=vn [L]
+RewriteRule ^tuyen-dung/trang-([0-9]*).html$			index.php?mod=recruit&page=$1&lang=vn [L]
+RewriteRule ^tuyen-dung/(.*).html$						index.php?mod=recruit&act=detail&slug=$1&lang=vn [L]
+
+#- voucher
+RewriteRule ^vn/voucher.html$								index.php?mod=voucher&lang=vn [QSA,L]
+RewriteRule ^vn/voucher&page=([0-9]*)$						index.php?mod=voucher&page=$1&lang=vn [L]
+RewriteRule ^vn/danh-muc-voucher/(.*)$						index.php?mod=voucher&slug=$1&show=Cat&lang=vn [QSA,L]
+RewriteRule ^vn/danh-muc-voucher/(.*)&page=([0-9]*)$		index.php?mod=voucher&slug=$1&page=$2&show=Cat&lang=vn [QSA,L]
+RewriteRule ^vn/tim-kiem-voucher/(.*)$						index.php?mod=voucher&act=searchvoucher&cond=$1&lang=vn [L]
+RewriteRule ^vn/v([0-9]*)-(.*).html$						index.php?mod=voucher&act=detail&voucher_id=$1&slug=$2&lang=vn [L]
+
+#- combo
+RewriteRule ^vn/combo.html$								index.php?mod=combo&lang=vn [L]
+RewriteRule ^vn/combo&page=([0-9]*)$						index.php?mod=combo&page=$1&lang=vn [L]
+RewriteRule ^vn/tim-kiem-combo/(.*)$						index.php?mod=combo&act=searchcombo&cond=$1&lang=vn [L]
+RewriteRule ^vn/co([0-9]*)-(.*).html$						index.php?mod=combo&act=detail&combo_id=$1&slug=$2&lang=vn [L]
+
+#OutBound
+RewriteRule ^demo.html$						            index.php?mod=tour&act=demo&lang=vn [L]
+RewriteRule ^vn/du-lich-nuoc-ngoai/du-lich-(.*)/(.*)$ 		index.php?mod=tour&act=place_inbound2024&slug_country=$1&slug_city=$2&show=City&lang=vn [QSA,L]
+RewriteRule ^vn/du-lich-nuoc-ngoai/du-lich-(.*)/(.*)&page=([0-9]*)$ 	index.php?mod=tour&act=place_inbound2024&slug_country=$1&slug_city=$2&page=$3&show=City&lang=vn [QSA,L]
+RewriteRule ^vn/du-lich-nuoc-ngoai/du-lich-(.*)$ 			index.php?mod=destination&act=place2&slug_country=$1&show=Country&lang=vn [QSA,L]
+RewriteRule ^vn/du-lich-nuoc-ngoai/du-lich-(.*)&page=([0-9]*)$ 	index.php?mod=destination&act=place2&slug_country=$1&page=$2&show=Country&lang=vn [QSA,L]
+
+#InBound
+RewriteRule ^vn/du-lich-trong-nuoc/du-lich-(.*)$ 			index.php?mod=tour&act=place_inbound2024&slug_city=$1&show=City&lang=vn [QSA,L]
+RewriteRule ^vn/du-lich-trong-nuoc/du-lich-(.*)&page=([0-9]*)$ 	index.php?mod=tour&act=place_inbound2024&slug_city=$1&page=$2&show=City&lang=vn [QSA,L]
+
+RewriteRule ^vn/loai-hinh-du-lich/(.*)/(.*)-c([0-9]*)$		index.php?mod=tour&act=cat2024&slug=$2&cat_id=$3&slug_country=$1&show=CatCountry&lang=vn [QSA,L]
+RewriteRule ^vn/loai-hinh-du-lich/(.*)/(.*)-c([0-9]*)&page=([0-9]*)$				index.php?mod=tour&act=cat2024&slug=$2&cat_id=$3&slug_country=$1&page=$4&show=CatCountry&lang=vn [QSA,L]
+RewriteRule ^vn/loai-hinh-du-lich/(.*)-c([0-9]*)$			index.php?mod=tour&act=cat2024&slug=$1&cat_id=$2&show=Category&lang=vn [QSA,L]
+
+RewriteRule ^vn/loai-hinh-du-lich/(.*)-c([0-9]*)&page=([0-9]*)$			index.php?mod=tour&act=cat&slug=$1&cat_id=$2&page=$3&show=Category&lang=vn [QSA,L]
+RewriteRule ^vn/tim-kiem-tours$					index.php?mod=tour&act=searchtour2024&cond=$1&lang=vn [QSA,L]
+RewriteRule ^vn/tim-kiem-tours&page=([0-9]*)$					index.php?mod=tour&act=searchtour2024&page=$1&lang=vn [QSA,L]
+
+RewriteRule ^vn/t([0-9]*)-(.*).html$					                index.php?mod=tour_new&act=detaildeparture2024&tour_id=$1&slug=$2&lang=vn [L]
+
+RewriteRule ^vn/lien-he.html$					                        index.php?mod=tour_new&act=contact&slug=$1&lang=vn [L]
+
+RewriteRule ^vn/cruise/enquiry.html$					                index.php?mod=about&act=contact2&show=CRUISE&lang=vn [L]
+RewriteRule ^([a-z]{2})/hotel/enquiry.html$					        index.php?mod=about&act=contact2&show=HOTEL&lang=$1 [L]
+RewriteRule ^vn/hotel/enquiry.html$					                index.php?mod=about&act=contact2&show=HOTEL&lang=vn [L]
+RewriteRule ^vn/voucher/enquiry.html$					                index.php?mod=about&act=contact2&show=CRUISE&lang=vn [L]
+RewriteRule ^([a-z]{2})/voucher/enquiry.html$					    index.php?mod=about&act=contact2&show=CRUISE&lang=$1 [L]
+
+RewriteRule ^lien-he2.html$					                index.php?mod=about&act=contact&slug=$1&lang=vn [L]
+
+RewriteRule ^vn/lien-he-thanh-cong/fb-([0-9]*).html$					index.php?mod=about&act=success&feedback_id=$1&show=Feedback&lang=vn [L]
+
+RewriteRule ^vn/lich-khoi-hanh/(.*)-c([0-9]*)$				index.php?mod=tour&act=tour_start_date&slug_group_tour=$1&tour_group_id=$2&lang=vn [L]
+RewriteRule ^vn/tour/enquiry/(.*).html$ 					index.php?mod=tailor&act=customize&slug=$1&show=Tour&lang=vn [L]
+RewriteRule ^vn/customize-tour.html$ 						index.php?mod=tailor&act=customize&lang=vn [L]
+
+RewriteRule ^([a-z]{2})/customize-tour.html$ 			index.php?mod=tailor&act=customize&lang=$1 [L]
+
+#- Mod Cart.
+RewriteRule ^vn/shopping-cart$								index.php?mod=cart&act=cart&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/cart$								        index.php?mod=cart&act=cart&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/shopping-cart/booking.html$				index.php?mod=cart&act=book_2024&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/shopping-cart2/booking.html$				index.php?mod=cart&act=book2&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/shopping-cart/success.html$                 index.php?mod=cart&act=success&noindex=noindex&lang=vn [L]
+RewriteRule ^([a-z]{2})/shopping-cart/success.html$      index.php?mod=cart&act=success&noindex=noindex&lang=$1 [L]
+
+RewriteRule ^vn/bill-(.*)$ 					index.php?mod=cart&act=billDetail&billing_id=$1&lang=vn [L]
+
+#-- Mod News.
+RewriteRule ^vn/tin-tuc$ 							index.php?mod=news&lang=vn [L]
+RewriteRule ^vn/tin-tuc&page=([0-9]*)$ 			index.php?mod=news&page=$1&lang=vn [L]
+RewriteRule ^vn/tin-tuc/(.*)$ 						index.php?mod=news&slug=$1&show=cat&lang=vn [L]
+RewriteRule ^vn/tin-tuc/(.*)&page=([0-9]*)$ 		index.php?mod=news&slug=$1&page=$2&show=cat&lang=vn [L]
+RewriteRule ^vn/n([0-9]*)-(.*).html$				index.php?mod=news&act=detail&news_id=$1&slug=$2&lang=vn [L]
+
+RewriteRule ^vn/kien-thuc/(.*)-s([0-9]*).html$ 	index.php?mod=science&act=detail&slug=$1&science_id=$2&seo=noindex&lang=vn [L]
+
+#-- Mod Blog.
+RewriteRule ^vn/b([0-9]*)-(.*).html$					index.php?mod=blog&act=detail&blog_id=$1&slug=$2&lang=vn [L]
+RewriteRule ^vn/blog/tag/(.*)/&page=([0-9]*)$ 				index.php?mod=blog&act=tag&slug=$1&page=$2&show=tag&lang=vn [L]
+RewriteRule ^vn/blog/tag/(.*)$ 							index.php?mod=blog&act=tag&slug=$1&show=tag&lang=vn [L]
+RewriteRule ^vn/blog/&page=([0-9]*)$ 						index.php?mod=blog&page=$1&show=Default&lang=vn [L]
+RewriteRule ^vn/blog$ 										index.php?mod=blog&show=Default&lang=vn [QSA,L]
+
+RewriteRule ^vn/blog/(.*).html&page=([0-9]*)$			index.php?mod=blog&act=cat&slug_cat=$1&page=$2&show=Cat&lang=vn [QSA,L]
+RewriteRule ^vn/blog/(.*).html$ 						index.php?mod=blog&act=cat&slug_cat=$1&show=Cat&lang=vn [QSA,L]
+RewriteRule ^vn/blog/(.*)/(.*)/&page=([0-9]*)$ 			index.php?mod=blog&slug_country=$1&slug_city=$2&page=$3&show=City&lang=vn [QSA,L]
+RewriteRule ^vn/blog/(.*)/&page=([0-9]*)$ 					index.php?mod=blog&slug_country=$1&page=$2&show=Country&lang=vn [QSA,L]
+RewriteRule ^vn/blog/(.*)/(.*)-rg([0-9]*)$ 				index.php?mod=blog&slug_country=$1&slug_region=$2&region_id=$3&show=Region&lang=vn [QSA,L]
+RewriteRule ^vn/blog/(.*)/(.*)$ 							index.php?mod=blog&slug_country=$1&slug_city=$2&show=City&lang=vn [QSA,L]
+RewriteRule ^vn/blog/(.*)$ 		index.php?mod=blog&slug_country=$1&show=Country&lang=vn [QSA,L]
+
+#-- Mod Service.
+RewriteRule ^vn/dich-vu$							index.php?mod=service&lang=vn [L]
+RewriteRule ^vn/dich-vu&page=([0-9]*)$				index.php?mod=service&page=$1&lang=vn [L]
+RewriteRule ^vn/s([0-9]*)-(.*).html$					index.php?mod=service&act=detail&service_id=$1&slug=$2&lang=vn [L]
+
+RewriteRule ^vn/dat-dich-vu/([0-9]*)$				index.php?mod=about&act=contact&service_id=$1&show=service&lang=vn [L]
+RewriteRule ^vn/dich-vu/(.*)$ 						index.php?mod=service&slug=$1&show=cat&lang=vn [L]
+RewriteRule ^vn/dich-vu/(.*)&page=([0-9]*)$ 		index.php?mod=service&slug=$1&page=$2&show=cat&lang=vn [L]
+
+#-- Mod Destinations.
+RewriteRule ^vn/g([0-9]*)-(.*).html$				index.php?mod=guide&act=detail&guide_id=$1&slug=$2&lang=vn [L]
+RewriteRule ^vn/diem-den/(.*)/(.*)-rg([0-9]*)/(.*).html$	        index.php?mod=guide&act=cat&slug_country=$1&slug_region=$2&region_id=$3&slug_guidecat=$4&show=Region&lang=vn [L]
+RewriteRule ^vn/diem-den/(.*)/(.*)/(.*).html$			            index.php?mod=guide&act=cat&slug_country=$1&slug_city=$2&slug_guidecat=$3&show=City&lang=vn [L]
+RewriteRule ^vn/diem-den/(.*)/(.*).html$				            index.php?mod=guide&act=cat&slug_country=$1&slug_guidecat=$2&show=Country&lang=vn [L]
+RewriteRule ^vn/diem-den/(.*)-c([0-9]*).html$			            index.php?mod=guide&act=cat&slug_guidecat=$1&guidecat_id=$2&show=GuideCat&lang=vn [L]
+
+#-- Mod Travel Guide
+RewriteRule ^vn/travel-guide$						    index.php?mod=guide&act=default&lang=vn [QSA,L]
+RewriteRule ^vn/travel-guide&page=([0-9]*)$			    index.php?mod=guide&act=default&page=$1&lang=vn [QSA,L]
+RewriteRule ^vn/travel-guide/(.*)$			            index.php?mod=guide&act=default&slug_country=$1&lang=vn [QSA,L]
+RewriteRule ^vn/destination/(.*)/travel-guide$			            index.php?mod=guide&act=default&slug_country=$1&lang=vn [QSA,L]
+RewriteRule ^vn/destination/(.*)/travel-guide&page=([0-9]*)$			    index.php?mod=guide&act=default&slug_country=$1&page=$2&lang=vn [L,QSA]
+
+#-- Mod Destination (Hnv)
+RewriteRule ^vn/destination/(.*)$ 			            index.php?mod=destination&act=place2&slug_country=$1&show=Country&lang=vn [QSA,L]
+
+#- Successful
+RewriteRule ^vn/booking/booking_id=([0-9]*)&successful$ 					index.php?mod=cart&act=success&show=bookTour&booking_id=$1&lang=vn [L]
+RewriteRule ^vn/booking/tours/booking_id=([0-9]*)&successful$ 					index.php?mod=about&act=success&show=bookTour&booking_id=$1&lang=vn [L]
+RewriteRule ^vn/booking/hotel/successful$ 					index.php?mod=about&act=success&show=bookHotel&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/booking/cruise/successful$ 				index.php?mod=about&act=success&show=bookCruise&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tailor-made-tour/successful$ 				index.php?mod=about&act=success&show=bookTailor&lang=vn [L]
+RewriteRule ^([a-z]{2})/contact-us-success/fb-([0-9]*).html$					index.php?mod=about&act=success&feedback_id=$2&show=Feedback&lang=$1 [L]
+RewriteRule ^vn/contact-us/success$						index.php?mod=recruit&act=success&show=Recruitment&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/booking-services/success.html$				index.php?mod=about&act=success&show=Bookingservices&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/confirm-visa/success.html$					index.php?mod=about&act=success&show=ConfirmVisa&noindex=noindex&lang=vn [L]
+
+#- Mod Account
+RewriteCond %{QUERY_STRING} (.*)$
+RewriteRule ^vn/tai-khoan/dang-nhap/r=(.*)$		        index.php?mod=member&act=signin2&return_url=$1&noindex=noindex&lang=vn [L]
+RewriteRule facebook2callback/code=(.*)&state=(.*)$		index.php?mod=member&act=fbLogin&code=$1&state=$2 [L]
+RewriteRule ^checkAccountAJAX/(.*)$						index.php?mod=member&act=checkAccountAJAX&fbAT=$1 [L]
+RewriteRule ^checkLoginAJAX/(.*)$						index.php?mod=member&act=checkLoginAJAX [L]
+RewriteRule ^checkGoogleAccount/$						index.php?mod=member&act=checkGoogleAccount [L]
+RewriteRule ^oauth2callback$							index.php?mod=member&act=callback&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dang-ky.html$		            index.php?mod=member&act=signup2&show=NoFooter&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dang-ky$		            index.php?mod=member&act=signup2&show=NoFooter&cookie=1&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dang-ky-thanh-cong.html$		    index.php?mod=member&act=signup&show=success&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dang-nhap.html$		            index.php?mod=member&act=signin2&show=NoFooter&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dang-nhap$		            index.php?mod=member&act=signin2&show=NoFooter&cookie=1&noindex=noindex&lang=vn [L]
+RewriteRule ^signinGoogle/$						index.php?mod=member&act=signinGoogle [L]
+RewriteRule ^signinFacebook/(.*)$				index.php?mod=member&act=signinFacebook&fbAT=$1 [L]
+RewriteRule ^vn/dang-nhap$		            index.php?mod=member&act=signin3&show=NoFooter&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/verify/(.*)$						index.php?mod=member&act=verify&hash=$1&noindex=noindex&lang=vn [QSA,L]
+RewriteRule ^vn/tai-khoan/setting-profile.html$		    index.php?mod=member&act=my_setting&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/chinh-sua-thong-tin/thanh-cong.html$	index.php?mod=member&act=my_profile&message=success&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/thong-tin-tai-khoan.html$		index.php?mod=member&act=my_profile&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/danh-gia-va-anh.html$		    index.php?mod=member&act=my_review&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/khuyen-mai-cua-toi.html$		    index.php?mod=member&act=my_offer&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/booking-cua-toi.html$		    index.php?mod=member&act=my_booking&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/danh-sach-yeu-thich.html$		index.php?mod=member&act=my_wishlist&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/my-booking-detail-bk(.*)-([0-9]*).html$		index.php?mod=member&act=my_booking_detail&type=$1&target_id=$2&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/thong-tin-tai-khoan/thong-tin-lien-he.html$		    index.php?mod=member&act=contact_info&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/thong-tin-tai-khoan/success.html$		    	index.php?mod=member&act=my_profile&message=success&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dat-lai-mat-khau.html$		        index.php?mod=member&act=reset_pass&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dat-lai-mat-khau/(.*)$				index.php?mod=member&act=reset_pass&restorekey=$1&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/quen-mat-khau.html$		            index.php?mod=member&act=forgot_pass&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/thay-doi-mat-khau.html$		        index.php?mod=member&act=change_pass&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/thay-doi-mat-khau/error.html$		index.php?mod=member&act=change_pass&message=error&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/change-avatar.html$		            index.php?mod=member&act=change_avatar&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/change-avatar/success.html$		    index.php?mod=member&act=change_avatar&message=success&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tai-khoan/dang-xuat.html$		                index.php?mod=member&act=logout&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/member/register$		                    	index.php?mod=member&act=register&noindex=noindex&lang=vn [L]
+
+#- Mod paycredit
+RewriteRule ^redirect-gateway/(.*).html$					index.php?mod=paycredit&act=redirect&billing_id=$1&noindex=noindex&lang=en [L]
+RewriteRule ^([a-z]{2})/redirect-gateway/(.*).html$					index.php?mod=paycredit&act=redirect&billing_id=$2&noindex=noindex&lang=$1 [L]
+
+#VNPay
+RewriteRule ^payment/vnpay/return.html$				index.php?mod=paycredit&act=payment_success&noindex=noindex&lang=en [QSA,L]
+RewriteRule ^payment/vnpay/(.*).html$					index.php?mod=paycredit&act=vnpay&billing_id=$1&noindex=noindex&lang=en [L]
+RewriteRule ^([a-z]{2})/payment/vnpay/(.*).html$					index.php?mod=paycredit&act=vnpay&billing_id=$2&noindex=noindex&lang=$1 [L]
+
+#PAYPAL
+RewriteRule ^payment/paypal/(.*).html$					index.php?mod=paycredit&act=paypal&billing_id=$1&noindex=noindex&lang=en [L]
+RewriteRule ^([a-z]{2})/payment/paypal/(.*).html$					index.php?mod=paycredit&act=paypal&billing_id=$2&noindex=noindex&lang=$1 [L]
+
+#9PAY
+RewriteRule ^payment/9pay/(.*).html$					index.php?mod=paycredit&act=9pay&billing_id=$1&noindex=noindex&lang=en [L]
+RewriteRule ^([a-z]{2})/payment/9pay/(.*).html$					index.php?mod=paycredit&act=9pay&billing_id=$2&noindex=noindex&lang=$1 [L]
+
+#VTCPAY
+RewriteRule ^payment/vtcpay/(.*).html$					index.php?mod=paycredit&act=vtcpay&billing_id=$1&noindex=noindex&lang=en [L]
+RewriteRule ^([a-z]{2})/payment/vtcpay/(.*).html$					index.php?mod=paycredit&act=vtcpay&billing_id=$2&noindex=noindex&lang=$1 [L]
+
+RewriteRule ^payment/onepay/failed/(.*).html$				index.php?mod=paycredit&act=dr&val=0&orderInfo=$1&noindex=noindex&lang=en&method=ONEPAY [QSA,L]
+RewriteRule ^([a-z]{2})/payment/onepay/failed/(.*).html$				index.php?mod=paycredit&act=dr&val=0&orderInfo=$2&noindex=noindex&lang=$1&method=ONEPAY [QSA,L]
+
+RewriteRule ^payment/onepay/success/(.*).html$				index.php?mod=paycredit&act=dr&val=1&orderInfo=$1&noindex=noindex&lang=en&method=ONEPAY [QSA,L]
+RewriteRule ^([a-z]{2})/payment/onepay/success/(.*).html$				index.php?mod=paycredit&act=dr&val=1&orderInfo=$2&noindex=noindex&lang=$1&method=ONEPAY [QSA,L]
+
+RewriteRule ^payment/onepay/pendding/(.*).html$				index.php?mod=paycredit&act=dr&val=2&orderInfo=$1&noindex=noindex&lang=en&method=ONEPAY [QSA,L]
+RewriteRule ^([a-z]{2})/payment/onepay/pendding/(.*).html$				index.php?mod=paycredit&act=dr&val=2&orderInfo=$2&noindex=noindex&lang=$1&method=ONEPAY [QSA,L]
+
+RewriteRule ^payment/onepay/cancel/(.*).html$				index.php?mod=paycredit&act=dr&val=4&orderInfo=$1&noindex=noindex&lang=en&method=ONEPAY [QSA,L]
+RewriteRule ^([a-z]{2})/payment/onepay/cancel/(.*).html$				index.php?mod=paycredit&act=dr&val=4&orderInfo=$2&noindex=noindex&lang=$1&method=ONEPAY [QSA,L]
+
+RewriteRule ^payment/vnpay/return.html$				index.php?mod=paycredit&act=payment_success&noindex=noindex&lang=en&method=VNPAY [QSA,L]
+RewriteRule ^([a-z]{2})/payment/vnpay/return.html$				index.php?mod=paycredit&act=payment_success&noindex=noindex&lang=$1&method=VNPAY [QSA,L]
+
+RewriteRule ^payment/paypal/success.html$					index.php?mod=paycredit&act=dr&vl=0&method=Paypal&noindex=noindex [QSA,L]
+RewriteRule ^payment/paypal/([0-9]*)/success.html$			index.php?mod=paycredit&act=dr&orderInfo=$1&vl=1&method=Paypal [QSA,L]
+RewriteRule ^payment/paypal/([0-9]*)/cancel.html$			index.php?mod=paycredit&act=dr&orderInfo=$1&vl=0&method=Paypal&type_act=Cancel&noindex=noindex [QSA,L]
+
+RewriteRule ^vn/khach-san$			                                    index.php?mod=hotel&act=place2024&lang=vn [QSA,L]
+RewriteRule ^vn/khach-san&page=([0-9]*)$				                index.php?mod=hotel&act=place2024&page=$1&lang=vn [QSA,L]
+RewriteRule ^vn/khach-san/(.*)/&page=([0-9]*)$				            index.php?mod=hotel&act=place2024&slug_country=$1&page=$2&show=Country&lang=vn [QSA,L]
+RewriteRule ^vn/khach-san/(.*)$								        index.php?mod=hotel&act=place2024&slug_country=$1&show=Country&lang=vn [QSA,L]
+RewriteRule ^vn/h([0-9]*)-(.*).html$					                index.php?mod=hotel&act=detail2024&hotel_id=$1&slug=$2&lang=vn [QSA,L]
+
+#--Video
+RewriteRule ^vn/trai-nghiem-video$								index.php?mod=blog&act=video&lang=vn [QSA,L]
+
+#-- Mod Cruise.
+RewriteRule ^vn/du-thuyen/(.*)-c([0-9]*)/bookingcabin.html$		index.php?mod=cruise&act=bookcabin&slug=$1&cruise_id=$2&lang=vn [L]
+RewriteRule ^vn/du-thuyen/$									index.php?mod=cruise&act=search2024&lang=vn [QSA,L]
+RewriteRule ^vn/du-thuyen/&page=([0-9]*)$						index.php?mod=cruise&act=search2024&page=$1&lang=vn [QSA,L]
+RewriteRule ^vn/du-thuyen/([^-]*-[^/]*)/(.*)/$			        index.php?mod=cruise&act=catchild&slug_parent=$1&slug_child=$2&lang=vn [QSA,L]
+RewriteRule ^vn/du-thuyen/(.*)/$								index.php?mod=cruise&act=cat2024&slug=$1&lang=vn [QSA,L]
+RewriteRule ^vn/du-thuyen/(.*)/&page=([0-9]*)$			        index.php?mod=cruise&act=cat2024&slug=$1&page=$2&lang=vn [QSA,L]
+RewriteRule ^vn/du-thuyen/tag/(.*)$							index.php?mod=cruise&act=tag&slug=$1&lang=vn [QSA,L]
+RewriteRule ^vn/du-thuyen/(.*)/dich-vu-them.html$				index.php?mod=cruise&act=bookservices&slug_key=$1&lang=vn [L]
+RewriteRule ^vn/du-thuyen/(.*)/([0-9]*)-day.html$				index.php?mod=cruise&act=detail&slug=$1&day=$2&show=Itinerary&lang=vn [L]
+RewriteRule ^vn/c([0-9]*)-(.*).html$					index.php?mod=cruise&act=detail&cruise_id=$1&slug=$2&lang=vn [L]
+RewriteRule ^vn/new-c([0-9]*)-(.*).html$					index.php?mod=cruise&act=detail2024&cruise_id=$1&slug=$2&lang=vn [L]
+RewriteRule ^vn/search-cruises/(.*)$						index.php?mod=cruise&act=search&cond=$1&noindex=noindex&lang=vn [L]
+
+#- Successful
+RewriteRule ^vn/booking/hotel/successful$ 					index.php?mod=about&act=success&show=bookHotel&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/booking/cruise/successful$ 				index.php?mod=about&act=success&show=bookCruise&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/tailor-made-tour/successful$ 				index.php?mod=about&act=success&show=bookTailor&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/contact-us/success.html$					index.php?mod=about&act=success&show=Feedback&noindex=noindex&lang=vn [L]
+RewriteRule ^vn/booking-services/success.html$				index.php?mod=about&act=success&show=Bookingservices&noindex=noindex&lang=vn [L]
+
+#--Cart
+RewriteRule ^checkout$								index.php?mod=cart&act=checkout&lang=vn [L]
+RewriteRule ^checkout/$								index.php?mod=cart&act=checkout2&lang=vn [L]
+RewriteRule ^vtcpay_link$								index.php?mod=cart&act=vtcpay_link&lang=vn [L]
+
+#-- Mod Video.
+RewriteRule ^experience-video$ 							index.php?mod=blog&act=video&lang=en [QSA,L]
+RewriteRule ^experience-video&page=([0-9]*)$ 			index.php?mod=blog&act=video&page=$1&lang=en [QSA,L]
+
+#- Mod Agent
+RewriteRule ^agent.html$						        index.php?mod=agent&lang=en [L]
+RewriteRule ^travel-agent/logout.html$				    index.php?mod=agent&act=logout&lang=en [L]
+RewriteRule ^travel-agent/booking.html$			        index.php?mod=agent&act=agent_booking&lang=en [L]
+RewriteRule ^travel-agent/my-profile.html$	            index.php?mod=agent&act=agent_profile&lang=en [L]
+RewriteRule ^travel-agent/forgot-pass.html$			    index.php?mod=agent&act=forgot_pass&lang=en [L]
+RewriteRule ^travel-agent/reset-pass.html$		        index.php?mod=agent&act=change_pass&lang=en [L]
+RewriteRule ^travel-agent/reset-pass/success.html$		index.php?mod=about&act=success&show=ResetPassSuccess&lang=en [L]
+RewriteRule ^travel-agent/reset-pass/error.html$		index.php?mod=about&act=success&lang=en [L]
+RewriteRule ^travel-agent/reset-pass/(.*)$		        index.php?mod=agent&act=reset_pass&restorekey=$1&lang=en [L]
+RewriteRule ^travel-agent/signin.html$				    index.php?mod=agent&act=login&lang=en [QSA,L]
+RewriteRule ^travel-agent/signup.html$				    index.php?mod=agent&act=register&lang=en [L]
+RewriteRule ^travel-agent/update_profile.html$			index.php?mod=agent&act=update_profile_agent&lang=en [L]
+RewriteRule ^travel-agent/signup-success.html$	        index.php?mod=about&act=success&show=registerAgent&lang=en [L]
+
+RewriteRule ^travel-agent/voucher.html$					index.php?mod=voucher&type=agent&lang=en [QSA,L]
+RewriteRule ^travel-agent/voucher&page=([0-9]*)$		index.php?mod=voucher&type=agent&page=$1&lang=en [L]
+RewriteRule ^travel-agent/sale-kits$					index.php?mod=agent&act=sale_kits&lang=en [QSA,L]
+RewriteRule ^travel-agent/sale-kits&page=([0-9]*)$		index.php?mod=agent&act=sale_kits&page=$1&lang=en [QSA,L]
+
+RewriteRule ^production-price/(.*)$	                    index.php?mod=agent&act=sale_tool&slug_country=$1&lang=en [L]
+RewriteRule ^production-price$	                        index.php?mod=agent&act=sale_tool&lang=en [L]
+RewriteRule ^production-price/(.*)&page=([0-9]*)$	    index.php?mod=agent&act=sale_tool&slug_country=$1&page=$2&lang=en [L]
+RewriteRule ^production-price&page=([0-9]*)$	        index.php?mod=agent&act=sale_tool&page=$1&lang=en [L]
+
+#----------------// LANGUAGE OTHER //----------------/
+
+RewriteRule ^([a-z]{2})/$ index.php?mod=homepackage&act=default&lang=$1 [L]
+RewriteRule ^([a-z]{2})$ index.php?mod=homepackage&act=default&lang=$1 [L]
+
+#-- Mod About.
+RewriteRule ^([a-z]{2})/about/(.*).html$							index.php?mod=about&slug=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/contact-us.html$							index.php?mod=tour_new&act=contact&lang=$1 [L]
+RewriteRule ^([a-z]{2})/about-us.html$							    index.php?mod=about&act=about&lang=$1 [L]
+RewriteRule ^([a-z]{2})/faqs.html$									index.php?mod=faqs&lang=$1 [L]
+RewriteRule ^([a-z]{2})/why-travel-with-us.html$					index.php?mod=about&act=why&show=Why&lang=$1 [L]
+RewriteRule ^([a-z]{2})/our-team.html$								index.php?mod=about&act=team&lang=$1 [L]
+RewriteRule ^([a-z]{2})/brochure.html$								index.php?mod=about&act=brochure&lang=$1 [L]
+
+#-- Mod News.
+RewriteRule ^([a-z]{2})/travel-news$ 								index.php?mod=news&lang=$1 [L]
+RewriteRule ^([a-z]{2})/n([0-9]*)-(.*).html$					index.php?mod=news&act=detail&news_id=$2&slug=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-news&page=([0-9]*)$ 				index.php?mod=news&page=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-news/(.*)$ 							index.php?mod=news&slug=$2&show=cat&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-news/(.*)&page=([0-9]*)$ 			index.php?mod=news&slug=$2&page=$3&show=cat&lang=$1 [L]
+
+#- Mod Testimonial.
+RewriteRule ^([a-z]{2})/testimonials$								index.php?mod=testimonial&lang=$1 [L]
+RewriteRule ^([a-z]{2})/testimonials/&page=([0-9]*)$				index.php?mod=testimonial&page=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/te([0-9]*)-(.*).html$					index.php?mod=testimonial&act=detail&testimonial_id=$2&slug=$3&lang=$1 [L]
+
+#-- Mod Service.
+RewriteRule ^([a-z]{2})/travel-services$							index.php?mod=service&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-services&page=([0-9]*)$				index.php?mod=service&page=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/s([0-9]*)-(.*).html$					index.php?mod=service&act=detail&service_id=$2&slug=$3&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/book-service/([0-9]*)$					  	index.php?mod=about&act=contact&service_id=$2&show=service&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-services/(.*)$ 									index.php?mod=service&slug=$2&show=cat&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-services/(.*)&page=([0-9]*)$ 					index.php?mod=service&slug=$2&page=$3&show=cat&lang=$1 [L]
+
+#- voucher
+RewriteRule ^([a-z]{2})/voucher.html$								index.php?mod=voucher&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/voucher&page=([0-9]*)$						index.php?mod=voucher&page=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/v([0-9]*)-(.*).html$						index.php?mod=voucher&act=detail&voucher_id=$2&slug=$3&lang=$1 [L]
+
+#InBound
+RewriteRule ^([a-z]{2})/inbound-tours/(.*)$ 		 			index.php?mod=tour&act=place_inbound2024&slug_city=$2&show=City&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/inbound-tours/(.*)&page=([0-9]*)$ 	    index.php?mod=tour&act=place_inbound2024&slug_city=$2&page=$3&show=City&lang=$1 [QSA,L]
+
+#-- Mod Destinations.
+RewriteRule ^([a-z]{2})/destinations/(.*)/(.*)/(.*).html$       index.php?mod=guide&act=cat&slug_country=$2&slug_city=$3&slug_guidecat=$4&show=City&lang=$1 [L]
+RewriteRule ^([a-z]{2})/destinations/(.*)/(.*)$                 index.php?mod=destination&act=place&slug_country=$2&slug_city=$3&show=City&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/destinations/(.*)/(.*)&page=([0-9]*)$ 	index.php?mod=destination&act=place&slug_country=$2&slug_city=$3&page=$4&show=City&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/destinations/(.*)$ 			            index.php?mod=destination&act=place&slug_country=$2&show=Country&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/destinations/(.*)&page=([0-9]*)$ 	    index.php?mod=destination&act=place&slug_country=$2&page=$3&show=Country&lang=$1 [QSA,L]
+
+#-- Mod Travel Guide
+RewriteRule ^([a-z]{2})/travel-guide$						    index.php?mod=guide&act=default&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/travel-guide&page=([0-9]*)$			    index.php?mod=guide&act=default&page=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/travel-guide/(.*)$			            index.php?mod=guide&act=default&slug_country=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/destination/(.*)/travel-guide$			            index.php?mod=guide&act=default&slug_country=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/destination/(.*)/travel-guide&page=([0-9]*)$			    index.php?mod=guide&act=default&slug_country=$2&page=$3&lang=$1 [L,QSA]
+
+#-- Mod Destination (Hnv)
+RewriteRule ^([a-z]{2})/destination/(.*)/(.*)-c([0-9]*)$ 			            index.php?mod=tour&act=travel_style_by_country&slug_country=$2&slug=$3&cat_id=$4&show=CatCountry&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/destination/(.*)$ 			            index.php?mod=destination&act=place2&slug_country=$2&show=Country&lang=$1 [QSA,L]
+#-- Mod tour (Hnv)
+RewriteRule ^([a-z]{2})/tour/(.*)$ 			                    index.php?mod=destination&act=place&slug_country=$2&show=Country&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/tour/(.*)&page=([0-9]*)$ 	            index.php?mod=destination&act=place&slug_country=$2&page=$3&show=Country&lang=$1 [QSA,L]
+#-- Mod Blog.
+RewriteRule ^([a-z]{2})/b([0-9]*)-(.*).html$					index.php?mod=blog&act=detail&blog_id=$2&slug=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/tag/(.*)/&page=([0-9]*)$ 				index.php?mod=blog&act=tag&slug=$2&page=$3&show=tag&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/tag/(.*)$ 							index.php?mod=blog&act=tag&slug=$2&show=tag&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/&page=([0-9]*)$ 						index.php?mod=blog&page=$2&show=Default&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog$ 										index.php?mod=blog&show=Default&lang=$1 [L,QSA]
+
+RewriteRule ^([a-z]{2})/blog/(.*).html&page=([0-9]*)$				index.php?mod=blog&act=cat&slug_cat=$2&page=$3&show=Cat&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/(.*).html$ 							index.php?mod=blog&act=cat&slug_cat=$2&show=Cat&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/(.*)/(.*)/&page=([0-9]*)$ 			index.php?mod=blog&slug_country=$2&slug_city=$3&page=$4&show=City&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/(.*)/&page=([0-9]*)$ 					index.php?mod=blog&slug_country=$2&page=$3&show=Country&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/(.*)/(.*)-rg([0-9]*)$ 				index.php?mod=blog&slug_country=$2&slug_region=$3&region_id=$4&show=Region&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/(.*)/(.*)$ 							index.php?mod=blog&slug_country=$2&slug_city=$3&show=City&lang=$1 [L]
+RewriteRule ^([a-z]{2})/blog/(.*)$ 								index.php?mod=blog&slug_country=$2&show=Country&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/tours/(.*)-c([0-9]*)/(.*)$					index.php?mod=tour&act=cat&slug=$2&cat_id=$3&slug_country=$4&show=CatCountry&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/tours/(.*)-c([0-9]*)&page=([0-9]*)$			index.php?mod=tour&act=cat2024&slug=$2&cat_id=$3&page=$4&show=Category&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/tours/(.*)-c([0-9]*)$						index.php?mod=tour&act=cat2024&slug=$2&cat_id=$3&show=Category&lang=$1 [QSA,L]
+
+RewriteRule ^([a-z]{2})/t([0-9]*)-(.*).html$					    index.php?mod=tour_new&act=detaildeparture2024&tour_id=$2&slug=$3&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/cruise/enquiry.html$					    index.php?mod=about&act=contact2&show=CRUISE&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/tour/enquiry/(.*).html$ 					index.php?mod=tailor&act=customize&slug=$2&show=Tour&lang=$1 [L]
+RewriteRule ^([a-z]{2})/tours$ 						        index.php?mod=tour&act=searchtour2024&cond=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/tours&page=([0-9]*)$ 				index.php?mod=tour&act=searchtour2024&page=$2&lang=$1 [QSA,L]
+
+#- Mod Cart.
+RewriteRule ^([a-z]{2})/shopping-cart$								index.php?mod=cart&act=cart&noindex=noindex&lang=$1 [L]
+RewriteRule ^([a-z]{2})/cart$								        index.php?mod=cart&act=cart&noindex=noindex&lang=$1 [L]
+RewriteRule ^([a-z]{2})/shopping-cart/booking.html$				    index.php?mod=cart&act=book_2024&noindex=noindex&lang=$1 [L]
+
+#-- Mod Hotel.
+RewriteRule ^([a-z]{2})/hotels/$					            index.php?mod=hotel&act=place2024&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/hotels/&page=([0-9]*)$					index.php?mod=hotel&act=place2024&page=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/hotels/(.*)&page=([0-9]*)$				index.php?mod=hotel&act=place2024&slug_country=$2&page=$3&show=Country&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/hotels/(.*)$							index.php?mod=hotel&act=place2024&slug_country=$2&show=Country&lang=$1 [QSA,L]
+
+RewriteRule ^([a-z]{2})/h([0-9]*)-(.*).html$					index.php?mod=hotel&act=detail2024&hotel_id=$2&slug=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/hotels/(.*)/booking.html$				index.php?mod=hotel&act=book&slug=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/hotels(.*)&page=([0-9]*)$				index.php?mod=hotel&slug_country=$2&page=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/hotels/(.*)-h([0-9]*).html$				index.php?mod=hotel&act=detail&slug=$2&hotel_id=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/hotels/(.*)/(.*)-rg([0-9]*)$				index.php?mod=hotel&act=place&slug_country=$2&slug_region=$3&region_id=$4&show=Region&lang=$1 [L]
+RewriteRule ^([a-z]{2})/hotels/(.*)/(.*)$						index.php?mod=hotel&act=place&slug_country=$2&slug_city=$3&show=City&lang=$1 [L]
+RewriteRule ^([a-z]{2})/search-hotels/(.*)$ 					index.php?mod=hotel&act=search&cond=$2&lang=$1 [L]
+
+#-- Mod Cruise.
+RewriteRule ^([a-z]{2})/cruise/(.*)-c([0-9]*)/bookingcabin.html$		index.php?mod=cruise&act=bookcabin&slug=$2&cruise_id=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/cruise/$									index.php?mod=cruise&act=search2024&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/cruise/&page=([0-9]*)$									index.php?mod=cruise&act=search2024&page=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/cruise/([^-]*-[^/]*)/(.*)/$							index.php?mod=cruise&act=catchild&slug_parent=$2&slug_child=$3&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/cruise/(.*)/$													index.php?mod=cruise&act=cat2024&slug=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/cruise/(.*)/&page=([0-9]*)$													index.php?mod=cruise&act=cat2024&slug=$2&page=$3&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/cruise/tag/(.*)$							index.php?mod=cruise&act=tag&slug=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/cruise/(.*)/services-book.html$				index.php?mod=cruise&act=bookservices&slug_key=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/cruise/(.*)/([0-9]*)-day.html$				index.php?mod=cruise&act=detail&slug=$2&day=$3&show=Itinerary&lang=$1 [L]
+RewriteRule ^([a-z]{2})/cruise/(.*).html$							index.php?mod=cruise&act=detail&slug=$2&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/c([0-9]*)-(.*).html$					index.php?mod=cruise&act=detail&cruise_id=$2&slug=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/new-c([0-9]*)-(.*).html$					index.php?mod=cruise&act=detail2024&cruise_id=$2&slug=$3&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/search-cruises/(.*)$						index.php?mod=cruise&act=search&cond=$2&lang=$1 [L]
+
+#- Successful
+RewriteRule ^([a-z]{2})/booking/booking_id=([0-9]*)&successful$ 					index.php?mod=cart&act=success&show=bookTour&booking_id=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/booking/tours/booking_id=([0-9]*)&successful$ 					index.php?mod=about&act=success&show=bookTour&booking_id=$2&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/booking/hotel/successful$ 					index.php?mod=about&act=success&show=bookHotel&lang=$1 [L]
+RewriteRule ^([a-z]{2})/booking/cruise/successful$ 				index.php?mod=about&act=success&show=bookCruise&lang=$1 [L]
+RewriteRule ^([a-z]{2})/tailor-made-tour/successful$ 				index.php?mod=about&act=success&show=bookTailor&lang=$1 [L]
+RewriteRule ^([a-z]{2})/contact-us/success.html$					index.php?mod=about&act=success&show=Feedback&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/success.html$					index.php?mod=about&act=success&show=Travel&lang=$1 [L]
+RewriteRule ^([a-z]{2})/booking-services/success.html$					index.php?mod=about&act=success&show=Bookingservices&lang=$1 [L]
+
+#- Mod Account
+RewriteCond %{QUERY_STRING} (.*)$
+RewriteRule ^([a-z]{2})/account/signin/r=(.*)$		        		index.php?mod=member&act=signin2&return_url=$2&lang=$1 [L]
+RewriteRule facebook2callback/code=(.*)&state=(.*)$		index.php?mod=member&act=fbLogin&code=$2&state=$3&lang=$1 [L]
+RewriteRule ^([a-z]{2})/checkAccountAJAX/(.*)$						index.php?mod=member&act=checkAccountAJAX&fbAT=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/checkLoginAJAX/(.*)$						index.php?mod=member&act=checkLoginAJAX&lang=$1 [L]
+RewriteRule ^([a-z]{2})/checkGoogleAccount/$						index.php?mod=member&act=checkGoogleAccount&lang=$1 [L]
+RewriteRule ^([a-z]{2})/oauth2callback$							index.php?mod=member&act=callback&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/signup.html$		                index.php?mod=member&act=signup2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/signup-success.html$		        index.php?mod=member&act=signup&show=success&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/account/signin.html$		                index.php?mod=member&act=signin2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/verify/(.*)$						index.php?mod=member&act=verify&hash=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/account/setting-profile/success.html$		    index.php?mod=member&act=my_profile&message=success&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/profile.html$		            	index.php?mod=member&act=my_profile&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/reviews-photo.html$		            	index.php?mod=member&act=my_review&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/offers.html$		            		index.php?mod=member&act=my_offer&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/booking.html$		            	index.php?mod=member&act=my_booking&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/wishlist.html$		            	index.php?mod=member&act=my_wishlist&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/my-profile/contact-info.html$		    index.php?mod=member&act=contact_info&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/my-profile/success.html$		    	index.php?mod=member&act=my_profile&message=success&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/reset-password.html$		            index.php?mod=member&act=reset_pass&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/reset-password/(.*)$					index.php?mod=member&act=reset_pass&restorekey=$2&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/forgot-password.html$		            index.php?mod=member&act=forgot_pass&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/change-password.html$		            index.php?mod=member&act=change_pass&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/change-password/error.html$		    index.php?mod=member&act=change_pass&message=error&lang=$1 [L]
+RewriteRule ^([a-z]{2})/account/logout.html$		                    index.php?mod=member&act=logout&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/g([0-9]*)-(.*).html$				index.php?mod=guide&act=detail&guide_id=$2&slug=$3&lang=$1 [L]
+
+#multi country tours
+RewriteRule ^tours/multi-country$ 					index.php?mod=destination&act=place&show=Multi&lang=en [QSA,L]
+RewriteRule ^tours/multi-country&page=([0-9]*)$ 	index.php?mod=destination&act=place&page=$1&show=Multi&lang=en [QSA,L]
+
+#- Mod Agent
+RewriteRule ^([a-z]{2})/agent.html$						 index.php?mod=agent&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/logout.html$				     index.php?mod=agent&act=logout&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/booking.html$			     index.php?mod=agent&act=agent_booking&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/personal-infomation.html$	 index.php?mod=agent&act=agent_profile&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/forgot-pass.html$			 index.php?mod=agent&act=forgot_pass&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/reset-pass.html$		         index.php?mod=agent&act=change_pass&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/reset-pass/success.html$		 index.php?mod=about&act=success&show=ResetPassSuccess&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/reset-pass/error.html$		 index.php?mod=about&act=success&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/reset-pass/(.*)$		         index.php?mod=agent&act=reset_pass&restorekey=$1&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/signin.html$				     index.php?mod=agent&act=login&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/sign-up.html$				 index.php?mod=agent&act=agent_register&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/update_profile.html$			index.php?mod=agent&act=update_profile_agent&lang=$1 [L]
+RewriteRule ^([a-z]{2})/travel-agent/signup-success.html$	    index.php?mod=about&act=success&show=registerAgent&lang=$1 [L]
+
+RewriteRule ^([a-z]{2})/travel-agent/voucher.html$					index.php?mod=voucher&type=agent&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/travel-agent/voucher&page=([0-9]*)$			index.php?mod=voucher&type=agent&page=$2&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/travel-agent/sale-kits$					    index.php?mod=salekits&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/travel-agent/sale-kits&page=([0-9]*)$		index.php?mod=salekits&page=$2&lang=$1 [QSA,L]
+
+RewriteRule ^([a-z]{2})/production-price/(.*)$	index.php?mod=agent&act=sale_tool&lang=$1&slug_country=$2 [L]
+RewriteRule ^([a-z]{2})/production-price$	    index.php?mod=agent&act=sale_tool&lang=$1 [L]
+RewriteRule ^([a-z]{2})/production-price/(.*)&page=([0-9]*)$	index.php?mod=agent&act=sale_tool&lang=$1&slug_country=$2&page=$3 [L]
+RewriteRule ^([a-z]{2})/production-price&page=([0-9]*)$	    index.php?mod=agent&act=sale_tool&lang=$1&page=$2 [L]
+
+#----------------** END LANGUAGE OTHER **----------------/
+
+# --------------- cac link khac ------------------/
+#-- Link hotel / cruise cu
+RewriteRule ^old-h([0-9]*)-(.*).html$					            index.php?mod=hotel2&act=detail2&hotel_id=$1&slug=$2&lang=vn [L]
+RewriteRule ^([a-z]{2})/old-h([0-9]*)-(.*).html$					index.php?mod=hotel2&act=detail2&hotel_id=$2&slug=$3&lang=$1 [L]
+
+#-- Hotel 2024
+RewriteRule ^([a-z]{2})/2024-hotels/h([0-9]*)-(.*).html$			index.php?mod=hotel&act=detail2024&hotel_id=$2&slug=$3&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/2024-hotels/(.*)&page=([0-9]*)$				index.php?mod=hotel&act=place2024&slug_country=$2&page=$3&show=Country&lang=$1 [QSA,L]
+RewriteRule ^([a-z]{2})/2024-hotels/(.*)$							index.php?mod=hotel&act=place2024&slug_country=$2&show=Country&lang=$1 [QSA,L]
+
+RewriteRule ^2024-khach-san$					                    index.php?mod=hotel&lang=vn [QSA,L]
+RewriteRule ^2024-khach-san/(.*)/&page=([0-9]*)$				    index.php?mod=hotel&act=place2024&slug_country=$1&page=$2&show=Country&lang=vn [QSA,L]
+RewriteRule ^2024-khach-san/(.*)$								    index.php?mod=hotel&act=place2024&slug_country=$1&show=Country&lang=vn [QSA,L]
+
+#-- Booking cart new
+RewriteRule ^shopping-cart/booking-old.html$				index.php?mod=cart&act=book&noindex=noindex&lang=vn [L]
+RewriteRule ^([a-z]{2})/shopping-cart/booking-old.html$				index.php?mod=cart&act=book&noindex=noindex&lang=$1 [L]

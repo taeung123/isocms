@@ -1,0 +1,544 @@
+/* Common background, color */
+.box_set_check .btn_cancel_setting:hover {
+    background: var(--main-bg-color);
+}
+
+.box_book_cabin {
+    background: var(--chroma-f-6-f-6-fa, #F6F6FA);
+}
+
+.box_item_cabin .meals_cabin.item_info_cabin:before,
+.box_item_cabin .promotion_cabin.item_info_cabin:before,
+.price_box .form_filter .box_input_number_traveller:before,
+.price_box .form_filter .box_input_tour_guide:before,
+.price_box .form_filter .box_input_departure:before,
+.section_image .big_image .view_all:before {
+    background: none
+}
+
+/* End common */
+.page_container {
+    margin-top: 0 !important;
+}
+
+.box_info_top {
+    padding-bottom: 0;
+}
+
+.pageCruiseDetail .box_info_top .cruise_cat {
+    color: var(--primary-1-d-2-d-53, #1D2D53);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-normal);
+    align-content: center;
+    border-radius: var(--border-radius-button);
+    background: #EDF0F3;
+    padding: 2px 11px;
+}
+
+.review_score {
+    padding: 2px 8px;
+    color: var(--chroma-ffffff);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-normal);
+    border-radius: var(--border-radius-small);
+    background: var(--primary-18-babd);
+}
+
+.review_txt {
+    color: var(--primary-18-babd);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-normal);
+}
+
+.share_socical_detail {
+    background: var(--light-color);
+    border: none;
+    color: var(--primary-1-d-2-d-53);
+    font-weight: var(--font-weight-normal);
+}
+
+.hnv_trvs_main_tour_item_content_info_place_icon {
+    margin-right: 6px;
+    width: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hnv_trvs_main_tour_item_content_price {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-align: right;
+}
+
+.hnv_trvs_main_tour_item_content_price_number {
+    color: var(--secondary-c-81-e-3-a, #C81E3A);
+    
+    font-size: var(--font-size-small);
+    
+    font-weight: 400;
+}
+
+.hnv_trvs_main_tour_item_content_price_link {
+    color: var(--chroma-ffffff, #FFF);
+    
+    
+    font-weight: var(--font-weight-normal);
+    display: inline-flex;
+    height: 42px;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: var(--border-radius-button);
+    background: var(--primary-18-babd, #18BABD);
+    border: none
+}
+
+.hnv_trvs_main_tour_item_content_price_number span {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-bold);
+}
+
+.section_image .image_medium,
+.section_image .image_small,
+.section_image .big_image {
+    border-radius: var(--border-radius-card);
+}
+
+.circle_play {
+    position: absolute;
+    bottom: -13px;
+    left: 13px;
+    color: var(--light-color);
+    font-size: var(--font-size-h2);
+    z-index: 1;
+}
+
+.overview_box .box_info_cruise {
+    border-radius: var(--border-radius-card);
+    background: var(--chroma-f-6-f-6-fa, #F6F6FA);
+    ;
+}
+
+.price_box .filter_price {
+    background: var(--chroma-ffffff, #FFF);
+    padding: 0
+}
+
+.price_box .form_filter .box_input .btn_book_tour {
+    display: inline-flex;
+    padding: 18px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: var(--border-radius-button);
+    background: var(--primary-18-babd, #18BABD);
+    color: var(--chroma-ffffff, #FFF);
+    font-weight: var(--font-weight-normal);
+}
+
+.notes_box .box_important_notes .nav-pills .nav-link {
+    color: var(--primary-1-d-2-d-53, #1D2D53);
+
+}
+
+.box_item_cabin .box_book_cabin .total_price {
+    color: var(--primary-1-d-2-d-53, #1D2D53);
+}
+
+.unikasia_btn_itineraries.discovertour .item_btn_itineraries {
+    padding: 10px 20px;
+    white-space: normal;
+}
+
+.discovertour .nav-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 100%;
+    border-bottom: unset;
+    gap: 10px;
+    scrollbar-width: thin;
+    padding-bottom: 15px;
+}
+
+.discovertour .nav-tabs .nav-link {
+    border: 1px solid var(--primary-18-babd, #18BABD);
+    border-radius: var(--border-radius-button);
+    background: var(--light-color);
+    color: var(--primary-18-babd, #18BABD);
+    font-weight: var(--font-weight-normal);
+}
+
+.discovertour .nav-tabs .nav-link.active {
+    color: var(--light-color);
+    background: var(--primary-18-babd, #18BABD);
+}
+
+.item-itinerary,
+.item-itinerary .item_body {
+    border: none;
+    padding: 0
+}
+
+.body_item_day_itinerary img {
+    border-radius: var(--border-radius-card);
+}
+
+.item_day_itinerary {
+    border-bottom: 1px solid #d3dce1;
+    padding-left: 28px;
+    padding-bottom: 12px;
+    z-index: 2;
+    position: relative;
+}
+
+.itineraries_fa {
+    width: 18px;
+    height: 18px;
+    background: var(--primary-18-babd, #18BABD);
+    border-radius: 50%;
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.item_body {
+    position: relative;
+}
+
+.box_download_file {
+    margin-top: 32px;
+    border-radius: var(--border-radius-card);
+    background: var(--secondary-e-8-f-8-f-8, #E8F8F8);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.10);
+}
+
+.box_download_file .box_download_file_left:before {
+    background: url("/uploads/icon/document_check.png");
+}
+
+.click_here {
+    color: var(--primary-18-babd, #18BABD);
+    
+    font-weight: var(--font-weight-normal);
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.box_download_file .box_download_file_left {
+    width: unset;
+}
+
+.notes_box .box_important_notes .nav-pills .nav-link.active:before {
+    filter: brightness(0) invert(1);
+}
+
+.boxCheckbox input:checked~.checkmark,
+.box_set_check .btn_confirm_setting {
+    color: var(--chroma-ffffff, #FFF);
+}
+
+.page_book_services .box_services_cabin_book .right__inputTraveller .unNum,
+.right__inputTraveller .upNum,
+.right__inputTraveller .unNum.disabled,
+.right__inputTraveller .upNum.disabled {
+    border: 1px solid var(--primary-18-babd, #18BABD);
+}
+
+.jconfirm .jconfirm-box div.jconfirm-content-pane {
+    min-height: 100px
+}
+
+.price_box .form_filter .box_input>input {
+    border-radius: var(--border-radius-button);
+    padding-left: 16px;
+}
+
+.price_box .form_filter .box_input {
+    width: auto
+}
+
+.price_box .form_filter {
+    justify-content: unset;
+    gap: 12px
+}
+
+.box_item_cabin .box_left_item_cabin {
+    width: unset !important;
+}
+
+.box_info_cabin {
+    display: flex;
+    gap: 20px
+}
+
+.box_item_cabin_first {
+    border: 1px solid var(--success-color-1) !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.box_book_cabin {
+    border-bottom-right-radius: var(--border-radius-card) !important;
+}
+
+.box_info_cabin_img {
+    border-radius: var(--border-radius-button);
+    max-height: 174px;
+}
+
+.lowest_price_available {
+    color: var(--light-color);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-normal);
+    padding: 8px 12px;
+    border-radius: 8px 8px 0px 0px;
+    background: var(--success-color-1);
+}
+
+.btn_contact_cabin_2 {
+    display: flex;
+    padding: 18px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    color: var(--chroma-ffffff, #FFF);
+    background: var(--main-bg-color);
+    height: 45px;
+    
+    font-weight: var(--font-weight-normal);
+    /* 150% */
+    border-radius: var(--border-radius-button);
+    margin-bottom: 10px;
+}
+
+.no_cabin_item {
+    background: var(--chroma-f-6-f-6-fa, #F6F6FA);
+}
+
+.no_cabin_item .box_info_cabin {
+    width: 100%
+}
+
+.sold_out {
+    display: flex;
+    align-items: center;
+}
+
+.title_sold_out {
+    color: var(--secondary-c-81-e-3-a, #C81E3A);
+    padding: 18px 20px;
+    
+    font-weight: var(--font-weight-normal);
+    /* 150% */
+    border-radius: var(--border-radius-button);
+    border: 1px solid var(--secondary-c-81-e-3-a, #C81E3A);
+    margin-right: 32px;
+}
+
+.contact_us_span {
+    color: var(--primary-18-babd, #18BABD);
+    
+    font-weight: var(--font-weight-bold);
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: auto;
+    text-underline-offset: auto;
+    text-underline-position: from-font;
+}
+
+.reviews_box .progress {
+    background: var(--chroma-dadfe-6, #DADFE6);
+    width: 100%;
+}
+
+.btn_cruise_review {
+    color: var(--chroma-ffffff, #FFF);
+
+    /* Button */
+    
+    
+    font-weight: var(--font-weight-normal);
+    /* 150% */
+    display: inline-flex;
+    padding: 9px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: var(--border-radius-button);
+    background: var(--primary-18-babd, #18BABD);
+    border: none
+}
+
+.box_item_cabin .btn_textCabinDetail {
+    color: var(--primary-18-babd, #18BABD);
+}
+
+.box_item_cabin .title_cabin {
+    margin-bottom: 12px;
+}
+
+.item_info_cabin.meals_cabin,
+.item_info_cabin.promotion_cabin {
+    padding-left: 0;
+    color: var(--secondary-007850, #007850);
+    font-size: var(--font-size-small);
+    
+    font-weight: 400;
+    /* 150% */
+}
+
+.main-txt-color-light {
+    color: var(--main-txt-color-light, #717171);
+}
+
+.main-txt-color-dark {
+    color: var(--main-txt-color-dark, #1D2D53);
+}
+
+.font-size-28 {
+    font-size: 28px;
+}
+
+.item-itinerary .item_day_itinerary .item_header_day {
+    padding: 0 0 16px 0
+}
+
+.tabskTour {
+    position: sticky;
+    top: 110px;
+    background-color: var(--chroma-ffffff);
+    z-index: 3;
+    width: 100%;
+    margin-top: 16px;
+}
+
+#tabsk .div_title_cruise_item {
+    display: none;
+}
+
+.box_shadow_tabsk {
+    background: var(--light-color);
+    /*z-index: 100;*/
+    /*box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.16);*/
+}
+
+.unikasia_btn_itineraries {
+    scrollbar-color: var(--primary-18-babd, #18BABD) #FFFFFF;
+}
+
+.unikasia_btn_itineraries li.nav-item {
+    flex: 0 0 auto
+}
+
+.box_info_cabins {
+    width: 56%
+}
+
+.box_info_cabins .box_info_cabin {
+    width: 100%;
+    border-bottom: 1px solid #0000001a;
+    ;
+}
+
+.f-carousel {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.f-carousel .f-carousel__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-button {
+    background-color: var(--light-color) !important;
+    border-radius: 50% !important
+}
+
+.modal-lg {
+    max-width: 1100px;
+}
+
+.f-thumbs__slide {
+    border: 2px solid var(--light-color);
+}
+
+.f-thumbs__slide.is-nav-selected {
+    border: 2px solid var(--primary-18-babd, #18BABD);
+}
+
+.lstCabinFa {
+    max-height: 220px;
+    overflow-y: scroll !important;
+}
+
+#cruise_recently_viewed .title_recently_viewed {
+    margin-top: 0;
+}
+
+@media screen and (max-width: 767px) {
+
+    .box_info_cabin,
+    .box_left_item_cabin,
+    .div_title_cruise {
+        flex-direction: column;
+    }
+
+    .div_title_cruise {
+        gap: 12px
+    }
+
+    .sold_out {
+        padding: 0 15px;
+    }
+
+    #tabsk .div_title_cruise_item {
+        display: none !important;
+    }
+
+    .hnv_trvs_main_tour_item_content_price {
+        float: right;
+    }
+
+    .box_info_cabins {
+        width: 100%
+    }
+
+    .modal-content {
+        width: 97%
+    }
+
+    .tabskTour {
+        top: 72px
+    }
+
+    .section_box {
+        padding-bottom: 30px;
+    }
+
+    .box_book_cabin {
+        border-bottom-left-radius: 8px;
+    }
+
+    #notes {
+        margin-top: 0;
+    }
+}

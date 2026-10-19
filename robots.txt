@@ -1,0 +1,101 @@
+User-agent: *
+Allow: /
+
+# ============================================================
+# THU MUC CORE - DA BI BLOCK BOI HTACCESS (403)
+# Khai bao them de bot khoi waste crawl budget
+# ============================================================
+Disallow: /admin/
+Disallow: /isocms/
+Disallow: /inc/
+Disallow: /classes/
+Disallow: /cgi-bin/
+Disallow: /json/
+Disallow: /lang/
+Disallow: /langs/
+Disallow: /cronjobs/
+Disallow: /ratelimit/
+Disallow: /cache/
+Disallow: /tmp/
+Disallow: /logs/
+
+# ============================================================
+# TRANG CHUC NANG - GOOGLE TRUY CAP DUOC NHUNG KHONG NEN INDEX
+# ============================================================
+
+# Gio hang & thanh toan
+Disallow: /shopping-cart
+Disallow: /cart
+Disallow: /checkout
+Disallow: /vn/shopping-cart
+Disallow: /vn/cart
+Disallow: /*/shopping-cart
+Disallow: /*/cart
+Disallow: /payment/
+Disallow: /redirect-gateway/
+Disallow: /*/redirect-gateway/
+Disallow: /vtcpay_link
+
+# Trang ket qua dat hang
+Disallow: /booking/
+Disallow: /vn/booking/
+Disallow: /*/booking/
+Disallow: /tailor-made-tour/successful
+Disallow: /*/tailor-made-tour/successful
+Disallow: /vn/tailor-made-tour/successful
+Disallow: /booking-services/
+Disallow: /*/booking-services/
+Disallow: /vn/booking-services/
+
+# Tai khoan thanh vien
+Disallow: /account/
+Disallow: /*/account/
+Disallow: /vn/tai-khoan/
+Disallow: /vn/dang-nhap
+Disallow: /login_new
+Disallow: /signup_new
+Disallow: /*/login_new
+Disallow: /*/signup_new
+Disallow: /signinGoogle/
+Disallow: /signinFacebook/
+Disallow: /checkAccountAJAX/
+Disallow: /checkLoginAJAX/
+Disallow: /checkGoogleAccount/
+Disallow: /oauth2callback
+Disallow: /*/oauth2callback
+Disallow: /facebook2callback/
+Disallow: /vn/member/
+
+# Dai ly
+Disallow: /travel-agent/
+Disallow: /*/travel-agent/
+
+# API
+Disallow: /api/
+Disallow: /api-login/
+
+# Trang test & demo - khong co gia tri SEO
+Disallow: /test
+Disallow: /test_map
+Disallow: /test_new
+Disallow: /test_payment.html
+Disallow: /home_new
+Disallow: /*/home_new
+Disallow: /zoom-live
+Disallow: /monday.com
+Disallow: /demo.html
+
+# Zalo ZNS
+Disallow: /zalo/
+
+# Thumb & resize - URL dong, vo so bien the, waste crawl budget
+Disallow: /files/thumb
+Disallow: /files/thumbwebp/
+Disallow: /files/thumbold/
+Disallow: /thumb-
+
+# ============================================================
+# SITEMAP
+# ============================================================
+Sitemap: https://www.isocms.com/sitemap.xml
+Sitemap: https://www.isocms.com/sitemap_index.xml

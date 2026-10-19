@@ -1,0 +1,1 @@
+{$clsISO->getTemplate("blocks/schema/component/default")}

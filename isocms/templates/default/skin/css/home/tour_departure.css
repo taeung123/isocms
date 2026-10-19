@@ -1,0 +1,111 @@
+ .iso_departure_title {
+     color: var(--primary-1-d-2-d-53, #1D2D53);
+     font-size: 28px;
+     font-weight: 700;
+     line-height: 150%;
+     margin-bottom: 30px
+ }
+
+ .iso_box_departure_schedule {
+     padding-left: 15px;
+     height: 100%
+ }
+
+ .iso_departure_body {
+     border-radius: 12px;
+     max-height: calc(100% - 60px);
+     height: fit-content;
+     overflow-y: scroll;
+     background: var(--chroma-f-6-f-6-fa, #F6F6FA)
+ }
+
+ .iso_departure_body::-webkit-scrollbar {
+     width: 4px
+ }
+
+ .iso_departure_body::-webkit-scrollbar-track {
+     border-radius: 10px
+ }
+
+ .iso_departure_body::-webkit-scrollbar-thumb {
+     background: var(--primary-18-babd, #18BABD);
+     border-radius: 10px;
+     width: 4px
+ }
+
+ .iso_departure_item .box_left {
+     min-width: 105px;
+     padding: 15px;
+     background: var(--secondary-26456-e, #26456E);
+     border-bottom: 1px solid #DADFE6
+ }
+
+ .iso_departure_item .box_left span {
+     color: #FFF
+ }
+
+ .iso_departure_item .box_right {
+     padding: 14px 18px
+ }
+
+ .box_left-day {
+     font-size: 20px;
+     line-height: 150%;
+     font-weight: 700
+ }
+
+ .box_left-month {
+     font-size: 16px;
+     line-height: 150%
+ }
+
+ .iso_departure_item .box_right {
+     max-width: calc(100% - 105px)
+ }
+
+ .iso_departure_item .box_right_title {
+     color: var(--primary-1-d-2-d-53, #1D2D53);
+     font-size: 16px;
+     font-weight: 700;
+     line-height: 150%;
+     margin-bottom: 3px
+ }
+
+ .iso_departure_item {
+     display: flex;
+     align-items: center;
+     justify-content: start;
+     border-bottom: 1px solid #DADFE6
+ }
+
+ .iso_departure_body_right .box_right_body {
+     gap: 5px 22px;
+     flex-wrap: wrap
+ }
+
+ .iso_departure_body_right .box_right_body_item {
+     display: flex;
+     align-items: center;
+     justify-content: start;
+     gap: 4px;
+     color: var(--chroma-717171, #717171);
+     font-size: 14px;
+     font-weight: 400;
+     line-height: 150%
+ }
+
+ @media screen and (max-width: 576px) {
+
+     .iso_departure_item .box_left,
+     .iso_departure_item .box_right {
+         width: 100%;
+     }
+
+     .iso_departure_item {
+         flex-wrap: wrap;
+     }
+
+     .iso_departure_body {
+         max-height: 350px;
+     }
+ }

@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../../select2-4.0.3/tests/vendor/qunit-1.23.1.css" type="text/css" />
+    <link rel="stylesheet" href="../../dist/css/select2.css" type="text/css" />
+  </head>
+  <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture">
+      <div class="event-container">
+        <select></select>
+      </div>
+
+      <select class="single">
+        <option>One</option>
+      </select>
+
+      <select class="single-empty"></select>
+
+      <select class="single-with-placeholder">
+        <option>placeholder</option>
+        <option>One</option>
+      </select>
+
+      <select class="multiple" multiple="multiple">
+        <option>One</option>
+        <option>Two</option>
+      </select>
+
+      <select class="groups">
+        <optgroup label="Test">
+          <option value="one">One</option>
+          <option value="two">Two</option>
+        </optgroup>
+        <optgroup label="Empty"></optgroup>
+      </select>
+
+      <select class="duplicates">
+        <option value="one">One</option>
+        <option value="two">Two</option>
+        <option value="one">Uno</option>
+      </select>
+
+      <select class="duplicates-multi" multiple="multiple">
+        <option value="one">One</option>
+        <option value="two">Two</option>
+        <option value="one">Uno</option>
+      </select>
+    </div>
+
+    <script src="../../select2-4.0.3/tests/vendor/qunit-1.23.1.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/vendor/jquery-1.7.2.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/dist/js/select2.full.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/helpers.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/a11y/selection-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/a11y/search-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/data/array-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/base-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/inputData-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/select-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/tags-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/tokenizer-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/data/maximumInputLength-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/maximumSelectionLength-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/data/minimumInputLength-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/dropdown/dropdownCss-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/dropdown/positioning-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/dropdown/selectOnClose-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/dropdown/stopPropagation-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/options/ajax-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/options/data-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/options/deprecated-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/options/translation-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/options/width-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/results/focusing-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/selection/allowClear-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/selection/containerCss-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/selection/multiple-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/selection/placeholder-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/selection/search-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/selection/single-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/selection/stopPropagation-tests.js" type="text/javascript"></script>
+
+    <script src="../../select2-4.0.3/tests/utils/decorator-tests.js" type="text/javascript"></script>
+    <script src="../../select2-4.0.3/tests/utils/escapeMarkup-tests.js" type="text/javascript"></script>
+  </body>
+</html>

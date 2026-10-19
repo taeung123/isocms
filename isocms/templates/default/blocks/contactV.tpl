@@ -1,0 +1,1 @@
+<p class="contactV"><strong>For more information</strong> email us: <span>{$clsConfiguration->getValue('CompanyEmail')}</span> or call: <span rel="tel:{$clsConfiguration->getValue('CompanyPhone')}" onclick="window.location.href='tel:{$clsConfiguration->getValue('CompanyPhone')}'">{$clsConfiguration->getValue('CompanyPhone')}</span></p>

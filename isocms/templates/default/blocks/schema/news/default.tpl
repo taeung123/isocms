@@ -1,0 +1,1 @@
+{$clsISO->getTemplate("blocks/schema/components/news")}

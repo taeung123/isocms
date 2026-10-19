@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+:root {
+    --iso-admin-font-family: 'Plus Jakarta Sans', sans-serif;
+    --iso-type-menu: 14px;
+    --iso-type-control: 14px;
+    --iso-type-content: 16px;
+    --iso-type-table-head: 14px;
+    --iso-type-table-body: 14px;
+    --iso-type-meta: 14px;
+    --iso-type-primary: 16px;
+    --iso-type-page-title: 24px;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+table,
+optgroup {
+    font-family: var(--iso-admin-font-family) !important;
+}
+
+/*
+ * Enforce one typeface across legacy modules that still declare Arial,
+ * Roboto, Segoe UI, etc. Icon elements are intentionally excluded because
+ * their glyphs depend on their own icon font family.
+ */
+body *:not(.fa):not(.fas):not(.far):not(.fal):not(.fat):not(.fad):not(.fab):not(.fass):not(.fasr):not(.fasl):not(.fast):not(.fasds):not(.glyphicon):not(.material-icons):not(.material-icons-outlined):not([class^='fa-']):not([class*=' fa-']):not([class*='isoman-']):not([class*='mce-']) {
+    font-family: var(--iso-admin-font-family) !important;
+}

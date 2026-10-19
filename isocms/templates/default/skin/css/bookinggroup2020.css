@@ -1,0 +1,747 @@
+h1, h2, h3{font-weight: bold}
+.formBookingTour h3 .number{
+	font-size: 20px;
+    width: 33px;
+    height: 33px;
+    text-align: center;
+    color: #1c1c1c;
+    border: 2px solid var(--main-color);
+    border-radius: 100%;
+    display: inline-block;
+    line-height: 33px;
+    margin-right: 20px;
+}
+.boxSelectDate {}
+.color_f9f9f9{background: #f9f9f9}
+.boxSelectDate .boxChangeDate{padding-left:57px;}
+.boxChangeDate .form-booking_input{border-radius:0 !important}
+.boxChangeTraveler{padding:35px 0; border:1px solid #ccc; border-left:0; border-right:0;}
+.inputTraveller{position:relative; display:inline-block}
+.inputTraveller label{display:inline-block; width:75px; font-weight:normal; float:left; line-height:34px; margin:0}
+.inputTraveller input{width: calc(100% - 75px); display:inline-block; float:left; line-height:30px; text-align:center; border-radius:17px; border:1px solid #ccc; outline:none; height:34px;}
+.inputTraveller .unNum{position:absolute; width:34px; height:34px; border-radius:100%; border:1px solid #f16f30; left:90px; top:0; text-align:center; line-height:26px; font-size:30px; color:#f16f30; z-index:1; cursor:pointer}
+.inputTraveller .upNum{position:absolute; width:34px; height:34px; border-radius:100%; border:1px solid #f16f30; right:15px; top:0; text-align:center; line-height:28px; font-size:30px; color:#f16f30; z-index:1; cursor:pointer}
+#customer_list .travellerItem{padding-bottom: 10px;display: inline-block;width: 100%}
+#customer_list span {
+    display: inline-block;
+    float: left;
+    margin-right: 16px !important;
+}
+#customer_list span:first-child {
+	clear: left;width: 100% !important;margin-bottom: 5px;font-weight: bold
+}
+#customer_list span:first-child b{display:inline-block;width:80px;font-size:18px;line-height: 30px;float: left;}
+#customer_list span:first-child input {
+    width: 40px;
+    padding: 0px 0 !important;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    border: 0;
+    background: none;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075) !important;
+    font-weight: bold;
+    color: #000;
+    display:inline-block !important;
+    float: left;
+    height: 30px !important;
+}
+#customer_list span label,.infoCustome_2020 .form-group label,.bk-Vourcher .form-group label{display:block; font-size:16px; font-weight:normal; margin:0;margin-bottom: 6px}
+#customer_list span input,#customer_list span select,#customer_list span .date-dropdowns,.infoCustome_2020 .form-group input,.infoCustome_2020 .form-group select,.infoCustome_2020 .form-group textarea,.infoCustome_2020 .form-group .date-dropdowns,.bk-Vourcher #voucher_code,.bk-Vourcher #voucher_code_promotion{width:100%; display:inline-block; /*max-width:265px;*/ border-radius:3 !important}
+#customer_list span .date-dropdowns select,.boxMainInfor .form-group .date-dropdowns select,.infoCustome_2020 .form-group .date-dropdowns select{width:33.3333% !important;height: 49px !important; padding: 6px 12px; font-size: 16px;
+    line-height: 1.42857143;
+    color: #333;
+    background: #fffae7 url(../images/icon/arrowDownBk.png) no-repeat 90% center;
+	background-size: 10%;
+	-webkit-appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 0px !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
+.date-dropdowns select.day,.date-dropdowns select.month{border-right:0 !important}
+#customer_list{width:100%;}
+#customer_list span input.radio,.infoCustome_2020 .form-group input.radio,.payment-choice input.chkPayment{width:22px; height:22px;vertical-align:middle; margin:0 10px 0 0; position:relative}
+#customer_list span input[type='radio']:after,.infoCustome_2020 .form-group input[type='radio']:after,.payment-choice input[type='radio']:after{
+        width: 22px;
+        height: 22px;
+        border-radius: 22px;
+        top: 0px;
+        left: 0px;
+        position: relative;
+        background-color: #fff;
+        content:'';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid #ccc;
+}
+#customer_list span input[type='radio']:checked:after,.infoCustome_2020 .form-group input[type='radio']:checked:after,.payment-choice input[type='radio']:checked:after {
+        width: 22px;
+        height: 22px;
+        border-radius:22px;
+        top: 0px;
+        left: 0px;
+        position: relative;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 1px solid var(--main-color);
+}
+#customer_list span input[type='radio']:checked:before,.infoCustome_2020 .form-group input[type='radio']:checked:before,.payment-choice input[type='radio']:checked:before{
+	width:11px; 
+	height:10px;
+	top:6px;
+	left:5px;
+	content:'';
+	z-index:1;
+	position:absolute;
+	background-color: var(--main-color);
+	border-radius: 100%;
+	
+}
+.infoCustome_2020 .form-group select.find_select{
+	background: #fffae7 url(../images/icon/arrowDownBk.png) no-repeat right;
+    -webkit-appearance: none;
+    background-origin: content-box;
+}
+#customer_list span select.title,.infoCustome_2020 .form-group select#title{width: 88px; background: #fffae7 url(../images/icon/arrowDownBk.png) no-repeat 56px center;
+	-webkit-appearance: none;}
+
+.form-booking_input {
+    display: block;
+    width: 100%;
+    height: 49px !important;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fffae7;
+    border: 1px solid #ddd;
+    border-radius: 3px !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.bk-transfer2018 .table-cabin{width:auto; margin-left:20px; width:calc(100% - 20px)}
+.bk-transfer2018 .table-cabin tr {
+    border: 1px solid #ccc;
+	display:block;
+	margin-bottom:10px;
+	position:relative;
+	min-height:56px;
+}
+.bk-transfer2018 .table-cabin td {
+    border: 0px solid #d8d8d8;
+    padding: 8px;
+    overflow: unset;
+	display:inline-block;
+	min-height:42px; 
+	line-height:22px;
+}
+.bk-transfer2018 .table-cabin label {
+   margin-bottom:0;
+	position: relative;
+}
+.bk-transfer2018 .table-cabin label:before {
+    width: 42px;
+    height: 42px;
+    border-radius: 42px;
+    top: -7px;
+    left: -51px;
+    position: absolute;
+    background-color: #fff;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #f16f30;
+}
+.bk-transfer2018 .table-cabin label:after{
+	width: 42px;
+    height: 42px;
+    border-radius: 42px;
+    top: -7px;
+    left: -51px;
+    position: absolute;
+	content:'';
+	background-color: #f16f30;
+	background-image:url(../images/icon/sprite_bg.png);
+	background-position: 11px -114px;
+	background-repeat: no-repeat;
+	z-index:1;
+	position:absolute;
+	visibility:visible;
+	opacity: 0;
+	
+}
+.bk-transfer2018 .table-cabin input[type="checkbox"]:checked + label::after {
+    opacity: 1;
+}
+
+.bk-transfer2018 .table-cabin td.title{width:calc(100% - 216px); padding-left:30px;position: relative}
+.bk-transfer2018 .table-cabin td.number{width:120px;}
+.bk-transfer2018 .table-cabin td.price{width:85px; text-align:center}
+.bk-transfer2018 input[type=checkbox]{
+   width:42px;
+   height:42px;
+   visibility:hidden;
+   vertical-align:middle;
+   margin:0 10px 0 0;
+   position: absolute;
+   left: -21px;
+   top: 6px;
+
+}
+.changeNumberTourService{position:relative; display:inline-block; width:100%;}
+.changeNumberTourService input {
+    width: 100%;
+    display: inline-block;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 17px;
+    border: 1px solid #ccc;
+	outline:none;
+}
+.changeNumberTourService .unNumSev {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    border: 1px solid #f16f30;
+    left: 0px;
+    top: 0;
+    text-align: center;
+    line-height: 26px;
+    font-size: 30px;
+    color: #f16f30;
+    z-index: 1;
+    cursor: pointer;
+}
+.changeNumberTourService .DisunNumSev{
+	position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+	border: 1px solid #ccc;
+	left: 0px;
+    top: 0;
+    text-align: center;
+    line-height: 26px;
+    font-size: 30px;
+    color: #ccc;
+    z-index: 1;
+    cursor: pointer;
+}
+.changeNumberTourService .upNumSev {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    border: 1px solid #f16f30;
+    right: 0px;
+    top: 0;
+    text-align: center;
+    line-height: 28px;
+    font-size: 30px;
+    color: #f16f30;
+    z-index: 1;
+    cursor: pointer;
+}
+.changeNumberTourService .DisupNumSev{
+	position: absolute;
+    width: 34px;
+    height: 34px;
+    border-radius: 100%;
+    border: 1px solid #ccc;
+    right: 0px;
+    top: 0;
+    text-align: center;
+    line-height: 34px;
+    font-size: 30px;
+    color: #ccc;
+    z-index: 1;
+    cursor: pointer;
+}
+.info_tour_item{padding: 20px}
+.info_tour_item .info_price{padding-top: 15px}
+.info_tour_item .departure{margin-bottom: 0}
+.info_price .price{float: right}
+.tour_item .info_tour{border-bottom: 1px solid #ccc}
+.tour_item .total_price{background: #fff7d7;height: 40px;padding: 0 20px;line-height: 40px}
+.tour_item .total_price .total_price_right {float: right}
+.tour_item .total_price .total{font-weight: bold}
+.info_tour h3.title{font-size: 18px}
+.info_tour .line{display:inline-block; width:100%}
+.info_tour .line label{font-weight:normal;width: calc(100% - 90px);display:inline-block;float:left;}
+.info_tour .line span.right{display:inline-block;width: 90px;float:left;text-align:right;}
+.h-city-around,.h-country-around{color:#333;}
+.amount_due{
+    padding: 23px 30px;
+    background: #fff;
+    color: #1c1c1c;
+    display: inline-block;
+    width: 100%;
+    border-radius: 3px;
+    box-shadow: 0 0 4px 0 #ccc;
+    position: relative;
+    height: 70px;
+}
+.amount_due:before{
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 3px ;
+	background: #1a2b49;
+	top: 2px;
+	left: 0;
+}
+.amount_due label{width:105px; margin:0; float:left; display:inline-block; font-weight:normal;line-height: 30px}
+.amount_due span.right{font-size:16px; text-align:right; width:calc(100% - 105px); float:left; display:inline-block;color: #fb1111;font-weight: bold}
+.remaining_price{
+	background: #fff;
+    border-radius: 3px;
+    border: 1px solid var(--main-color);
+}
+.lst_remaining_price{padding: 20px 20px 10px}
+.remaining_price .payment_amount{
+	padding: 14px 20px;
+    display: inline-block;
+    width: 100%;
+    background: #fff7d7;
+    line-height: 24px;
+}
+.payment_amount label{margin-bottom: 0}
+.remaining_price .line{display:flex; width:100%;}
+.remaining_price .line label{width:calc(100% - 100px); float:left; font-weight:normal;margin-bottom: 10px}
+.remaining_price .line span.right{width:100px; float:left; text-align:right; font-weight:bold}
+.info_tour hr{margin-top:0; margin-bottom:0;}
+.col_right_fixed.fixed_des{position:fixed; top:-170px;}
+.bk-Vourcher{
+    position: relative;}
+.bk-Vourcher .intro_vourcher{
+    padding-left: 55px;
+}
+
+.bk-Vourcher .blackdrop{
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.bk-Vourcher .form-group{
+    position: relative;
+}
+.bk-Vourcher .form-group .error_row_voucher_code{
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 15px;
+}
+.bk-Vourcher .form-group .error_row_voucher_code i{
+    font-size: 1.5em;
+}
+.bk-Vourcher .blackdrop i{
+    font-size: 50px;
+}
+@-webkit-keyframes example {
+    0% {color: white;}
+    100% {color: #f16f30;}
+}
+@-webkit-keyframes example1 {
+    0% {color: #f16f30;}
+    100% {color: white;}
+}
+.bk-Vourcher .blackdrop .text_voucher_blkdr{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+}
+.bk-Vourcher .blackdrop .bg_arrow_1{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.bk-Vourcher .blackdrop .bg_arrow_2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.bk-Vourcher .blackdrop .bg_arrow_3{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.bk-Vourcher .blackdrop .bg_arrow_1 i{
+   color: white;
+
+    animation-name: example;
+    animation-duration: 1s;
+    animation-delay: .25s;
+    animation-iteration-count: infinite;
+}
+.bk-Vourcher .blackdrop .bg_arrow_2 i{
+   color: white;
+
+    animation-name: example;
+    animation-duration: 1s;
+    animation-delay: .5s;
+    animation-iteration-count: infinite;
+}
+.bk-Vourcher .blackdrop .bg_arrow_3 i{
+   color: white;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-delay: .75s;
+    animation-iteration-count: infinite;
+}
+.col_right_fixed.fixed_bottom{position:fixed; bottom:0px;}
+/*-------Css09-07-2020--------*/
+.dp-flex{display: flex}
+.pd20{padding: 20px}
+.formBookingTour .boxMainInfor{
+	border: 1px solid #ddd;margin-bottom: 22px;
+}
+.boxMainInfor{
+	background: #fff;border: 1px solid #ddd;padding: 20px 26px;
+}
+.boxMainInfor .dration_tour {padding-left: 55px;padding-bottom: 10px;margin-bottom: 15px;border-bottom: 1px solid #e8e8e8;}
+.formBookingTour .note{
+color: #fb1111;
+    padding: 14px 25px;
+    border: 1px solid var(--main-color);
+    background: #fff7d7;margin-bottom: 15px;	
+}
+.infoCustome_2020 .dration_tour{padding-left: 55px;padding-bottom: 10px;border-bottom: 1px solid #e8e8e8}
+.group-1 .form-group{margin-right: 16px}
+.group-1 .form-group.full_name{width: 100%;max-width: 357px}
+.group-1 .form-group.full_name input{width: 357px}
+.group-1 .form-group.birthday{width: 100%;max-width: 320px;margin-right: 0}
+.group-2 .form-group{width: 50%;margin-right: 16px}
+.group-2 .form-group.email{margin-right: 0}
+.group-3 .form-group{}
+.group-3 .form-group.address{margin-right: 0;width: 100%}
+textarea.form-control{padding: 15px 12px;font-size: 16px;border: 1px solid #ddd}
+.boxMainInfor textarea.form-control{margin-bottom: 30px}
+.group-3 .list_city{margin-right: 16px;width:143px}
+.boxTraveler{padding-top: 20px}
+.boxSelectDate .form-group{margin-bottom: 30px}
+.infoCustome_2020 {
+	padding-bottom: 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+.boxMainInfor .group-1 .form-group label{font-weight: 400}
+.boxMainInfor .form-booking_input.find_select{width: 88px}
+#customer_list span label span{display: inline;width: auto !important;}
+#customer_list  span label span:first-child{width: auto !important;float: none}
+.billing_infomation {border: 1px solid #ddd;border-radius: 3px}
+.billing_infomation h3{
+	padding: 20px 26px;
+    border-bottom: 1px solid #ddd;
+}
+.booking_tab label{padding: 15px 18px;width: 100%;border: 1px solid #ddd}
+.booking_tab{padding: 25px}
+.SitePay_CashDesc{margin-top: -10px !important;border-top: 0 !important}
+.text-normal{font-weight: 400}
+.info_tour .boxItem{
+	display: inline-block;
+    width: 100%;padding: 20px 20px 10px;
+}
+.info_tour .boxItem .body{padding: 15px 20px 5px}
+.info_tour .boxItem .total_traveller_tour{
+	    padding: 8px 20px;
+    background: #fff7d7;
+    height: 38px;
+}
+.info_tour .boxItem .date_group{width: 50%;float: left}
+.info_tour .boxItem .start_in{padding-right: 10px;position: relative}
+.info_tour .boxItem .start_in:before{position: absolute;content: "";background: url(../images/icon/icon_cart.png) no-repeat;width: 15px;height: 18px;right: 0;top: 5px}
+.info_tour .boxItem .end_in{padding-left: 10px}
+.total_traveller_tour span.right{float: right;width: 90px;text-align: right}
+.total_traveller_tour label{float: left;width: calc(100% - 90px)}
+.payment_amount span.right{color: #fb100f}
+.payment_amount label{margin-bottom: 0 !important}
+.social_card{padding: 15px 20px 10px;background: #fff;box-shadow: 0 0 4px 0 #ccc;border-radius: 3px;margin-bottom: 7px}
+.social_card .list_social_card{padding-left: 0}
+.social_card .list_social_card li{list-style: none}
+.social_card p{color: #1fb69a}
+.last_price_total .total_price{box-shadow: 0 0 4px 0 var(--main-color);padding-top: 25px}
+.last_price_total .total_price p{padding: 0 20px}
+.last_price_total .total_price p .price{float: right;font-weight: bold}
+.last_price_total .total_price p:last-child{background: #fff7d7;height: 55px;line-height: 55px}
+.last_price_total .total_price p:last-child .price{font-weight: bold;color: #fb1111;font-size: 22px}
+.last_price_total .total_price p:last-child .lable{font-size: 18px;font-weight: bold}
+.btn-bookinggroup{
+	height: 56px;line-height: 56px;font-size: 20px;color: #1c1c1c;background: var(--main-color);font-weight: bold !important;border-radius: 0
+}
+.rc-anchor-center-item{width: 110px !important}
+.booking_header_box {
+    padding: 15px 0;
+    background: #fff;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-top: 3px solid var(--main-color);
+}
+.header-main {
+    display: flex;
+}
+.booking_header_box .logo_booking {
+    display: inline-block;
+    width: 106px;
+    height: auto;
+}
+.booking_header_box .logo_booking a {
+    display: inline-block;
+    width: 100%;
+}
+.count_step_booking {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-top: 5px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+.count_step_booking .text_num_step {
+    text-align: center;
+    position: relative;
+    height: 20px;
+    margin-bottom: 5px;
+}
+.count_step_booking .text_num_step:before {
+    content: '1';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 20px;
+    transform: translate(-50%);
+    height: 20px;
+    background-color: var(--main-color);
+    z-index: 1;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 23px;
+    color: #fff;
+}
+.count_step_booking .text_num_step:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    transform: translatey(0);
+    height: 1px;
+    background-color: #fdd938;
+    z-index: 0;
+}
+.count_step_booking .text_step {
+    font-size: 14px;
+    text-align: center;
+    white-space: nowrap;
+    margin-bottom: 0;
+}
+.count_step_booking .text_num_step.step-2 {
+    color: #666666;
+}
+.count_step_booking .text_num_step.step-2.step-empty:before {
+    content: '2';
+    background-color: #ced0d4;
+    color: #666;
+}
+.count_step_booking .text_num_step.step-2:after, .count_step_booking .text_num_step.step-3:after {
+    left: 0;
+    width: 100%;
+}
+.count_step_booking .text_num_step.step-3 {
+    color: #666666;
+}
+.count_step_booking .text_num_step.step-3.step-empty:before {
+    content: '3';
+    background-color: #ced0d4;
+    color: #666;
+}
+.count_step_booking .text_num_step.step-2:after, .count_step_booking .text_num_step.step-3:after {
+    left: 0;
+    width: 100%;
+}
+.count_step_booking .text_num_step.step-3:after {
+    width: 50% !important;
+}
+.p-0 {
+    padding: 0;
+}
+.box_phone_booking {
+    float: right;
+}
+.booking_header_box .phone_booking {
+    display: inline-block;
+    line-height: 50px;
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+.booking_header_box .phone_booking i {
+    margin-right: 10px;
+}
+.booking_footer_box {
+    background: #fff;
+    font-size: 16px;
+    color: #1c1c1c;
+}
+.booking_footer_box .footer_top {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 0 5px;
+}
+.booking_footer_box .footer_top .quick-links {
+    padding-left: 0;
+    display: inline-block;
+    float: left;
+    line-height: 26px;
+    margin-bottom: 0;
+}
+.footer_top ul.quick-links li {
+    list-style: none;
+    float: left;
+    padding: 0 30px;
+}
+.footer_top ul.quick-links li:first-child {
+    padding-left: 0;
+}
+.booking_footer_box a {
+    color: #333;
+}
+.copy_right_cart {
+    background: var(--main-color);
+    padding: 8px 0px;
+}
+.footer_top .social {
+    float: right;
+    max-width: 315px;
+}
+.footer_top .social p {
+    float: left;
+    margin-right: 20px;
+    line-height: 26px;
+    margin-bottom: 0;
+}
+.social .list_social {
+    text-align: right;
+    margin: 0;
+}
+.list_social li{margin-bottom: 0}
+/*-------------------*/
+@media (max-width:1023px){
+	.inputTraveller .unNum {
+		left: 85px;
+	}
+	.inputTraveller .upNum {
+		right: 10px;
+	}
+}
+
+@media (max-width:991px){
+}
+@media (max-width:767px){
+.inputTraveller .unNum {
+    left: 84px;
+}
+.inputTraveller .upNum {
+    right: 8px;
+}
+.inputTraveller {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+	clear:both;
+	margin-bottom:15px;
+}
+.bk-transfer2018 .table-cabin {
+    width: 100%;
+    margin-left: 0px;
+}
+.bk-transfer2018 .table-cabin tr {
+    margin-bottom: 20px;
+}
+.bk-transfer2018 .table-cabin td {
+    border: 0px solid #d8d8d8;
+    padding: 8px;
+    overflow: hidden;
+    display: inline-block;
+    min-height: 42px;
+    line-height: 22px;
+    width: 100% !important;
+    text-align: center;
+}
+.bk-transfer2018 .table-cabin td.title {padding-top:60px}
+.changeNumberTourService {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+	max-width:120px;
+	margin:0 auto;
+}
+.bk-transfer2018 input[type=checkbox] {
+    width: 42px;
+    height: 42px;
+    visibility: hidden;
+    vertical-align: middle;
+    margin:0 auto;
+    position: absolute;
+    left: 0px;
+	right:0;
+    top: 8px;
+}
+}
+
+@media (max-width:545px){
+.formBookingTour h3 .number {
+	margin-right: 5px;
+}
+.boxSelectDate .boxChangeDate {
+    padding-left: 42px;
+}
+#customer_list span label,.infoCustome_2020 .form-group label{width:100%; display:block; margin-bottom:8px;}
+#customer_list span input, #customer_list span select, #customer_list span .date-dropdowns,.infoCustome_2020 .form-group input,.infoCustome_2020 .form-group select,.infoCustome_2020 .form-group .date-dropdowns,.infoCustome_2020 .form-group textarea{
+	width:100%;
+	display:block;
+	max-width: 265px;
+}
+#customer_list span .date-dropdowns select,.infoCustome_2020 .form-group .date-dropdowns select {
+	width: 33.3333% !important;
+	display:inline-block;
+}
+#customer_list span input.radio,.infoCustome_2020 .form-group input.radio {
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+	margin: 0 10px 0 0;
+	display:inline-block;
+}
+}
+.c-red{
+    color: #ff5c72;
+}
+.c-green{
+    color: #62ffbd;
+}
+.c-gray{
+    color: #adadad;
+}

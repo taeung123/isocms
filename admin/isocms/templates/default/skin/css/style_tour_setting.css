@@ -1,0 +1,4151 @@
+
+:root,
+#page_v2 {
+    /* Typography Font Family */
+    --font-family-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --primary: #1b4581;
+    --primary-dark: #123061;
+    --primary-light: #e8eef7;
+    --accent: #FF7A00;
+    --accent-dark: #e06800;
+    --sidebar-bg: #0b1f44;
+    --sidebar-bg-2: #0a1c3d;
+    --bg: #f3f7fc;
+    --surface: #ffffff;
+    --border: #dde6f2;
+    --border-soft: #e7edf5;
+    --text: #1a2433;
+    --text-muted: #5c6b80;
+    --text-faint: #8a97a8;
+    --success: #1a9850;
+    --success-bg: #e7f7ee;
+    --danger: #e4393c;
+    --danger-bg: #fdecec;
+    --input-bg: #fffefb;
+    --input-border: #c5c0b1;
+    --input-text: #201515;
+    --radius-card: 12px;
+    --radius-ctl: 8px;
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, .06);
+    --shadow-md: 0 4px 16px rgba(16, 24, 40, .08);
+    --topbar-h: 64px;
+    /* ======================================================================
+       HỆ THỐNG CỠ CHỮ CHUẨN V2 (CHUẨN 4-POINT GRID: BỘI SỐ CỦA 4)
+       ====================================================================== */
+    --type-page-title: 24px;      /* Tiêu đề trang chính (24 % 4 == 0) */
+    --type-title: 20px;           /* Tiêu đề khối, modal, panel (20 % 4 == 0) */
+    --type-primary: 16px;         /* Tên đối tượng, liên kết chính (16 % 4 == 0) */
+    --type-content: 16px;         /* Nội dung thường, body text (16 % 4 == 0) */
+    --type-body: 16px;            /* Nội dung trang (16 % 4 == 0) */
+    --type-control: 12px;         /* Input, button, select, tabs (12 % 4 == 0) */
+    --type-table-body: 12px;      /* Chữ trong dòng bảng (12 % 4 == 0) */
+    --type-table-head: 12px;      /* Tiêu đề cột bảng (12 % 4 == 0) */
+    --type-meta: 12px;            /* Chú thích, nhãn, badge, thời gian (12 % 4 == 0) */
+
+    /* Đồng bộ alias hệ thống iso */
+    --iso-type-page-title: var(--type-page-title);
+    --iso-type-primary: var(--type-primary);
+    --iso-type-content: var(--type-content);
+    --iso-type-control: var(--type-control);
+    --iso-type-table-body: var(--type-table-body);
+    --iso-type-table-head: var(--type-table-head);
+    --iso-type-meta: var(--type-meta);
+    --iso-type-menu: var(--type-control);
+
+    /* ======================================================================
+       HỆ THỐNG MÀU CHUẨN V2 (DÙNG TRỰC TIẾP, KHÔNG ÁNH XẠ CHÉO)
+       ====================================================================== */
+    --color-primary: #2563EB;     /* Xanh chính: Thao tác chính, tab active, link, nút bấm */
+    --color-secondary: #F59E0B;   /* Vàng cam: Trạng thái thứ cấp, pending, cảnh báo nhẹ */
+    --color-warning: #D1322E;     /* Đỏ: Cảnh báo, báo lỗi, nút xóa, hủy bỏ */
+    --color-danger: #D1322E;      /* Đỏ: Thùng rác, xóa, nguy hiểm */
+    --color-add: #FF7A16;         /* Cam tạo mới: Nút "+ Thêm mới", CTA nổi bật, bản nháp (draft) */
+    --color-info: #E2E8F0;        /* Xám nhạt: Viền bảng, khung ô nhập, đường phân cách */
+    --color-text: #000000;        /* Đen: Toàn bộ văn bản nội dung, dữ liệu hàng, tiêu đề */
+    --color-muted: #64748B;       /* Xám: Văn bản phụ, chú thích, placeholder */
+    --color-bg: #F5F8FC;          /* Nền trang */
+    --color-white: #FFFFFF;       /* Trắng: Nền card, bảng, chữ nút */
+        --success: #1a9850;
+    --success-bg: #e7f7ee;
+    --danger: #e4393c;
+    --danger-bg: #fdecec;
+    /* Màu phụ trợ trực tiếp (Hover, Success & Nền nhạt cho Badge/Trạng thái) */
+    --color-hover: #F1F5F9;       /* Nền hover xám nhạt: Hàng bảng, button phụ, tab, item menu */
+    --color-success: #16A34A;     /* Xanh lá: Trạng thái thành công, duyệt, đã xác nhận */
+    --color-success-light: #E7F8EE; /* Nền xanh lá nhạt: Badge thành công, tag trạng thái active */
+    --color-success-border: #86EFAC;/* Viền xanh lá khi hover */
+    --color-star: var(--color-secondary, #F59E0B); /* Vàng sao đánh giá (Rating star) */
+
+    /* Màu Tím (Purple: Agent / Khách hàng / Phân loại / Nút AI) */
+    --color-purple: #5B45B2;          /* Tím chuẩn */
+    --color-purple-hover: #4A359C;    /* Tím hover */
+    --color-purple-light: #F5F3FF;    /* Nền tím nhạt */
+    --color-purple-border: #DDD6FE;   /* Viền tím nhạt */
+    --color-purple-shadow: rgba(91, 69, 178, 0.25);
+    --color-purple-shadow-hover: rgba(91, 69, 178, 0.35);
+
+    /* Màu phụ trợ tương tác (Hover, Border & Nền nhạt) */
+    --color-primary-light: #EFF6FF;
+    --color-primary-hover: #1D4ED8;
+    --color-primary-border: #BFDBFE;
+
+    --color-success-hover: #15803D;
+
+    --color-secondary-light: #FEF3C7;
+    --color-secondary-hover: #D97706;
+    --color-secondary-border: #FDE68A;
+
+    --color-danger-light: #FEF2F2;
+    --color-danger-hover: #B91C1C;
+    --color-danger-border: #FCA5A5;
+
+    --color-warning-light: #FEF2F2;
+    --color-warning-hover: #B91C1C;
+    --color-warning-border: #FCA5A5;
+
+    --color-add-light: #FFF7ED;
+    --color-add-hover: #EA580C;
+    --color-add-border: #FDBA74;
+
+    /* Border Radii (4-Point Grid) */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 8px;
+    --radius-xl: 8px;
+    --radius-pill: 999px;
+
+    /* Box Shadows */
+    --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 18px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.08);
+
+    /* Row Title Tokens */
+    --list-primary-title-size: var(--type-primary);
+    --list-primary-title-weight: 700;
+    --list-primary-title-line-height: 1.4;
+    --list-primary-key-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   2. PAGE SHELL & CONTAINER
+   ========================================================================== */
+
+#page_v2,
+.page_container {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family-base);
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: 0px !important;
+}
+.rpp-wrap{
+        display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-left: auto;
+    font-weight: 600;
+    white-space: nowrap;
+}
+#page_v2 * {
+    box-sizing: border-box;
+}
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+#page_v2 a,
+.page_container a {
+    text-decoration: none;
+}
+
+#page_v2 a:hover,
+.page_container a:hover {
+    text-decoration: none;
+}
+
+#page_v2 .iso-module-list,
+.iso-module-list,
+#page_v2 .iso-bookings-list,
+.iso-bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 24px 32px;
+    background: var(--color-bg);
+    box-sizing: border-box;
+    min-height: calc(100vh - 70px);
+}
+
+/* ==========================================================================
+   3. BREADCRUMB COMPONENT (.v2-breadcrumb)
+   ========================================================================== */
+
+.v2-breadcrumb,
+.booking-list-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-family-base);
+    font-size: var(--type-table-body);
+    color: var(--color-muted);
+    line-height: 1.4;
+}
+
+.v2-breadcrumb a,
+.booking-list-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 150ms ease;
+}
+
+.v2-breadcrumb a:hover,
+.booking-list-breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.v2-breadcrumb .fa-angle-right,
+.v2-breadcrumb .fa-chevron-right,
+.booking-list-breadcrumb .fa-angle-right,
+.booking-list-breadcrumb .fa-chevron-right {
+    font-size: var(--type-meta);
+    color: var(--color-muted);
+    opacity: 0.8;
+}
+
+.v2-breadcrumb span,
+.booking-list-breadcrumb span {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   4. PAGE HEADER HERO BANNER (.v2-page-header)
+   ========================================================================== */
+
+.v2-page-header,
+.booking-list-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 108px;
+    padding: 20px 24px;
+    gap: 20px;
+    box-sizing: border-box;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(
+        to right,
+        rgba(240, 245, 252, 0.98) 0%,
+        rgba(240, 245, 252, 0.92) 32%,
+        rgba(240, 245, 252, 0.72) 62%,
+        rgba(240, 245, 252, 0.08) 86%
+    ), url('../images/dashboard/dashboard_bg_img.jpg') no-repeat right center / cover;
+}
+.tm-code-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 30px;
+    padding: 0 6px 0 12px;
+    border-radius: 999px;
+    background: var(--color-primary-soft);
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+.tm-code-chip button {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(37, 99, 235, 0.12);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10.5px;
+}
+.v2-page-header::after,
+.booking-list-hero::after {
+    display: none !important;
+}
+
+.v2-page-header__content,
+.booking-list-hero__content {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    flex: 1;
+}
+.v2-page-header .v2-dropdown-details {
+    position: relative;
+}
+.v2-page-header .v2-dropdown-details .v2-dropdown-menu {
+    background: var(--color-white);
+    position: absolute;
+    top: 100%;
+    z-index: 10;
+    width: 200px;
+    right: calc(100% - 40px);
+    border-radius: var(--radius-sm);
+}
+.v2-dropdown-menu .v2-dropdown-item {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 8px 12px;
+    color: var(--color-text);
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid var(--color-border);
+}
+.v2-dropdown-menu .v2-dropdown-item:hover {
+    background: var(--color-primary-soft);
+}
+
+.v2-page-title-row,
+.booking-list-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}/* Page Title — Standardized at 24px */
+
+.v2-page-title,
+.v2-page-title-row h1,
+.booking-list-title-row h1 {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-family-base) !important;
+    font-size: var(--type-page-title) !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    color: var(--color-text) !important;
+    letter-spacing: -0.02em;
+}/* Counter Badge */
+
+.v2-count-pill,
+.booking-count-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    padding: 0 12px;
+    border-radius: var(--radius-pill);
+    background: #D8E7FD;
+    color: var(--color-primary);
+    font-family: var(--font-family-base);
+    font-size: var(--type-table-body);
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}/* Subtitle */
+
+.v2-page-subtitle,
+.booking-list-hero p {
+    margin: 8px 0 0 !important;
+    padding: 0 !important;
+    font-family: var(--font-family-base) !important;
+    font-size: var(--type-content) !important;
+    color: var(--color-muted) !important;
+    line-height: 1.5;
+}/* Header Actions */
+
+.v2-page-header__actions,
+.booking-list-hero__actions {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}/* Module Settings Button */
+
+.v2-module-setting-btn,
+.v2-page-header__actions .v2-btn--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-info);
+    background: var(--color-white);
+    color: var(--color-muted);
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    flex: 0 0 40px;
+    box-sizing: border-box;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.v2-page-header__actions .v2-btn--icon i {
+    font-size: 18px;
+}
+.v2-module-setting-btn:hover,
+.v2-page-header__actions .v2-btn--icon:hover {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: #D8E7FD;
+}
+
+/* ==========================================================================
+   5. BUTTON SYSTEM (.v2-btn)
+   ========================================================================== */
+
+.v2-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    font-family: var(--font-family-base);
+    font-size: var(--type-content);
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+}
+
+.v2-btn:active {
+    transform: translateY(1px);
+}/* Add / Create Button */
+
+.v2-btn--add,
+.booking-create-btn {
+    background: var(--color-add) !important;
+    border-color: var(--color-add) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 6px rgba(255, 122, 22, 0.25);
+}
+
+.v2-btn--add:hover,
+.booking-create-btn:hover {
+    background: var(--color-add-hover) !important;
+    border-color: var(--color-add-hover) !important;
+    color: #FFFFFF !important;
+}/* Primary Button */
+
+.v2-btn--primary,
+.booking-search-btn {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #FFFFFF !important;
+}
+
+.v2-btn--primary:hover,
+.booking-search-btn:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: #FFFFFF !important;
+}
+
+/* Success / Green Button */
+.v2-btn--success,
+.v2-btn--green {
+    background: var(--color-success) !important;
+    border-color: var(--color-success) !important;
+    color: var(--color-white) !important;
+}
+
+.v2-btn--success:hover,
+.v2-btn--green:hover {
+    background: var(--color-success-hover) !important;
+    border-color: var(--color-success-hover) !important;
+    color: var(--color-white) !important;
+}
+
+.v2-btn--success i,
+.v2-btn--green i {
+    color: var(--color-white) !important;
+}
+
+/* Purple AI Button */
+.v2-btn--purple,
+.btn--ai,
+#btn_open_auto_ai_modal {
+    background: var(--color-purple) !important;
+    border-color: var(--color-purple) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 2px 6px var(--color-purple-shadow);
+}
+
+.v2-btn--purple:hover,
+.btn--ai:hover,
+#btn_open_auto_ai_modal:hover {
+    background: var(--color-purple-hover) !important;
+    border-color: var(--color-purple-hover) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 4px 12px var(--color-purple-shadow-hover);
+    transform: translateY(-1px);
+}
+
+.v2-btn--purple i,
+.btn--ai i,
+#btn_open_auto_ai_modal i {
+    color: var(--color-white) !important;
+}
+
+/* Neutral / Secondary Button */
+
+.v2-btn--secondary,
+.v2-btn--neutral,
+.booking-reset-btn {
+    background: var(--color-white);
+    border-color: var(--color-info);
+    color: var(--color-muted);
+}
+
+.v2-btn--secondary i,
+.v2-btn--neutral i,
+.booking-reset-btn i {
+    color: var(--color-muted);
+    transition: color 150ms ease;
+}
+
+.v2-btn--secondary:hover,
+.v2-btn--neutral:hover,
+.booking-reset-btn:hover {
+    background: var(--color-hover);
+    border-color: #CBD5E1;
+    color: var(--color-primary);
+}
+
+.v2-btn--secondary:hover i,
+.v2-btn--neutral:hover i,
+.booking-reset-btn:hover i {
+    color: var(--color-primary);
+}/* Icon Button */
+
+.v2-btn--icon {
+    width: 40px;
+    min-width: 40px;
+    padding: 0;
+    background: var(--color-white);
+    border-color: var(--color-info);
+    color: var(--color-muted);
+    flex: 0 0 40px;
+}
+
+.v2-btn--icon:hover {
+    background: var(--color-hover);
+    color: var(--color-primary);
+    border-color: #D8E7FD;
+}
+
+/* ==========================================================================
+   6. KPI METRICS ROW (.v2-kpi-grid, .v2-kpi-card)
+   ========================================================================== */
+
+.v2-kpi-grid,
+.booking-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.v2-kpi-card,
+.booking-kpi-card {
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-sizing: border-box;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.v2-kpi-card:hover,
+.booking-kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.content_setting_box .searchbox-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+/* Icon kính lúp nằm trong input */
+.content_setting_box .searchbox-left > .fa-search {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8193aa;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ô nhập tìm kiếm */
+.content_setting_box .searchbox-left input.search_keyword {
+    width: 480px;
+    max-width: 100%;
+    height: 46px;
+    padding: 0 14px 0 38px;
+    margin: 0;
+    border: 1px solid #d7e3f2;
+    border-radius: 10px;
+    background: #fff;
+    color: #243b5a;
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
+/* Placeholder */
+.content_setting_box .searchbox-left input.search_keyword::placeholder {
+    color: #8190a7;
+    opacity: 1;
+}
+
+/* Focus */
+.content_setting_box .searchbox-left input.search_keyword:focus {
+    border-color: #9bb9e5;
+    box-shadow: 0 0 0 3px rgba(32, 75, 137, 0.06);
+}
+
+/* Nút Search */
+.content_setting_box .searchbox-left #searchbtn {
+    height: 46px;
+    min-width: 111px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #204b89;
+    border: 1px solid #204b89;
+    color: #fff;
+    text-decoration: none;
+}
+.v2-kpi-icon,
+.booking-kpi-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.v2-kpi-card--blue .v2-kpi-icon,
+.booking-kpi-card--blue .booking-kpi-icon { background: var(--color-primary-light); color: var(--color-primary); }
+.v2-kpi-card--orange .v2-kpi-icon,
+.booking-kpi-card--orange .booking-kpi-icon { background: var(--color-warning-light); color: #EA7A1C; }
+.v2-kpi-card--green .v2-kpi-icon,
+.booking-kpi-card--green .booking-kpi-icon { background: var(--color-success-light); color: var(--color-success); }
+.v2-kpi-card--pink .v2-kpi-icon,
+.booking-kpi-card--red .booking-kpi-icon,
+.booking-kpi-card--pink .booking-kpi-icon { background: var(--color-warning-light); color: var(--color-warning); }
+
+.v2-kpi-body,
+.booking-kpi-card > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.v2-kpi-label,
+.booking-kpi-card label {
+    display: block;
+    margin: 0;
+    font-size: var(--type-table-head);
+    font-weight: 600;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.v2-kpi-value,
+.booking-kpi-card strong {
+    display: block;
+    margin-top: 4px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--color-text);
+    line-height: 1.1;
+}
+
+.v2-kpi-caption,
+.booking-kpi-card small {
+    display: block;
+    margin-top: 4px;
+    font-size: var(--type-meta);
+    color: var(--color-muted);
+}
+
+/* ==========================================================================
+   7. FILTER PANEL & FORM FIELDS (.v2-filter-panel)
+   ========================================================================== */
+
+.v2-filter-panel,
+.booking-filter-panel {
+    background: var(--color-white);
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+
+.v2-filter-form,
+.booking-filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.v2-field,
+.booking-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-sizing: border-box;
+}
+
+.v2-field-label,
+.booking-field-label,
+.v2-field > label,
+.booking-field > label,
+.v2-filter-panel label,
+.booking-filter-panel label {
+    margin: 0;
+    font-size: var(--type-control);
+    font-weight: 700 !important;
+    color: var(--color-text) !important;
+    line-height: 1.2;
+}
+
+.v2-field input,
+.v2-field select,
+.booking-field input,
+.booking-field select {
+    width: 100%;
+    height: 44px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-info);
+    background: var(--color-white);
+    padding: 0 16px;
+    font-family: var(--font-family-base);
+    font-size: var(--type-control);
+    font-weight: 400;
+    color: var(--color-text);
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.v2-field input::placeholder,
+.booking-field input::placeholder {
+    color: var(--color-muted);
+    font-weight: 400;
+    font-size: var(--type-control);
+}
+
+.v2-field select,
+.booking-field select {
+    color: var(--color-muted);
+    font-weight: 400;
+    font-size: var(--type-control);
+}
+
+.v2-field input:focus,
+.v2-field select:focus,
+.booking-field input:focus,
+.booking-field select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}/* Search Field with Icon */
+
+.v2-search-field,
+.booking-search-field {
+    position: relative;
+    flex: 1 1 280px;
+    min-width: 240px;
+}
+
+.v2-search-field input,
+.booking-search-field input {
+    padding-left: 40px;
+    padding-right: 16px;
+}
+
+.v2-search-field > i,
+.booking-search-field > i {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    font-size: 12px;
+    color: var(--color-muted);
+    pointer-events: none;
+}/* Select Field with Dropdown Arrow */
+
+.v2-select-field,
+.booking-select-field {
+    min-width: 160px;
+    flex: 0 0 auto;
+}
+
+.v2-select-field select,
+.booking-select-field select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 32px;
+}
+
+.v2-select-field > i,
+.booking-select-field > i {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    font-size: 12px;
+    color: var(--color-muted);
+    pointer-events: none;
+}
+
+/* Hide duplicate icon when Select2 container is rendered */
+.v2-select-field .select2-container ~ i,
+.booking-select-field .select2-container ~ i,
+.v2-field .select2-container ~ i,
+.booking-field .select2-container ~ i,
+.select2-container + i,
+.select2-container ~ i.fa-angle-down,
+.select2-container ~ i.fa-chevron-down {
+    display: none !important;
+}/* Date Field with Calendar Icon */
+
+.v2-date-field,
+.booking-date-field {
+    position: relative;
+    width: 160px;
+    min-width: 140px;
+    flex: 0 0 auto;
+}
+
+.v2-date-field input,
+.booking-date-field input {
+    padding-right: 36px !important;
+    cursor: pointer;
+    background-color: var(--color-white);
+}
+
+.v2-date-field > i,
+.booking-date-field > i {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    font-size: 12px;
+    color: var(--color-muted);
+    pointer-events: none;
+    line-height: 1;
+}/* Select2 Standard Styling Integration */
+
+.select2-container--default .select2-selection--single {
+    height: 44px !important;
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--color-info) !important;
+    background-color: var(--color-white) !important;
+    display: flex;
+    align-items: center;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 44px !important;
+    padding-left: 16px !important;
+    padding-right: 32px !important;
+    color: var(--color-muted) !important;
+    font-family: var(--font-family-base) !important;
+    font-size: var(--type-control) !important;
+    font-weight: 400 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: var(--color-muted) !important;
+    font-weight: 400 !important;
+    font-size: var(--type-control) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 42px !important;
+    right: 10px !important;
+}/* Filter Action Buttons */
+
+.v2-filter-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+.config_group_ul{
+    display: inline;
+}
+/* ==========================================================================
+   8. TOOLBAR & STATUS TABS (.v2-list-toolbar, .v2-status-tabs)
+   ========================================================================== */
+
+.v2-toolbar,
+.v2-list-toolbar,
+.booking-list-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.v2-toolbar__right,
+.v2-list-toolbar__right,
+.booking-list-toolbar__right {
+    margin-left: auto;
+}
+
+.v2-status-tabs,
+.booking-status-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.v2-status-tab,
+.booking-status-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 16px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    color: var(--color-muted);
+    font-family: var(--font-family-base);
+    font-size: var(--type-table-body);
+    font-weight: 600;
+    text-decoration: none;
+    line-height: 1;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: all 150ms ease;
+}
+
+.v2-status-tab:hover,
+.booking-status-tab:hover {
+    background: var(--color-hover);
+    color: var(--color-text);
+    border-color: #CBD5E1;
+}
+
+.v2-status-tab.is-active,
+.booking-status-tab.is-active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #FFFFFF !important;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+.v2-status-tab--primary.is-active,
+.booking-status-tab--all.is-active {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* Published / Confirmed: Màu xanh lá */
+.v2-status-tab--success.is-active,
+.booking-status-tab--confirmed.is-active,
+.booking-status-tab--publish.is-active {
+    background: var(--color-success) !important;
+    border-color: var(--color-success) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25) !important;
+}
+
+/* Draft / Payment: Màu cam */
+.v2-status-tab--warning.is-active,
+.booking-status-tab--payment.is-active,
+.booking-status-tab--draft.is-active {
+    background: var(--color-add) !important;
+    border-color: var(--color-add) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 2px 8px rgba(255, 122, 22, 0.25) !important;
+}
+
+/* Trash / Pending: Màu đỏ */
+.v2-status-tab--danger.is-active,
+.booking-status-tab--trash.is-active,
+.booking-status-tab--pending.is-active {
+    background: var(--color-danger) !important;
+    border-color: var(--color-danger) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 2px 8px rgba(209, 50, 46, 0.25) !important;
+}
+
+/* Purple: Khách hàng / Agent */
+.v2-status-tab--purple.is-active,
+.booking-status-tab--customer.is-active {
+    background: var(--color-purple) !important;
+    border-color: var(--color-purple) !important;
+    color: var(--color-white) !important;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.25) !important;
+}
+
+.v2-status-tab.is-active i,
+.booking-status-tab.is-active i {
+    background: var(--color-white) !important;
+}
+
+.v2-status-tab.is-active span,
+.booking-status-tab.is-active span {
+    color: var(--color-white) !important;
+}
+
+/* Chấm tròn chỉ báo màu (Status Tab Indicator Dots) */
+.v2-status-tab i,
+.booking-status-tab i {
+    display: inline-block !important;
+    width: 8px !important;
+    height: 8px !important;
+    min-width: 8px !important;
+    border-radius: 50% !important;
+    background: var(--color-muted);
+    flex-shrink: 0;
+    transition: background 150ms ease;
+}
+
+.v2-status-tab--primary i,
+.booking-status-tab--all i {
+    background: var(--color-primary) !important;
+}
+
+/* Published: Xanh lá */
+.v2-status-tab--success i,
+.booking-status-tab--confirmed i,
+.booking-status-tab--publish i {
+    background: var(--color-success) !important;
+}
+
+/* Draft: Cam */
+.v2-status-tab--warning i,
+.booking-status-tab--payment i,
+.booking-status-tab--draft i {
+    background: var(--color-add) !important;
+}
+
+/* Trash: Đỏ */
+.v2-status-tab--danger i,
+.booking-status-tab--trash i,
+.booking-status-tab--pending i {
+    background: var(--color-danger) !important;
+}
+
+/* Customer / Purple: Tím */
+.v2-status-tab--purple i,
+.booking-status-tab--customer i {
+    background: var(--color-purple) !important;
+}
+
+/* Số đếm theo màu khi tab chưa active */
+.v2-status-tab--success:not(.is-active) span {
+    color: var(--color-success);
+    font-weight: 700;
+}
+
+.v2-status-tab--warning:not(.is-active) span {
+    color: var(--color-add);
+    font-weight: 700;
+}
+
+.v2-status-tab--danger:not(.is-active) span,
+.booking-status-tab--trash:not(.is-active) span {
+    color: var(--color-danger);
+    font-weight: 700;
+}
+
+.v2-status-tab--purple:not(.is-active) span,
+.booking-status-tab--customer:not(.is-active) span {
+    color: var(--color-purple);
+    font-weight: 700;
+}
+
+/* Hover tương ứng */
+.v2-status-tab--success:hover:not(.is-active) {
+    background: var(--color-success-light);
+    color: var(--color-success);
+    border-color: var(--color-success-border);
+}
+
+.v2-status-tab--warning:hover:not(.is-active) {
+    background: var(--color-add-light);
+    color: var(--color-add-hover);
+    border-color: var(--color-add-border);
+}
+
+.v2-status-tab--danger:hover:not(.is-active),
+.booking-status-tab--trash:hover:not(.is-active) {
+    background: var(--color-danger-light);
+    color: var(--color-danger-hover);
+    border-color: var(--color-danger-border);
+}
+
+.v2-status-tab--purple:hover:not(.is-active),
+.booking-status-tab--customer:hover:not(.is-active) {
+    background: var(--color-purple-light);
+    color: var(--color-purple);
+    border-color: var(--color-purple-border);
+}/* Bulk Actions / Delete Tabs Button */
+
+.v2-tabs-delete,
+.booking-bulk-delete,
+.btn-delete-all,
+#btn_delete {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 36px;
+    min-height: 36px;
+    max-height: 36px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-warning);
+    background: var(--color-white);
+    color: var(--color-warning) !important;
+    font-family: var(--font-family-base);
+    font-size: var(--type-table-body);
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    vertical-align: middle;
+    transition: all 150ms ease;
+}
+
+.v2-tabs-delete i,
+.booking-bulk-delete i,
+.btn-delete-all i,
+#btn_delete i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    color: inherit;
+    margin: 0 !important;
+}
+
+.v2-tabs-delete[style*="display: inline"],
+.v2-tabs-delete[style*="display:inline"],
+.v2-tabs-delete[style*="display: block"],
+.v2-tabs-delete[style*="display:block"],
+.booking-bulk-delete[style*="display: inline"],
+.booking-bulk-delete[style*="display:inline"],
+.booking-bulk-delete[style*="display: block"],
+.booking-bulk-delete[style*="display:block"],
+.btn-delete-all[style*="display: inline"],
+.btn-delete-all[style*="display:inline"],
+.btn-delete-all[style*="display: block"],
+.btn-delete-all[style*="display:block"],
+#btn_delete[style*="display: inline"],
+#btn_delete[style*="display:inline"],
+#btn_delete[style*="display: block"],
+#btn_delete[style*="display:block"],
+.v2-tabs-delete:not([style*="display: none"]):not([style*="display:none"]):not([hidden]),
+.booking-bulk-delete:not([style*="display: none"]):not([style*="display:none"]):not([hidden]),
+.btn-delete-all:not([style*="display: none"]):not([style*="display:none"]):not([hidden]),
+#btn_delete:not([style*="display: none"]):not([style*="display:none"]):not([hidden]) {
+    display: inline-flex !important;
+}
+
+.v2-tabs-delete[style*="display: none"],
+.v2-tabs-delete[style*="display:none"],
+.booking-bulk-delete[style*="display: none"],
+.booking-bulk-delete[style*="display:none"],
+.btn-delete-all[style*="display: none"],
+.btn-delete-all[style*="display:none"],
+#btn_delete[style*="display: none"],
+#btn_delete[style*="display:none"] {
+    display: none !important;
+}
+
+.v2-tabs-delete:hover,
+.booking-bulk-delete:hover,
+.btn-delete-all:hover,
+#btn_delete:hover {
+    background: var(--color-warning);
+    border-color: var(--color-warning);
+    color: var(--color-white) !important;
+}
+
+.v2-tabs-delete:hover i,
+.booking-bulk-delete:hover i,
+.btn-delete-all:hover i,
+#btn_delete:hover i {
+    color: var(--color-white) !important;
+}/* Records Per Page Dropdown */
+
+.v2-records-per-page,
+.booking-records-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--type-control);
+    color: var(--color-muted);
+}
+
+.v2-records-per-page select,
+.booking-records-per-page select {
+    height: 34px;
+    padding: 0 8px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-family-base);
+    font-size: var(--type-control);
+    outline: none;
+}
+
+/* ==========================================================================
+   9. TABLE CARD & DATA TABLE SYSTEM (.v2-table-card, .v2-table)
+   ========================================================================== */
+
+.list-table-v2-card,
+.v2-table-card,
+.booking-table-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.list-table-v2-scroll,
+.v2-table-scroll,
+.booking-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.list-table-v2,
+.v2-table,
+.booking-list-table {
+    width: 100%;
+    min-width: 960px;
+    border-collapse: collapse;
+    text-align: left;
+    font-family: var(--font-family-base);
+}/* Table Header (th) */
+
+
+
+.list-table-v2 td,
+.v2-table td,
+.booking-list-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-info);
+    color: var(--color-text);
+    font-size: var(--type-table-body);
+    vertical-align: middle !important;
+}
+
+.list-table-v2 tbody tr:hover,
+.v2-table tbody tr:hover,
+.booking-list-table tbody tr:hover {
+    background: var(--color-hover);
+}
+
+.list-table-v2 .is-center,
+.v2-table .is-center,
+.booking-list-table .is-center { text-align: center; }
+
+.list-table-v2 .is-right,
+.v2-table .is-right,
+.booking-list-table .is-right { text-align: right; }/* Checkbox Column */
+
+.v2-table-check,
+.v2-table th:first-child,
+.v2-table td:first-child,
+.booking-list-table th:first-child,
+.booking-list-table td:first-child {
+    width: 44px;
+    min-width: 44px;
+    text-align: center;
+}/* Table Thumbnail */
+
+.v2-thumbnail,
+.tour-thumb,
+.hotel-thumb,
+.cruise-thumb,
+.blog-thumb,
+.booking-service-thumb {
+    display: block;
+    width: 64px !important;
+    height: 48px !important;
+    margin: 0 auto !important;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    background: var(--color-bg);
+}
+
+.v2-thumbnail.is-placeholder,
+.hotel-thumb.is-placeholder,
+.cruise-thumb.is-placeholder,
+.blog-thumb.is-placeholder {
+    padding: 8px;
+    object-fit: contain;
+}/* Table Avatar */
+
+.v2-avatar,
+.list-table-v2-avatar,
+.member-avatar {
+    display: inline-flex;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #D8E7FD;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-size: var(--type-table-body);
+    font-weight: 800;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.v2-avatar img,
+.list-table-v2-avatar img,
+.member-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}/* Table Primary Title / Link */
+
+.v2-table-primary,
+.v2-table-title,
+.list-table-heading,
+.list-table-link,
+.booking-service-name {
+    display: block;
+    color: var(--color-text);
+    font-size: var(--type-primary);
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.v2-table-primary:hover,
+.v2-table-title:hover,
+.list-table-link:hover,
+.list-table-heading:hover {
+    color: var(--color-primary);
+}/* Metadata / Subtitle text */
+
+.v2-table-meta,
+.list-table-meta,
+.booking-type,
+.booking-source {
+    display: block;
+    margin-top: 4px;
+    color: var(--color-muted);
+    font-size: var(--type-meta);
+    line-height: 1.3;
+}/* Price / Currency Standard Styling */
+.v2-price {
+    font-size: var(--type-table-body);
+    font-weight: 800 !important;
+    color: var(--color-text);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.v2-price--muted {
+    font-size: var(--type-table-body);
+    font-weight: 600;
+    color: var(--color-muted);
+    text-align: right;
+    white-space: nowrap;
+}/* Status Badges */
+
+.v2-badge,
+.list-table-v2-badge,
+.list-table-badge,
+.member-type-badge,
+.blog-category-badge,
+.booking-payment-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-family-base);
+    font-size: var(--type-meta);
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.v2-badge--success,
+.v2-badge--published,
+.v2-badge--approved,
+.v2-badge--confirmed,
+.list-table-v2-badge--success,
+.list-table-badge--success,
+.booking-payment-status--1,
+.booking-payment-status--confirmed {
+    background: var(--color-success-light) !important;
+    color: var(--color-success) !important;
+}
+
+.v2-badge--warning,
+.v2-badge--secondary,
+.v2-badge--draft,
+.v2-badge--private,
+.v2-badge--pending,
+.status_private,
+.status_draft,
+.hotel-state--private,
+.list-table-v2-badge--warning,
+.list-table-badge--warning,
+.booking-payment-status--2 {
+    background: var(--color-secondary-light) !important;
+    color: var(--color-secondary) !important;
+}
+
+.v2-badge--danger,
+.v2-badge--trash,
+.list-table-v2-badge--danger,
+.list-table-badge--danger {
+    background: var(--color-danger-light) !important;
+    color: var(--color-danger) !important;
+}
+
+.v2-badge--primary,
+.v2-badge--info,
+.list-table-v2-badge--primary,
+.list-table-badge--primary,
+.member-type-badge,
+.blog-category-badge {
+    background: var(--color-primary-light) !important;
+    color: var(--color-primary) !important;
+}
+
+.v2-badge--neutral,
+.list-table-v2-badge--neutral,
+.list-table-badge--neutral,
+.booking-payment-status--3,
+.booking-payment-status--canceled {
+    background: var(--color-bg) !important;
+    color: var(--color-muted) !important;
+}/* Public Switch Toggle (.list-table-toggle, .v2-table-toggle) */
+
+.list-table-toggle,
+.v2-table-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.list-table-toggle__track,
+.v2-table-toggle__track {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 22px;
+    border-radius: 999px;
+    background: #CBD5E1;
+    transition: background 180ms ease;
+}
+
+.list-table-toggle__thumb,
+.v2-table-toggle__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 180ms ease;
+}
+
+.list-table-toggle[rel='1'] .list-table-toggle__track,
+.v2-table-toggle[rel='1'] .v2-table-toggle__track,
+.list-table-toggle.is-active .list-table-toggle__track,
+.v2-table-toggle.is-active .v2-table-toggle__track {
+    background: var(--color-success);
+}
+
+.list-table-toggle[rel='1'] .list-table-toggle__thumb,
+.v2-table-toggle[rel='1'] .v2-table-toggle__thumb,
+.list-table-toggle.is-active .list-table-toggle__thumb,
+.v2-table-toggle.is-active .v2-table-toggle__thumb {
+    transform: translateX(16px);
+}
+
+.list-table-toggle.is-loading,
+.v2-table-toggle.is-loading {
+    pointer-events: none;
+    opacity: 0.65;
+}/* Action Dropdown Menu (.v2-table-action, .dropdown-menu) */
+
+.v2-table-action,
+.booking-row-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 32px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-muted);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 150ms ease;
+}
+
+.v2-table-action:hover,
+.booking-row-menu:hover {
+    background: var(--color-hover);
+    color: var(--color-primary);
+    border-color: #CBD5E1;
+}
+
+.dropdown-menu.v2-dropdown-menu,
+.v2-table-action ~ .dropdown-menu,
+.booking-row-menu ~ .dropdown-menu,
+.dropdown-menu {
+    min-width: 170px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 8px;
+    background: var(--color-white);
+}
+
+.dropdown-menu.v2-dropdown-menu .dropdown-item,
+.v2-table-action ~ .dropdown-menu .dropdown-item,
+.booking-row-menu ~ .dropdown-menu .dropdown-item,
+.dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: var(--type-content);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: background 150ms ease;
+}
+
+.dropdown-menu.v2-dropdown-menu .dropdown-item:hover,
+.v2-table-action ~ .dropdown-menu .dropdown-item:hover,
+.booking-row-menu ~ .dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:hover {
+    background: var(--color-hover);
+    color: var(--color-primary);
+}
+
+.dropdown-menu.v2-dropdown-menu .dropdown-item i,
+.v2-table-action ~ .dropdown-menu .dropdown-item i,
+.booking-row-menu ~ .dropdown-menu .dropdown-item i,
+.dropdown-menu .dropdown-item i {
+    width: 16px;
+    text-align: center;
+    color: var(--color-muted);
+}
+
+/* ==========================================================================
+   10. EMPTY STATE (.v2-empty-state)
+   ========================================================================== */
+
+.list-table-v2-empty,
+.v2-empty-state,
+.booking-empty,
+.list-table-empty {
+    padding: 48px 24px !important;
+    text-align: center;
+    color: var(--color-muted) !important;
+    font-size: var(--type-content);
+}
+
+/* ==========================================================================
+   11. TABLE FOOTER & PAGINATION (.v2-table-footer, .v2-pagination)
+   ========================================================================== */
+
+.list-table-v2-footer,
+.v2-table-footer,
+.booking-table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--color-info);
+    background: var(--color-white);
+    color: var(--color-muted);
+    font-size: var(--type-control);
+    flex-wrap: wrap;
+}
+
+.list-table-v2-pagination,
+.v2-pagination,
+.booking-pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.v2-pagination a,
+.v2-pagination span,
+.booking-pagination a,
+.booking-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 34px;
+    padding: 0 8px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-family: var(--font-family-base);
+    font-size: var(--type-control);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 150ms ease;
+}
+
+.v2-pagination a:hover,
+.booking-pagination a:hover {
+    background: var(--color-hover);
+    color: var(--color-primary);
+    border-color: #CBD5E1;
+}
+
+.v2-pagination a.is-current,
+.v2-pagination span.is-current,
+.booking-pagination a.is-current,
+.booking-pagination span.is-current {
+    background: var(--color-primary) !important;
+    border-color: var(--color-primary) !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+}
+
+.v2-pagination .is-disabled,
+.booking-pagination .is-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    cursor: default;
+}
+
+/* ==========================================================================
+   12. RESPONSIVE LAYOUT BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+    .v2-kpi-grid,
+    .booking-kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .v2-page-header,
+    .booking-list-hero {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 16px 20px;
+    }
+
+    .v2-page-header__actions,
+    .booking-list-hero__actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    #page_v2 .booking-list-toolbar,
+    #page_v2 .v2-list-toolbar,
+    .booking-list-toolbar,
+    .v2-list-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .v2-records-per-page,
+    .booking-records-per-page {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 767px) {
+    #page_v2 .iso-module-list,
+    .iso-module-list {
+        padding: 16px 12px 28px;
+        gap: 12px;
+    }
+
+    .v2-filter-form,
+    .booking-filter-form {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    .v2-search-field,
+    .v2-select-field,
+    .booking-search-field,
+    .booking-select-field {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+    }
+
+    .v2-filter-actions {
+        width: 100%;
+        justify-content: stretch;
+    }
+
+    .v2-search-btn,
+    .v2-reset-btn,
+    .booking-search-btn,
+    .booking-reset-btn {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+    }
+
+    #page_v2 .booking-table-footer,
+    #page_v2 .v2-table-footer,
+    .booking-table-footer,
+    .v2-table-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 576px) {
+    .v2-page-header,
+    .booking-list-hero {
+        min-height: 0;
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .v2-page-title,
+    .v2-page-title-row h1,
+    .booking-list-title-row h1 {
+        font-size: 20px !important;
+    }
+
+    .v2-page-header__actions,
+    .booking-list-hero__actions {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .v2-page-header__actions .v2-btn--add,
+    .v2-page-header__actions .booking-create-btn,
+    .v2-btn--add,
+    .booking-create-btn {
+        min-width: 0;
+        flex: 1;
+        justify-content: center;
+    }
+
+    .v2-page-header__actions .v2-module-setting-btn,
+    .v2-page-header__actions .v2-btn--icon,
+    .v2-module-setting-btn {
+        width: 40px;
+        min-width: 40px;
+        padding: 0;
+        flex: 0 0 40px;
+    }
+
+    .v2-breadcrumb,
+    .booking-list-breadcrumb {
+        padding: 0 4px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .v2-kpi-grid,
+    .booking-kpi-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ==========================================================================
+   HỆ THỐNG COMPONENT LIST V2 (CLASS ĐỘC LẬP DÙNG CHUNG CHO MỌI MÀN HÌNH)
+   ========================================================================== */
+
+/* --- 1. Tiêu đề, Mã định danh & Liên kết dòng (Identifiers & Primary Links) --- */
+.list-code,
+.booking-code {
+    display: block;
+    color: var(--color-primary) !important;
+    font-size: var(--type-primary);
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.list-table-key,
+.list-table-v2-key,
+span.list-table-key,
+span.list-table-v2-key {
+    display: inline !important;
+    color: var(--color-primary) !important;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+a.list-code:hover,
+a.booking-code:hover,
+a.list-table-key:hover,
+a.list-table-v2-key:hover,
+a:hover .list-table-key,
+a:hover .list-table-v2-key {
+    color: var(--color-primary-hover) !important;
+    text-decoration: none;
+}
+
+/* --- 2. Thông tin phụ & Nguồn gốc (Meta, Subtitle & Badges) --- */
+.list-meta,
+.booking-type,
+.booking-source,
+.blog-date {
+    display: block;
+    margin-top: 4px;
+    color: var(--color-muted);
+    font-size: var(--type-meta);
+    line-height: 1.3;
+}
+
+/* --- 3. Khối tên dịch vụ kèm thumbnail (Service / Product Name Wrap) --- */
+.list-name-wrap,
+.booking-name-wrap,
+.blog-name-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 260px;
+}
+
+.list-name-wrap > div,
+.booking-name-wrap > div,
+.blog-name-wrap > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.list-service-name,
+.booking-service-name,
+.blog-name {
+    display: inline-block;
+    font-size: var(--type-primary);
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.list-service-name:hover,
+.booking-service-name:hover,
+.blog-name:hover {
+    color: var(--color-primary);
+}
+
+.list-service-thumb,
+.booking-service-thumb {
+    display: block;
+    flex: 0 0 46px;
+    width: 46px !important;
+    height: 38px !important;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+.list-service-thumb--empty,
+.booking-service-thumb--empty {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-size: 16px;
+}
+
+/* --- 4. Khối liên hệ & Vị trí dùng chung (Detail Lines, Contact & Location) --- */
+.list-contact,
+.list-table-contact,
+.booking-customer,
+.list-table-detail-list,
+.list-table-v2-contact {
+    display: flex;
+    min-width: 165px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.list-table-detail-line,
+.list-table-contact-line,
+.list-table-location,
+.hotel-location,
+.list-contact a,
+.list-table-contact a,
+.booking-customer a,
+.list-table-v2-contact a,
+.list-contact span,
+.list-table-contact span,
+.booking-customer span,
+.list-table-v2-contact span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-muted) !important;
+    font-size: var(--type-meta);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 150ms ease;
+}
+
+a.list-table-detail-line:hover,
+a.list-table-contact-line:hover,
+.list-contact a:hover,
+.list-table-contact a:hover,
+.booking-customer a:hover,
+.list-table-v2-contact a:hover {
+    color: var(--color-primary) !important;
+    text-decoration: none;
+}
+
+.list-table-detail-line i,
+.list-table-contact-line i,
+.list-table-location i,
+.hotel-location i,
+.list-contact i,
+.list-table-contact i,
+.booking-customer i,
+.list-table-v2-contact i {
+    width: 16px;
+    text-align: center;
+    color: var(--color-muted) !important;
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: color 150ms ease;
+}
+
+a.list-table-detail-line:hover i,
+a.list-table-contact-line:hover i,
+.list-contact a:hover i,
+.list-table-contact a:hover i,
+.booking-customer a:hover i,
+.list-table-v2-contact a:hover i {
+    color: var(--color-primary) !important;
+}
+
+.list-contact strong,
+.list-table-contact strong,
+.booking-customer strong,
+.list-table-v2-contact strong,
+.list-table-contact-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--type-table-body);
+    font-weight: 600;
+    color: var(--color-text) !important;
+}
+
+.list-contact strong i,
+.list-table-contact strong i,
+.booking-customer strong i,
+.list-table-v2-contact strong i,
+.list-table-contact-name i {
+    color: var(--color-muted) !important;
+}
+
+/* --- 5. Tiền tệ & Thanh toán (Price & Payment Money) --- */
+.list-price,
+.list-table-money,
+.booking-price {
+    font-size: var(--type-primary);
+    font-weight: 700;
+    color: var(--color-text) !important;
+    white-space: nowrap;
+}
+
+.list-paid,
+.list-table-money--muted,
+.booking-paid {
+    font-size: var(--type-table-body);
+    font-weight: 500;
+    color: var(--color-muted) !important;
+    white-space: nowrap;
+}
+
+/* --- 6. Nhãn trạng thái (Status Pill Badges) --- */
+.list-badge-status,
+.list-table-badge,
+.booking-payment-status,
+.blog-status,
+.blog-approval {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: var(--type-meta);
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.list-badge-status i,
+.list-table-badge i,
+.booking-payment-status i,
+.blog-status i,
+.blog-approval i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+}
+.status-badge{
+   display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 700; 
+}
+.list-badge-status--success,
+.list-table-badge--success,
+.booking-payment-status--1,
+.booking-payment-status--confirmed,
+.blog-status.is-published,
+.blog-approval.is-approved {
+    background: var(--color-success-light) !important;
+    color: var(--color-success) !important;
+}
+.status-badge.active {
+    background: var(--success-bg);
+    color: var(--success);
+}
+.list-badge-status--warning,
+.list-table-badge--warning,
+.booking-payment-status--2,
+.blog-status.is-draft,
+.blog-approval.is-pending {
+    background: var(--color-secondary-light) !important;
+    color: var(--color-secondary) !important;
+}
+.status-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+.list-badge-status--danger,
+.list-table-badge--danger,
+.booking-payment-status--pending,
+.blog-status.is-trash {
+    background: var(--color-danger-light) !important;
+    color: var(--color-danger) !important;
+}
+.content_setting_box .SiteClickPublic{
+    background: none !important;
+}
+.list-badge-status--neutral,
+.list-table-badge--neutral,
+.booking-payment-status--3,
+.booking-payment-status--canceled {
+    background: var(--color-bg) !important;
+    color: var(--color-muted) !important;
+}
+
+/* --- 7. Nút thao tác hàng (Row Action Menu Button) --- */
+.list-action-btn,
+.list-table-action,
+.booking-row-menu,
+.v2-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.sort-ico{
+    margin-left:5px
+}
+.list-action-btn:hover,
+.list-table-action:hover,
+.booking-row-menu:hover,
+.v2-action:hover {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-color: #CBD5E1;
+}
+.body.iso-admin-shell-v2 #page-content > *, body.iso-admin-shell-v2 #page-content .container, body.iso-admin-shell-v2 #page-content .container-fluid {
+    padding:0 !important;
+    background: var(--color-bg) !important;
+}
+/* --- 8. Cột ảnh & Kéo thả sắp xếp (Image Column & Cell) --- */
+.list-image-column,
+.tour-image-column,
+.hotel-image-column,
+.cruise-image-column,
+.blog-image-column {
+    width: 94px;
+    min-width: 94px;
+    text-align: center !important;
+}
+
+.list-image-cell,
+.tour-image-cell,
+.hotel-image-cell,
+.cruise-image-cell,
+.blog-image-cell {
+    width: 94px;
+    min-width: 94px;
+    text-align: center !important;
+    vertical-align: middle;
+    cursor: move;
+}
+
+/* --- 9. Nhãn danh mục & Loại hình dùng chung (.list-table-v2-type-badge / Category & Type Badges) --- */
+.list-table-v2-type-badge,
+.list-table-v2-category-badge,
+.list-category-badge,
+.blog-category-badge,
+.member-type-badge,
+.customer-type-badge {
+    display: inline-flex;
+    min-width: 0;
+    height: 32px;
+    min-height: 32px;
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-pill, 20px);
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-size: var(--type-meta);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.list-table-v2-type-badge i,
+.list-table-v2-category-badge i,
+.list-category-badge i,
+.blog-category-badge i,
+.member-type-badge i,
+.customer-type-badge i {
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    flex: 0 0 auto;
+    color: inherit;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* --- 10. Ô tìm kiếm & Chọn lọc trên thanh lọc (Filter Input Fields) --- */
+.list-search-field,
+.booking-search-field,
+.v2-search-field {
+    min-width: 280px;
+    flex: 1 1 320px;
+}
+
+.list-select-field,
+.booking-select-field,
+.v2-select-field {
+    min-width: 190px;
+    flex: 0 0 190px;
+}
+
+/* --- 11. Các class độc lập cho Khách hàng & Thành viên (Member Components) --- */
+.member-primary-cell,
+.list-table-v2-name.member-primary-cell {
+    min-width: 260px;
+}
+
+.list-table-content,
+.member-name-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 240px;
+}
+
+.member-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.member-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.member-avatar-fallback {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-avatar-fallback.is-hidden {
+    display: none;
+}
+
+.member-list-summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-muted);
+    font-size: var(--type-table-body);
+    font-weight: 700;
+}
+
+.member-list-summary i {
+    color: var(--color-primary);
+}
+
+.member-booking-column,
+.member-booking-cell {
+    width: 128px;
+    min-width: 128px;
+}
+
+.member-create-booking {
+    display: inline-flex;
+    height: 34px;
+    padding: 0 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: var(--radius-sm);
+    background: var(--color-add);
+    color: var(--color-white) !important;
+    font-size: var(--type-control);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.member-create-booking:hover {
+    background: var(--color-add-hover);
+}
+
+/* --- 12. Thành phần đặc thù Du thuyền (Cruise Itinerary) --- */
+.cruise-itinerary-title {
+    display: block;
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* --- 13. Bộ lọc nâng cao Blog (Blog Advanced Filters) --- */
+.blog-filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.blog-more-filter {
+    white-space: nowrap;
+}
+
+.blog-advanced-filters {
+    display: none;
+    flex: 0 0 100%;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-info);
+}
+
+.blog-advanced-filters.is-open {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-summary {
+    max-width: 440px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* --- 14. Checkbox chọn từng dòng & Checkbox tất cả --- */
+.booking-check-cell,
+.list-check-cell {
+    width: 44px !important;
+    min-width: 44px !important;
+    padding: 12px 8px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+
+
+/* ==========================================================================
+   15. HỆ THỐNG CỘT & THÀNH PHẦN BẢNG DANH SÁCH CHUẨN DÙNG CHUNG (.list-table-v2-*)
+   Định nghĩa độc lập, không gắn với bất kỳ thực thể riêng lẻ nào (Booking, Hotel, Cruise, Blog, Member...)
+   ========================================================================== */
+
+/* --- 15.1 Bảng & Khung chứa độc lập (.list-table-v2-*) --- */
+.list-table-v2-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.list-table-v2-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.list-table-v2 {
+    width: 100%;
+    min-width: 960px;
+    border-collapse: collapse;
+    text-align: left;
+    font-family: var(--font-family-base);
+}
+
+
+
+.list-table-v2 td,
+.list-table-v2 tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-info);
+    color: var(--color-text);
+    font-size: var(--type-table-body);
+    vertical-align: middle !important;
+}
+
+.list-table-v2 tbody tr:hover {
+    background: var(--color-hover);
+}
+
+/* --- 15.2 Chiều rộng & Căn lề từng cột chuẩn (.list-table-v2-col-* / .list-table-v2-*) --- */
+/* Cột 1: Checkbox chọn dòng */
+.list-table-v2-check,
+.list-table-v2-col-check,
+.col-check {
+    width: 44px !important;
+    min-width: 44px !important;
+    max-width: 44px !important;
+    padding: 12px 8px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+
+
+/* Cột 2: Mã định danh / Code / ID */
+.list-table-v2-code,
+.list-table-v2-col-code,
+.list-table-v2-id,
+.list-table-v2-col-id,
+.col-code {
+    width: 140px;
+    min-width: 130px;
+}
+
+/* Cột 3: Hình ảnh đại diện / Thumbnail */
+.list-table-v2-image,
+.list-table-v2-col-image,
+.tour-image-column,
+.blog-image-column,
+.hotel-image-column,
+.cruise-image-column,
+.col-image {
+    width: 94px;
+    min-width: 94px;
+    text-align: center !important;
+}
+
+.list-table-v2-image-cell,
+.list-table-v2-col-image-cell,
+.tour-image-cell,
+.blog-image-cell,
+.hotel-image-cell,
+.cruise-image-cell {
+    width: 94px;
+    min-width: 94px;
+    text-align: center !important;
+    vertical-align: middle;
+}
+
+/* Cột 4: Tên / Tiêu đề chính */
+.list-table-v2-name,
+.list-table-v2-col-name,
+.list-table-v2-title-col,
+.col-name {
+    min-width: 280px;
+}
+
+/* Cột 5: Khách hàng / Thông tin liên hệ */
+.list-table-v2-customer,
+.list-table-v2-col-customer,
+.col-customer {
+    width: 200px;
+    min-width: 170px;
+}
+
+/* Cột 6: Địa điểm / Vị trí */
+.list-table-v2-location,
+.list-table-v2-col-location,
+.col-location {
+    width: 180px;
+    min-width: fit-content;
+}
+
+/* Cột 7: Danh mục / Phân loại */
+.list-table-v2-category,
+.list-table-v2-col-category,
+.col-category {
+    width: 160px;
+    min-width: 140px;
+    text-align: center !important;
+}
+
+/* Cột 8: Loại hình / Customer type / Cruise type */
+.list-table-v2-type,
+.list-table-v2-col-type,
+.col-type {
+    width: 140px;
+    min-width: 120px;
+    text-align: center !important;
+}
+
+/* Cột 9: Thời lượng / Duration */
+.list-table-v2-duration,
+.list-table-v2-col-duration,
+.col-duration {
+    width: 140px;
+    min-width: 120px;
+}
+
+/* Cột 10: Ngày tháng / Ngày đăng / Ngày sửa */
+.list-table-v2-date,
+.list-table-v2-col-date,
+.col-date {
+    width: 150px;
+    min-width: 130px;
+}
+
+/* Cột 11: Đánh giá sao / Rating */
+.list-table-v2-rating,
+.list-table-v2-col-rating,
+.col-rating {
+    width: 110px;
+    min-width: 90px;
+    text-align: center !important;
+}
+
+.list-table-rating,
+.list-table-v2-rating .list-table-rating,
+.hotel-rating .list-table-rating {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--color-star, var(--color-secondary, #F59E0B)) !important;
+}
+
+.list-table-rating i,
+.list-table-rating .fa-star,
+.list-table-v2-rating i,
+.list-table-v2-col-rating i,
+.col-rating i,
+.hotel-rating i {
+    color: var(--color-star, var(--color-secondary, #F59E0B)) !important;
+    font-size: 12px;
+}
+
+.list-table-empty-value {
+    color: var(--color-muted) !important;
+    font-size: var(--type-table-body);
+}
+
+/* Cột 12: Thống kê / Lượt xem / Số lượng */
+.list-table-v2-view,
+.list-table-v2-col-view,
+.list-table-v2-stat,
+.list-table-v2-col-stat,
+.col-stat {
+    width: 100px;
+    min-width: 80px;
+    text-align: center !important;
+}
+
+/* Cột 13: Trạng thái duyệt / Approved */
+.list-table-v2-approved,
+.list-table-v2-col-approved,
+.col-approved {
+    width: 120px;
+    min-width: 100px;
+    text-align: center !important;
+}
+
+/* Cột 14: Công tắc hiển thị Public */
+.list-table-v2-public,
+.list-table-v2-col-public,
+.col-public {
+    width: 80px;
+    min-width: 70px;
+    text-align: center !important;
+}
+
+/* Cột 15: Giá tiền / Tổng tiền */
+.list-table-v2-price,
+.list-table-v2-col-price,
+.col-price {
+    width: 120px;
+    min-width: 110px;
+    text-align: right !important;
+}
+
+/* Cột 16: Đã thanh toán / Đặt cọc */
+.list-table-v2-paid,
+.list-table-v2-col-paid,
+.col-paid {
+    width: 150px;
+    min-width: 130px;
+    text-align: right !important;
+}
+
+/* Cột 17: Trạng thái đơn hàng / Quy trình */
+.list-table-v2-status,
+.list-table-v2-col-status,
+.col-status {
+    width: 130px;
+    min-width: 120px;
+    text-align: center !important;
+}
+
+/* Cột 18: Thao tác phụ (Nút tạo booking/nút action riêng) */
+.list-table-v2-action-btn-cell {
+    width: 128px;
+    min-width: 128px;
+}
+
+/* Cột 19: Thao tác hàng (Nút 3 chấm) */
+.list-table-v2-action,
+.list-table-v2-col-action,
+.col-action {
+    width: 60px !important;
+    min-width: 60px !important;
+    text-align: center !important;
+}
+
+/* --- 15.3 Căn lề tiện ích bảng danh sách --- */
+.list-table-v2 .is-center,
+.list-table-v2-col--center { text-align: center !important; }
+
+.list-table-v2 .is-right,
+.list-table-v2-col--right { text-align: right !important; }
+
+.list-table-v2 .is-left,
+.list-table-v2-col--left { text-align: left !important; }
+
+/* --- 15.4 Thành phần chi tiết trong ô dữ liệu (.list-table-v2-*) --- */
+.list-table-v2-key,
+span.list-table-v2-key,
+span.list-table-key {
+    display: inline !important;
+    color: var(--color-primary) !important;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+a.list-table-v2-key:hover,
+a.list-table-key:hover,
+a:hover .list-table-v2-key,
+a:hover .list-table-key {
+    color: var(--color-primary-hover) !important;
+    text-decoration: none;
+}
+
+.list-table-v2-title,
+.list-table-v2-wrap > a,
+.hotel-name,
+.blog-name,
+.member-name {
+    display: inline-block;
+    color: var(--color-text);
+    font-size: var(--type-primary);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.list-table-v2-title:hover,
+.list-table-v2-wrap > a:hover,
+.hotel-name:hover,
+.blog-name:hover,
+.member-name:hover {
+    color: var(--color-primary);
+}
+
+.list-table-v2-meta {
+    display: block;
+    margin-top: 4px;
+    color: var(--color-muted);
+    font-size: var(--type-meta);
+    line-height: 1.3;
+}
+
+.list-table-v2-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 260px;
+}
+
+.list-table-v2-wrap > div {
+    min-width: 0;
+    flex: 1;
+}
+
+.list-table-v2-thumb {
+    display: block;
+    flex: 0 0 46px;
+    width: 46px !important;
+    height: 38px !important;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+}
+
+.list-table-v2-thumb--empty {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-size: 16px;
+}
+
+.list-table-v2-contact {
+    display: flex;
+    min-width: 165px;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.list-table-v2-money,
+.list-table-money,
+.booking-price {
+    font-size: var(--type-primary);
+    font-weight: 700;
+    color: var(--color-text) !important;
+    white-space: nowrap;
+}
+
+.list-table-v2-money--muted,
+.list-table-money--muted,
+.booking-paid {
+    font-size: var(--type-table-body);
+    font-weight: 500;
+    color: var(--color-muted) !important;
+    white-space: nowrap;
+}
+
+.list-table-v2-badge,
+.list-table-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    font-size: var(--type-meta);
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.4;
+}
+
+.list-table-v2-badge i,
+.list-table-badge i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+}
+
+.list-table-v2-badge--success,
+.list-table-badge--success,
+.booking-payment-status--confirmed {
+    background: var(--color-success-light) !important;
+    color: var(--color-success) !important;
+}
+
+.list-table-v2-badge--warning,
+.list-table-badge--warning,
+.booking-payment-status--pending {
+    background: var(--color-secondary-light) !important;
+    color: var(--color-secondary) !important;
+}
+
+.list-table-v2-badge--danger,
+.list-table-badge--danger {
+    background: var(--color-danger-light) !important;
+    color: var(--color-danger) !important;
+}
+
+.list-table-v2-badge--primary,
+.list-table-badge--primary {
+    background: var(--color-primary-light) !important;
+    color: var(--color-primary) !important;
+}
+
+.list-table-v2-badge--neutral,
+.list-table-badge--neutral,
+.booking-payment-status--canceled {
+    background: var(--color-bg) !important;
+    color: var(--color-muted) !important;
+}
+
+.list-table-v2-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-info);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.list-table-v2-action-btn:hover {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-color: #CBD5E1;
+}
+
+.list-table-v2-empty {
+    padding: 48px 24px !important;
+    text-align: center;
+    color: var(--color-muted) !important;
+    font-size: var(--type-content);
+}
+
+.list-table-v2-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--color-info);
+    background: var(--color-white);
+    color: var(--color-muted);
+    font-size: var(--type-control);
+    flex-wrap: wrap;
+}
+
+/* Phần tử legacy */
+.booking-legacy-heading,
+.booking-legacy-list[hidden] {
+    display: none !important;
+}
+
+.total_booking {
+    color: var(--color-success) !important;
+}
+
+@media (max-width: 767px) {
+    .iso-module-list,
+    .iso-bookings-list {
+        padding: 16px 12px 28px !important;
+        gap: 16px;
+    }
+    .list-search-field,
+    .booking-search-field,
+    .list-select-field,
+    .booking-select-field,
+    .v2-date-field { min-width: 100%; width: 100%; }
+    .blog-advanced-filters.is-open { display: block; }
+    .blog-advanced-filters .booking-field { margin-bottom: 8px; }
+}
+
+/* ==========================================================================
+   16. REUSABLE UTILITY CLASSES & TOKENS (SỬ DỤNG ĐỘC LẬP MỌI NƠI)
+   ========================================================================== */
+.text-success { color: var(--color-success) !important; }
+.bg-success { background-color: var(--color-success) !important; color: var(--color-white) !important; }
+.bg-success-light { background-color: var(--color-success-light) !important; color: var(--color-success) !important; }
+
+.text-star,
+.color-star { color: var(--color-star, var(--color-secondary, #F59E0B)) !important; }
+
+.bg-hover { background-color: var(--color-hover) !important; }
+.hover-bg:hover { background-color: var(--color-hover) !important; }
+.tr-hover:hover { background-color: var(--color-hover) !important; }
+
+/* Tour ISO List Specifics */
+.tours-list-table .tour-image-column,
+.tours-list-table .tour-image-cell {
+    width: 120px;
+    text-align: center;
+}
+
+.tours-list-table .tour-price {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.content_setting_box {
+    background: #ffffff;
+    border: 1px solid #e1eaf5;
+    border-radius: 13px;
+    padding: 27px 28px 21px;
+    box-shadow: 0 2px 3px rgba(24, 57, 96, 0.05);
+    color: #172b4d;
+    box-sizing: border-box;
+}
+
+.content_setting_box *,
+.content_setting_box *::before,
+.content_setting_box *::after {
+    box-sizing: border-box;
+}
+
+/* HEADER */
+.content_setting_box .page_detail-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border: 0;
+    padding: 0;
+}
+
+.content_setting_box .page_detail-title .title {
+    align-items: center;
+    min-width: 0;
+}
+
+.content_setting_box .page_detail-title .title h2 {
+    color: #10284a;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.content_setting_box .page_detail-title .title p {
+    color: #61738d;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.content_setting_box .page_detail-title .button_right {
+    flex-shrink: 0;
+}
+
+.content_setting_box .btnCreate {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #ff7900;
+    border: 1px solid #ff7900;
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 3px 8px rgba(255, 121, 0, 0.20);
+    transition: background .2s ease, box-shadow .2s ease;
+}
+
+.content_setting_box .btnCreate::before {
+    content: "+";
+    font-weight: 700;
+    line-height: 1;
+}
+
+.content_setting_box .btnCreate:hover,
+.content_setting_box .btnCreate:focus {
+    background: #ed6d00;
+    border-color: #ed6d00;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(255, 121, 0, 0.25);
+}
+
+/* REMOVE UNNECESSARY INNER WRAPPER SPACING */
+.content_setting_box > .wrap,
+.content_setting_box .filterForm,
+.content_setting_box .filterbox,
+.content_setting_box .filterbox > .wrap {
+    width: 100%;
+    max-width: 100%;
+}
+
+.content_setting_box .filterForm {
+    margin: 0;
+}
+
+.content_setting_box .filterbox {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.content_setting_box .filterbox > .wrap {
+    padding: 0;
+}
+
+.content_setting_box .searchbox {
+    float: none !important;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    margin: 0;
+}
+
+.content_setting_box .searchbox > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1 1 480px;
+    max-width: 604px;
+    min-width: 0;
+}
+
+.content_setting_box .searchbox input.text {
+    width: 100%;
+    min-width: 0;
+    height: 46px;
+    padding: 0 14px;
+    background: #ffffff;
+    border: 1px solid #d7e3f2;
+    border-radius: 10px;
+    color: #243b5a;
+    outline: none;
+    box-shadow: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.content_setting_box .searchbox input.text::placeholder {
+    color: #8190a7;
+    opacity: 1;
+}
+
+.content_setting_box .searchbox input.text:focus {
+    border-color: #7fa9e5;
+    box-shadow: 0 0 0 3px rgba(36, 82, 145, 0.08);
+}
+
+.content_setting_box #searchbtn {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 111px;
+    height: 46px;
+    padding: 0 18px;
+    background: #204b89;
+    border: 1px solid #204b89;
+    border-radius: 9px;
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .2s ease;
+}
+
+.content_setting_box #searchbtn::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 5px 5px 0 -4px currentColor;
+}
+
+.content_setting_box #searchbtn:hover {
+    background: #173b70;
+    border-color: #173b70;
+    color: #ffffff;
+}
+
+/* RECORDS PER PAGE */
+.content_setting_box .searchbox select {
+    min-width: 61px;
+    height: 39px;
+    margin-left: 4px;
+    padding: 0 28px 0 10px;
+    border: 1px solid #d7e3f2;
+    border-radius: 9px;
+    background-color: #ffffff;
+    color: #243b5a;
+    outline: none;
+    cursor: pointer;
+}
+.tabboxchild_config_group .tbl-grid{
+        border-collapse: collapse;
+    min-width: 760px;
+    width: 100%;
+    border: 1px solid var(--border-soft);
+}
+.content_setting_box .searchbox select:focus {
+    border-color: #7fa9e5;
+}
+.infanttype{
+        display: inline-block;
+    padding: 3px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    background: #e8eef7;
+    color: #1b4581;
+}
+/* TABLE CARD */
+.content_setting_box .list-table-v2-card {
+    width: 100%;
+    margin-top: 18px;
+    overflow: hidden;
+    border: 1px solid #dce7f4;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: none;
+}
+
+.content_setting_box .list-table-v2-scroll {
+    width: 100%;
+    overflow-x: auto;
+    border: 0;
+    border-radius: 12px;
+}
+.statistical td{
+    font-size: 13px;
+}
+.content_setting_box table.list-table-v2 {
+    width: 100%;
+    min-width: 720px;
+    margin: 0;
+    border: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #ffffff;
+}
+.name_service b, .name_service b a,#ListTourOption .title, #tab_content .title ,.tabboxchild_config_group .title, #SortAbleAjax .title{
+        display: inline-block;
+    color: var(--color-text) !important;
+    font-size: var(--type-primary) !important;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+.name_service b a:hover{
+    color: var(--color-primary);
+}
+.globaltabs ul li a{
+        background-color: unset !important;
+    border: unset !important;
+    border-bottom: unset !important;
+
+}
+.globaltabs ul, .clienttabs ul{
+        border-bottom: none !important;
+}
+.globaltabs ul li.tabselected {
+    background: #fff;
+    color: var(--primary);
+    border-color: var(--border-soft);
+    box-shadow: 0 -2px 0 var(--primary) inset;
+}
+.globaltabs ul li, .clienttabs ul li {
+    float: left;
+    margin: 0 0 0 2px;
+    padding: 11px 18px;
+    font-size: 13.8px;
+    font-weight: 700;
+    color: var(--text-muted);
+    border-radius: 9px 9px 0 0;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    position: relative;
+    top: 1px;
+    background: #f4f8fc;
+    margin-right: 2px;
+}
+.content_setting_box table.list-table-v2 thead th {
+    height: 49px;
+    padding: 12px 15px;
+    background: #f5f8fc;
+    border: 0;
+    border-bottom: 1px solid #dfe8f3;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.globaltabs{
+        margin: 2% 0;
+}
+.content_setting_box table.list-table-v2 thead th:first-child,
+.content_setting_box table.list-table-v2 tbody th.index {
+    width: 0;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+}
+.globaltabs ul li.tabselected a, .globaltabs ul li.tabselected a:hove{
+    border: unset;
+}
+.globaltabs{
+    display:inline;
+}
+.table_responsive>tbody>tr td:not(.has-checkbox){
+    min-height: 100%;
+}
+.content_setting_box table.list-table-v2 thead th:nth-child(2),
+.content_setting_box table.list-table-v2 tbody td.check_40 {
+    width: 50px;
+    min-width: 50px;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 8px;
+}
+#frmSizeGroup table.form{
+    border:none;
+}
+#frmSizeGroup tr{
+    padding: 10px 0;
+    display: inline-grid;
+    width: 100%;
+}
+.list-table-image img{
+    height: 65px;
+}
+.content_setting_box table.list-table-v2 input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: #204b89;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.tabboxchild_config_group .format_price {
+    text-align: center;
+    float: none;
+}
+/* TABLE BODY */
+.content_setting_box table.list-table-v2 tbody td {
+    height: 62px;
+    padding: 12px 15px;
+    background: #ffffff;
+    color: #172b4d;
+    border: 0;
+    border-bottom: 1px solid #e0e9f4;
+    vertical-align: middle;
+    transition: background .15s ease;
+}
+.childrentype{
+    display: inline-block;
+    padding: 3px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;    
+        background: #fff1e3;
+    color: #c2600a;
+}
+.content_setting_box table.list-table-v2 tbody tr:last-child td {
+    border-bottom: 0;
+}
+#SortAble  .fa-arrows,#SortAbleAjax .sortable .fa-arrows,.table_responsive .fa-arrows{
+    color: var(--color-text) ;
+        font-size: 15px;
+}
+.content_setting_box table.list-table-v2 tbody tr:hover td {
+    background: #f9fbfe;
+}
+
+.content_setting_box table.list-table-v2 tbody td.name_service {
+    color: #1459d9;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.content_setting_box table.list-table-v2 tbody td.name_service b {
+    font-weight: 600;
+}
+
+.content_setting_box table.list-table-v2 tbody td.name_service .title {
+    color: #1459d9;
+    font-weight: 700;
+}
+
+.content_setting_box table.list-table-v2 tbody td:nth-child(4) {
+    white-space: nowrap;
+}
+
+.content_setting_box table.list-table-v2 tbody td:nth-child(5) {
+    color: #ff3038;
+    font-weight: 600;
+    text-align: left !important;
+    white-space: nowrap;
+}
+
+.content_setting_box table.list-table-v2 tbody td:nth-child(6) {
+    text-align: left !important;
+    white-space: nowrap;
+}
+
+/* STATUS: ACTIVE / INACTIVE */
+.content_setting_box .SiteClickPublic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 75px;
+    min-height: 30px;
+    padding: 6px 12px;
+    border: 0;
+    border-radius: 20px;
+    background: #e7f7ef;
+    color: #079653;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+
+.content_setting_box .SiteClickPublic:has(.green) {
+    background: #e7f7ef;
+    color: #079653;
+}
+
+.content_setting_box .SiteClickPublic:has(.red) {
+    background: #fdeced;
+    color: #df3039;
+}
+
+.content_setting_box .SiteClickPublic .green {
+    color: #079653 !important;
+}
+
+.content_setting_box .SiteClickPublic .red {
+    color: #df3039 !important;
+}
+
+/* ACTION DROPDOWN */
+.content_setting_box .list-table-action-cell {
+    width: 80px;
+    text-align: center !important;
+}
+
+.content_setting_box table.list-table-v2 tbody td:last-child {
+    width: 80px;
+    text-align: center !important;
+    white-space: nowrap;
+}
+
+.content_setting_box .btn-group,
+.content_setting_box .btn-group .dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.content_setting_box .btn_dropdown {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: 1px solid #d8e4f3;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #31557f;
+    box-shadow: none;
+}
+
+.content_setting_box .btn_dropdown:hover,
+.content_setting_box .btn_dropdown:focus {
+    background: #f2f6fc;
+    border-color: #b9cce5;
+    color: #204b89;
+}
+
+.content_setting_box .dropdown-menu {
+    min-width: 150px;
+    padding: 6px;
+    border: 1px solid #e0e8f2;
+    border-radius: 9px;
+    box-shadow: 0 8px 24px rgba(21, 43, 74, 0.12);
+}
+
+.content_setting_box .dropdown-menu .dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 10px;
+    border-radius: 6px;
+    color: #243b5a;
+    text-decoration: none;
+}
+
+.content_setting_box .dropdown-menu .dropdown-item:hover {
+    background: #f2f6fc;
+    color: #1459d9;
+}
+.content_setting_box .filterbox > .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+}
+
+
+.content_setting_box .searchbox-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.content_setting_box .searchbox-left:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.content_setting_box .searchbox-left:first-child input.text {
+    width: 100%;
+    max-width: 510px;
+    min-width: 0;
+}
+
+.content_setting_box .searchbox-left:first-child #searchbtn {
+    flex-shrink: 0;
+}
+
+.content_setting_box .searchbox-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.content_setting_box .searchbox-right select {
+    width: 61px;
+    height: 39px;
+    padding: 0 8px;
+    border: 1px solid #d7e3f2;
+    border-radius: 9px;
+    background: #fff;
+}
+/* PAGINATION */
+.content_setting_box .getPaginationAdmin,
+.content_setting_box .pagination {
+    margin-top: 18px;
+}
+
+.content_setting_box .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.content_setting_box .pagination a,
+.content_setting_box .pagination span,
+.content_setting_box .pagination li a,
+.content_setting_box .pagination li span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 35px;
+    height: 35px;
+    padding: 0 10px;
+    border: 1px solid #e0e8f3;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #526781;
+    text-decoration: none;
+}
+
+.content_setting_box .pagination .active a,
+.content_setting_box .pagination .active span,
+.content_setting_box .pagination a.active {
+    background: #204b89;
+    border-color: #204b89;
+    color: #ffffff;
+}
+
+.content_setting_box .pagination a:hover {
+    border-color: #204b89;
+    color: #204b89;
+}
+.status-badge.inactive {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+/* SHOWING RECORDS */
+.content_setting_box .wrap > .clearfix + .list-table-v2-card + .clearfix {
+    margin: 0;
+}
+.icon-white{
+    margin-top: 4px;
+}
+.content_setting_box .list-table-v2-card + .clearfix + div {
+    margin-top: 16px;
+    color: #526781;
+}
+.search_keyword{
+        padding-left: 41px !important;
+}
+body.iso-admin-shell-v2 #page-content .table_responsive{
+        width: 100%;
+}
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    
+    .content_setting_box {
+         margin-left: 0 !important;
+        padding: 10px !important;
+        width: 100% !important;
+    }
+    .table_responsive>thead>tr th{
+        background: #f5f8fc;
+    }
+    .content_setting_box .searchbox-left {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .container-fluid-2 {
+        padding: 0 !important;
+    }
+    .content_setting_box .searchbox-left input.search_keyword {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+    }
+    .content_setting_box .page_detail-title {
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+    #SortAble .sortable,.booking-check-sort,.gridheader-sort {
+        display:none;
+    }
+    .content_setting_box .page_detail-title .title {
+        display: block;
+    }
+    .image_responsive{
+        text-align:center !important;
+    }
+    .content_setting_box .page_detail-title .title p {
+        margin-top: 5px;
+    }
+
+    .content_setting_box .btnCreate {
+        padding: 9px 12px;
+        white-space: nowrap;
+    }
+
+    .content_setting_box .searchbox {
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .content_setting_box .searchbox > div {
+        flex: 1 1 100%;
+        max-width: 100%;
+        gap: 8px;
+    }
+
+    .content_setting_box .searchbox input.text {
+        flex: 1;
+    }
+
+    .content_setting_box #searchbtn {
+        min-width: 88px;
+        padding: 0 12px;
+    }
+
+    .content_setting_box .searchbox select {
+        margin-left: 6px;
+    }
+
+    .content_setting_box .list-table-v2-card {
+        margin-top: 14px;
+    }
+
+    .content_setting_box table.list-table-v2 {
+        min-width: 720px;
+    }
+        .content_setting_box .searchbox {
+        flex-wrap: wrap;
+    }
+
+    .content_setting_box .searchbox-left:first-child {
+        flex: 1 1 100%;
+    }
+    .tab_contentglobal {
+        padding: 0;
+    }
+    .content_setting_box .searchbox-right {
+        margin-left: auto;
+    }
+}
+
+/* ==========================================================================
+   MOBILE POLISH — content_setting_box / Addon Services
+   Thêm cuối style.css để ưu tiên ghi đè giao diện cũ mà không đổi HTML/JS.
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    .content_setting_box,
+    .content_setting_box * {
+        box-sizing: border-box;
+    }
+
+    .content_setting_box {
+        width: 100% !important;
+        min-width: 0;
+        margin: 0 0 16px;
+        padding: 14px 12px 16px;
+        border: 1px solid #e1eaf5;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(24, 55, 90, .04);
+        overflow: hidden;
+    }
+
+    /* Tiêu đề và mô tả nằm cạnh nhau; nút Add new nằm nguyên hàng bên dưới. */
+    .content_setting_box .page_detail-title {
+        display: grid !important;
+        grid-template-columns: minmax(76px, 0.7fr) minmax(0, 1.5fr);
+        align-items: start;
+        gap: 12px 10px;
+        width: 100%;
+        margin: 0 0 16px;
+        padding: 0;
+    }
+
+    .content_setting_box .page_detail-title .title {
+        display: contents !important;
+        min-width: 0;
+    }
+
+    .content_setting_box .page_detail-title .title h2 {
+        grid-column: 1;
+        margin: 0;
+        padding: 0;
+        color: #10284a;
+        font-size: 17px;
+        font-weight: 750;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+    }
+
+    .content_setting_box .page_detail-title .title p {
+        grid-column: 2;
+        align-self: start;
+        margin: 0;
+        color: #61738d;
+        font-size: 11px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+
+    .content_setting_box .page_detail-title .button_right {
+        grid-column: 1 / -1;
+        display: block;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+    }
+
+    .content_setting_box .page_detail-title .btnCreate,
+    .content_setting_box .page_detail-title .btnCreateService {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 39px;
+        margin: 0;
+        padding: 9px 12px;
+        border-radius: 8px;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    /* Form: input full width, then Search full width on the next line. */
+    .content_setting_box > .wrap,
+    .content_setting_box .filterForm,
+    .content_setting_box .filterbox,
+    .content_setting_box .filterbox > .wrap {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content_setting_box .filterbox > .wrap {
+        display: block;
+    }
+
+    .content_setting_box .searchbox {
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 9px;
+        width: 100% !important;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content_setting_box .searchbox-left {
+        position: relative;
+        display: flex !important;
+        flex: 0 0 auto !important;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        width: 100% !important;
+        min-width: 0;
+        max-width: none !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content_setting_box .searchbox-left > i {
+
+        top: 24px !important;
+        left: 11px !important;
+    }
+
+    .content_setting_box .searchbox-left input.text,
+    .content_setting_box .searchbox-left input.search_keyword {
+        display: block;
+        flex: 0 0 auto;
+        width: 100% !important;
+        max-width: none !important;
+        min-width: 0;
+        height: 45px;
+        margin: 0;
+        padding: 0 10px 0 29px !important;
+        border: 1px solid #d7e3f2;
+        border-radius: 9px;
+        background: #fff;
+        color: #243b5a;
+        font-size: 11px;
+        line-height: normal;
+    }
+
+    .content_setting_box .searchbox-left input.text::placeholder,
+    .content_setting_box .searchbox-left input.search_keyword::placeholder {
+        color: #8190a7;
+        opacity: 1;
+    }
+
+    .content_setting_box #searchbtn {
+        display: flex !important;
+        flex: 0 0 auto;
+        width: 100% !important;
+        height: 35px;
+        margin: 0;
+        padding: 14px 14px !important;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .content_setting_box .searchbox-right {
+        display: none !important;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        color: #61738d;
+        font-size: 10px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .content_setting_box .searchbox-right select,
+    .content_setting_box .searchbox select {
+        flex: 0 0 46px;
+        width: 46px;
+        min-width: 46px;
+        height: 31px;
+        margin: 0;
+        padding: 0 5px;
+        border: 1px solid #d7e3f2;
+        border-radius: 8px;
+        background: #fff;
+        color: #243b5a;
+        font-size: 11px;
+    }
+
+    .content_setting_box #list_selected_chkitem,.list-table-v2-sortdrop,.list-table-v2-scroll .index {
+        display: none !important;
+    }
+
+    .content_setting_box .clearfix {
+        clear: both;
+    }
+
+    .content_setting_box .list-table-v2-card {
+        width: 100%;
+        min-width: 0;
+        margin-top: 12px;
+        overflow: hidden;
+        border: 1px solid #dce7f4;
+        border-radius: 10px;
+        background: #fff;
+    }
+
+    .content_setting_box .list-table-v2-scroll,
+    .content_setting_box .booking-table-scroll,
+    .content_setting_box .v2-table-scroll {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+    }
+
+    .content_setting_box table.list-table-v2,
+    .content_setting_box table.cruise-list-table,
+    .content_setting_box table.v2-table {
+        width: 100%;
+        min-width: 620px !important;
+        margin: 0;
+        border-spacing: 0;
+        table-layout: auto;
+    }
+
+    .content_setting_box table.list-table-v2 thead th {
+        font-size: 16px;
+    }
+
+    .content_setting_box table.list-table-v2 tbody td {
+        height: 47px;
+        padding: 9px 10px;
+        white-space: nowrap;
+    }
+
+    .content_setting_box table.list-table-v2 thead th:nth-child(2),
+    .content_setting_box table.list-table-v2 tbody td.check_40 {
+        width: 38px;
+        min-width: 38px;
+        padding-right: 6px;
+        padding-left: 8px;
+        text-align: center;
+    }
+
+    .content_setting_box table.list-table-v2 input[type="checkbox"] {
+        width: 13px;
+        height: 13px;
+    }
+    .hastable .sortable{
+        display:none
+    }
+    .content_setting_box table.list-table-v2 tbody td.name_service,
+    .content_setting_box table.list-table-v2 tbody td.name_service b {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+    .table_responsive>tbody>tr td:not(.has-checkbox) {
+        padding: 15px 0;
+    }
+    .content_setting_box .SiteClickPublic {
+        min-width: 0;
+        min-height: 25px;
+        padding: 4px 7px;
+        font-size: 10px;
+    }
+    .toggle-row{
+        display:none !important;
+    }
+
+    .content_setting_box .list-table-v2-card + .clearfix + div {
+        margin-top: 12px;
+        color: #61738d;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .content_setting_box .statistical {
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .content_setting_box .statistical table,
+    .content_setting_box .statistical tbody,
+    .content_setting_box .statistical tr,
+    .content_setting_box .statistical td {
+        max-width: 100%;
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .content_setting_box .getPaginationAdmin,
+    .content_setting_box .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 5px;
+        margin-top: 12px;
+    }
+
+    .content_setting_box .pagination a,
+    .content_setting_box .pagination span,
+    .content_setting_box .pagination li a,
+    .content_setting_box .pagination li span {
+        min-width: 29px;
+        height: 29px;
+        padding: 0 8px;
+        border-radius: 7px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .content_setting_box {
+        padding: 12px 10px 14px;
+    }
+
+    .content_setting_box .page_detail-title {
+        grid-template-columns: minmax(68px, 0.65fr) minmax(0, 1.5fr);
+        column-gap: 8px;
+    }
+
+    .content_setting_box .page_detail-title .title h2 {
+        font-size: 16px;
+    }
+
+    .content_setting_box .page_detail-title .title p {
+        font-size: 10px;
+    }
+}
+
+
+//Popup
+.frmPop.stacked {
+    width: 420px !important;
+    max-width: calc(100vw - 32px);
+    height: auto !important;
+    padding: 0;
+    background: #ffffff;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(15, 23, 42, 0.16);
+    overflow: hidden;
+}
+.btn-success {
+    background-color: #1a9850;
+
+}
+/* Header */
+.frmPop.stacked > .headPop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 22px 24px 12px;
+    background: #ffffff;
+    border: none;
+    cursor: auto !important;
+    width: 100%;
+    height: auto;
+    line-height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.frmPop.stacked > .headPop h3 {
+    margin: 0;
+    padding: 0;
+    color: #204d89;
+    font-weight: 700;
+    line-height: 1.5;
+    background: unset;
+}
+
+
+
+.frmPop.stacked > .headPop .closeEv::before {
+    content: "\00d7";
+    display: block;
+    color: #8796ab;
+    text-align: center;
+    line-height: 28px;
+    font-size: inherit;
+    font-weight: 400;
+}
+
+.frmPop.stacked > .headPop .closeEv:hover {
+    background: #f1f5f9;
+}
+
+/* Form row */
+.frmPop.stacked > .row-span {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px 24px 20px;
+    margin: 0;
+    border: none;
+    background: #ffffff;
+}
+
+.frmPop.stacked .fieldlabel {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: left !important;
+    line-height: 1.5;
+}
+.modal-footer .btn-primary{
+    background: #1a9850;
+    border-color: #1a9850;
+}
+.frmPop.stacked .fieldlabel strong, .frmPop.stacked .fieldlabel {
+    color: #26364b;
+    font-weight: 600;
+    font-size: 14px !important;
+}
+
+.frmPop.stacked .fieldlabel .color_r {
+    color: #ef4444;
+}
+
+.frmPop.stacked .fieldarea {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Input */
+.frmPop.stacked input[type="text"],
+.frmPop.stacked input.text {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 48px;
+    padding: 0 14px;
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.frmPop.stacked input[type="text"]:focus,
+.frmPop.stacked input.text:focus {
+    border-color: #5279b8;
+    box-shadow: 0 0 0 3px rgba(59, 105, 170, 0.1);
+}
+
+/* Footer */
+.frmPop.stacked > .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0 24px 24px;
+    margin: 0;
+    border: none;
+    background: #ffffff;
+}
+
+/* Save button */
+.frmPop.stacked .SiteClickSaveTourProperty {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 94px;
+    min-height: 40px;
+    padding: 10px 18px;
+    color: #ffffff;
+    background: #169b53;
+    border: none;
+    border-radius: 9px;
+    box-shadow: none;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.frmPop.stacked .SiteClickSaveTourProperty:hover {
+    color: #ffffff;
+    background: #128346;
+}
+
+.frmPop.stacked .SiteClickSaveTourProperty:active {
+    transform: translateY(1px);
+}
+
+.frmPop.stacked .SiteClickSaveTourProperty i {
+    color: inherit;
+}
+a.closeEv, a.closeEvE {
+    z-index: auto;
+    text-indent: unset;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    background: none;
+    display: none;
+    height: auto;
+    position: absolute;
+    right: 42px;
+    top: 22px;
+    font-size: 40px;
+    width: auto;
+}
+/* Responsive */
+@media (max-width: 480px) {
+    .frmPop.stacked {
+        width: calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px);
+    }
+
+    .frmPop.stacked > .headPop {
+        padding: 18px 18px 10px;
+    }
+
+    .frmPop.stacked > .row-span {
+        padding: 8px 18px 18px;
+    }
+
+    .frmPop.stacked > .modal-footer {
+        padding: 0 18px 18px;
+    }
+}

@@ -1,0 +1,66 @@
+{
+  "title": "Tên Tour / Tiêu đề chương trình du lịch trích xuất nguyên văn từ file",
+  "slug": "slug-seo-cua-tour-khong-dau",
+  "trip_code": "Mã Tour (Trip Code ngắn dưới 6 ký tự chữ và số)",
+  "tour_group": "Nhóm tour / Loại hình tour (Ví dụ: Tour trong nước, Tour quốc tế...)",
+  "categories": [
+    "Thể loại tour (Ví dụ: Tour biển đảo, Tour khám phá, Tour văn hóa...)"
+  ],
+  "departure_point": "Điểm khởi hành (Ví dụ: Hà Nội, TP.HCM, Đà Nẵng...)",
+  "destination": [
+    "Danh sách các điểm đến / thành phố trong chương trình"
+  ],
+  "price": 0,
+  "tour_option": "Phân loại tour (Ví dụ: Tour ghép đoàn, Tour riêng...)",
+  "tour_type": "Kiểu tour (Ví dụ: Khám phá & Trải nghiệm, Nghỉ dưỡng...)",
+  "number_day": 1,
+  "number_night": 0,
+  "overview": "Tổng quan tour định dạng HTML gồm 3 phần: 1. Đoạn văn giới thiệu chung, 2. Đặc điểm nổi bật (<p><strong>Đặc điểm nổi bật:</strong></p><ul><li>...</li></ul>), 3. Tóm tắt hành trình (<p><strong>Tóm tắt hành trình:</strong></p><ul><li>...</li></ul>)",
+  "intro": "Mô tả tóm tắt ngắn về tour trích xuất nguyên văn từ file",
+  "inclusion": [
+    "Danh sách các dịch vụ đã bao gồm trong tour"
+  ],
+  "exclusion": [
+    "Danh sách các dịch vụ chưa bao gồm / không bao gồm trong tour"
+  ],
+  "thing_to_carry": [
+    "Danh sách vật dụng cần mang theo / lưu ý hành lý"
+  ],
+  "cancellation_policy": [
+    "Danh sách các điều khoản trong chính sách hủy tour"
+  ],
+  "refund_policy": [
+    "Danh sách các điều khoản trong chính sách hoàn tiền"
+  ],
+  "confirmation_policy": [
+    "Danh sách các quy định đặt cọc và xác nhận dịch vụ"
+  ],
+  "activity": [
+    "Danh sách các hoạt động trải nghiệm trong tour"
+  ],
+  "advisory": "Lời khuyên / khuyến cáo cho du khách",
+  "stay": "Thông tin khách sạn / nơi lưu trú trong tour",
+  "meal": "Thông tin dịch vụ ăn uống trong chương trình",
+  "itinerary": [
+    {
+      "day": 1,
+      "title": "Tiêu đề ngày (Ví dụ: Ngày 1: HÀ NỘI - FRANKFURT)",
+      "slug": "slug-tieu-de-ngay-1",
+      "content": [
+        "08h00: Sau bữa sáng buffee tại khách sạn, Xe và HDV đưa Quý khách đi tham quan...",
+        "11h30 - 12h30: Quý khách thưởng thức bữa trưa tại nhà hàng.",
+        "12h30 - 16h30: Đoàn khởi hành đi thành phố Edinburgh (4 giờ 16 p - 213 dặm)..."
+      ],
+      "meals": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ],
+      "transport": [
+        "Danh sách phương tiện di chuyển trong ngày (Ví dụ chọn từ: Train, Bicycle, Mini Bus, Cruise, Motorbike, Air plane, Car, Bus)"
+      ],
+      "city": "Tên 1 thành phố chính đại diện cho điểm đến trong ngày (Ví dụ: Hà Nội, Hạ Long, Đà Nẵng, Tokyo, Paris, Edinburgh... dùng làm từ khóa tìm kiếm hình ảnh)",
+      "accommodation": "Tên khách sạn / nơi lưu trú trong ngày"
+    }
+  ]
+}

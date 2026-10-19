@@ -1,0 +1,99 @@
+@import "../fonts/open-sans/stylesheet.css";
+@font-face {
+ font-family: 'starwarsjs';
+ src:  url(https://raw.githubusercontent.com/johannesMatevosyan/starwarsjs/master/demo/css/../fonts/starwarsjs.eot?szdw01);
+ src:  url(https://raw.githubusercontent.com/johannesMatevosyan/starwarsjs/master/demo/css/../fonts/starwarsjs.eot?szdw01#iefix) format('embedded-opentype'),  url(https://raw.githubusercontent.com/johannesMatevosyan/starwarsjs/master/demo/css/../fonts/starwarsjs.ttf?szdw01) format('truetype'),  url(https://raw.githubusercontent.com/johannesMatevosyan/starwarsjs/master/demo/css/../fonts/starwarsjs.woff?szdw01) format('woff'),  url(https://raw.githubusercontent.com/johannesMatevosyan/starwarsjs/master/demo/css/../fonts/starwarsjs.svg?szdw01#starwarsjs) format('svg');
+ font-weight: normal;
+ font-style: normal;
+}
+#writeReviewModal .rate_star.checked {
+	/*color: var(--primary-18-babd, #18BABD);*/
+	color: #ffd012;
+}
+#writeReviewModal .rate_star {
+	display: inline-block;
+	width: 28px;
+	float: left;
+	height: 24px;
+	color: #CCCCCC;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 0px;
+	text-align: center;
+	margin-right: 0;
+	line-height: 27px;
+	border: none;
+}
+#writeReviewModal .rate_star:before {
+	content: "\f005";
+	font-family: "Font Awesome 6 Pro" !important;
+	font-style: normal;
+	font-weight: 900 !important;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-size: 20px;
+}
+#stories .col-md-8 {
+	width:100% !important
+}
+.stories .col-md-8 .rate .title {
+	font-size: 14px;
+	display: inline-block !important;
+	margin-right: 15px;
+}
+/* plugin's styles*/
+.rate_row {
+	margin: 2px auto; /* custom */
+	text-align: left; /* custom */
+	width: 160px; /* custom */
+	display:inline-block;
+	vertical-align: middle;
+}
+.rate_star {
+	display: inline-block;
+	width: 24px;
+	float: left;
+	height: 24px;
+	color: #cccccc;
+	cursor: pointer;
+	font-size: 16px;
+	border:1px solid #DDD;
+	padding: 0px;
+	text-align: center;
+	margin-right:5px;
+	line-height: 27px;
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-wenkit-border-radius:50%;
+	-ms-border-radius:50%;
+	-khtml-border-radius:50%;
+}
+.rate_star.over {
+	color: #f9e431;
+}
+.rate_star.checked {
+	color: #F9D932;
+}
+.rate_star.disable {
+	cursor:not-allowed;
+	pointer-events: none;
+	color: #9C9B9B;
+}
+.submit_stars {
+	padding: 3px 14px;
+	background: #801513;
+	border: 1px solid #801513;
+	color: #ffffff;
+	cursor: pointer;
+	outline: none;
+	font-size: 16px;
+	margin-top: 5px;
+	margin-left: 30px;
+}
+.submit_stars:hover {
+	background: #D41715;
+	border: 1px solid #D41715;
+}

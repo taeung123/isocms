@@ -1,0 +1,112 @@
+.tipsy,
+.tiptip {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    color: #333;
+    border: 1px solid #666;
+    border: 1px solid rgba(0,0,0,.45);
+    border-bottom: 1px solid #666;
+    -moz-box-shadow: 0 3px 8px rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 3px 8px rgba(0,0,0,.3);
+    box-shadow: 0 3px 8px rgba(0,0,0,.3);
+    font-size: 11px;
+    font-family: 'Arial';
+    width: 300px;
+    z-index: 200;
+}
+.tipsy {
+    border-color: #bbb #bbb #a8a8a8;
+    border-style: solid;
+    border-width: 1px;
+}
+.tipsy-arrow {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 30px;
+}
+.tipsy-arrow .arrow-before {
+    border: 9px solid;
+    border-color: #bbb transparent;
+    left: -9px;
+    border-top-width: 0;
+}
+.tipsy-arrow .arrow-after {
+    border: 8px solid;
+    border-color: #fff transparent;
+    left: -8px;
+    border-top-width: 0;
+    top: 1px;
+}
+.tipsy-arrow .arrow-before,
+.tipsy-arrow .arrow-after {
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+}
+.tipsy-arrow-down {
+    top: auto;
+    bottom: 0;
+}
+.tipsy-arrow-down .arrow-before {
+    border-width: 9px 9px 0;
+    *top: -1px;
+    top: -1px\9;
+}
+.tipsy-arrow-down .arrow-after {
+    border-width: 8px 8px 0;
+    top: 0;
+    *top: -1px;
+    top: -1px\9;
+}
+.tipsy-arrow-up {
+    top: -9px;
+    *top: -10px;
+}
+.tipsy-arrow-up .arrow-before { border-width: 0 9px 9px }
+.tipsy-arrow-up .arrow-after {
+    border-width: 0 8px 8px;
+    top: 1px;
+    *top: 0;
+}
+.tipsy-arrow-right {
+    right: 0;
+    left: auto;
+    top: 10px;
+}
+.tipsy-arrow-right .arrow-before {
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    border-left: 9px solid #bbb;
+    top: 9px;
+    left: auto;
+}
+.tipsy-arrow-right .arrow-after {
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #fff;
+    top: 10px;
+    left: auto;
+}
+.tipsy-title {
+    padding-top: 2px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 7px;
+    margin-bottom: 7px;
+    color: #00355d;
+}
+.tiptip { padding: 0 }
+.tiptip-inner { margin: 10px }
+.tiptip-title {
+    font-weight: bold;
+    border-bottom: 1px solid #CCC;
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #333;
+    background-color: #f2f2f2;
+}

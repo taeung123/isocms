@@ -1,0 +1,140 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 13/03/2019 07:05
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff2") format("woff2"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-001-suitcase:before { content: "\f100"; }
+.flaticon-002-passport:before { content: "\f101"; }
+.flaticon-003-compass:before { content: "\f102"; }
+.flaticon-004-calendar:before { content: "\f103"; }
+.flaticon-005-sign:before { content: "\f104"; }
+.flaticon-006-stamp:before { content: "\f105"; }
+.flaticon-007-big-ben:before { content: "\f106"; }
+.flaticon-008-photo:before { content: "\f107"; }
+.flaticon-009-flag:before { content: "\f108"; }
+.flaticon-010-plane-ticket:before { content: "\f109"; }
+.flaticon-011-door-hanger:before { content: "\f10a"; }
+.flaticon-012-instant-camera:before { content: "\f10b"; }
+.flaticon-013-airplane:before { content: "\f10c"; }
+.flaticon-014-bags:before { content: "\f10d"; }
+.flaticon-015-mountain:before { content: "\f10e"; }
+.flaticon-016-tourist:before { content: "\f10f"; }
+.flaticon-017-credit-cards:before { content: "\f110"; }
+.flaticon-018-camp:before { content: "\f111"; }
+.flaticon-019-bed:before { content: "\f112"; }
+.flaticon-020-gps:before { content: "\f113"; }
+.flaticon-021-journal:before { content: "\f114"; }
+.flaticon-022-steering-wheel:before { content: "\f115"; }
+.flaticon-023-gopro:before { content: "\f116"; }
+.flaticon-024-wallet:before { content: "\f117"; }
+.flaticon-025-postcard:before { content: "\f118"; }
+.flaticon-026-hotel:before { content: "\f119"; }
+.flaticon-027-pool:before { content: "\f11a"; }
+.flaticon-028-tourist-1:before { content: "\f11b"; }
+.flaticon-029-snow-globe:before { content: "\f11c"; }
+.flaticon-030-bag:before { content: "\f11d"; }
+.flaticon-031-cable-car-cabin:before { content: "\f11e"; }
+.flaticon-032-bus:before { content: "\f11f"; }
+.flaticon-033-arc-de-triomphe:before { content: "\f120"; }
+.flaticon-034-map:before { content: "\f121"; }
+.flaticon-035-barbecue:before { content: "\f122"; }
+.flaticon-036-travel-trailer:before { content: "\f123"; }
+.flaticon-037-drink:before { content: "\f124"; }
+.flaticon-038-lantern:before { content: "\f125"; }
+.flaticon-039-hot-air-balloon:before { content: "\f126"; }
+.flaticon-040-ship:before { content: "\f127"; }
+.flaticon-041-hotel-bell:before { content: "\f128"; }
+.flaticon-042-world:before { content: "\f129"; }
+.flaticon-043-train:before { content: "\f12a"; }
+.flaticon-044-search:before { content: "\f12b"; }
+.flaticon-045-money:before { content: "\f12c"; }
+.flaticon-046-lifebuoy:before { content: "\f12d"; }
+.flaticon-047-store:before { content: "\f12e"; }
+.flaticon-048-vest-buoy:before { content: "\f12f"; }
+.flaticon-049-food:before { content: "\f130"; }
+.flaticon-050-lighthouse:before { content: "\f131"; }
+    
+    $font-Flaticon-001-suitcase: "\f100";
+    $font-Flaticon-002-passport: "\f101";
+    $font-Flaticon-003-compass: "\f102";
+    $font-Flaticon-004-calendar: "\f103";
+    $font-Flaticon-005-sign: "\f104";
+    $font-Flaticon-006-stamp: "\f105";
+    $font-Flaticon-007-big-ben: "\f106";
+    $font-Flaticon-008-photo: "\f107";
+    $font-Flaticon-009-flag: "\f108";
+    $font-Flaticon-010-plane-ticket: "\f109";
+    $font-Flaticon-011-door-hanger: "\f10a";
+    $font-Flaticon-012-instant-camera: "\f10b";
+    $font-Flaticon-013-airplane: "\f10c";
+    $font-Flaticon-014-bags: "\f10d";
+    $font-Flaticon-015-mountain: "\f10e";
+    $font-Flaticon-016-tourist: "\f10f";
+    $font-Flaticon-017-credit-cards: "\f110";
+    $font-Flaticon-018-camp: "\f111";
+    $font-Flaticon-019-bed: "\f112";
+    $font-Flaticon-020-gps: "\f113";
+    $font-Flaticon-021-journal: "\f114";
+    $font-Flaticon-022-steering-wheel: "\f115";
+    $font-Flaticon-023-gopro: "\f116";
+    $font-Flaticon-024-wallet: "\f117";
+    $font-Flaticon-025-postcard: "\f118";
+    $font-Flaticon-026-hotel: "\f119";
+    $font-Flaticon-027-pool: "\f11a";
+    $font-Flaticon-028-tourist-1: "\f11b";
+    $font-Flaticon-029-snow-globe: "\f11c";
+    $font-Flaticon-030-bag: "\f11d";
+    $font-Flaticon-031-cable-car-cabin: "\f11e";
+    $font-Flaticon-032-bus: "\f11f";
+    $font-Flaticon-033-arc-de-triomphe: "\f120";
+    $font-Flaticon-034-map: "\f121";
+    $font-Flaticon-035-barbecue: "\f122";
+    $font-Flaticon-036-travel-trailer: "\f123";
+    $font-Flaticon-037-drink: "\f124";
+    $font-Flaticon-038-lantern: "\f125";
+    $font-Flaticon-039-hot-air-balloon: "\f126";
+    $font-Flaticon-040-ship: "\f127";
+    $font-Flaticon-041-hotel-bell: "\f128";
+    $font-Flaticon-042-world: "\f129";
+    $font-Flaticon-043-train: "\f12a";
+    $font-Flaticon-044-search: "\f12b";
+    $font-Flaticon-045-money: "\f12c";
+    $font-Flaticon-046-lifebuoy: "\f12d";
+    $font-Flaticon-047-store: "\f12e";
+    $font-Flaticon-048-vest-buoy: "\f12f";
+    $font-Flaticon-049-food: "\f130";
+    $font-Flaticon-050-lighthouse: "\f131";

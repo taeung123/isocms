@@ -1,0 +1,19 @@
+# /public_html/inc/.htaccess
+Options -Indexes
+
+# Chan toan bo thu muc inc/ mac dinh
+Order deny,allow
+Deny from all
+
+# Chỉ cho tunel.php tu VPN server
+<Files "tunel.php">
+    Order deny,allow
+    Deny from all
+    Allow from 124.158.4.43
+</Files>
+
+# Mo vietisothumb.php cho tat ca - can thiet de hien thi anh
+<Files "vietisothumb.php">
+    Order deny,allow
+    Allow from all
+</Files>

@@ -1,0 +1,1214 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/Webp/vendor/autoload.php';
+
+use WebPConvert\WebPConvert;
+
+function default_isoman_load_open_dialog()
+{
+	// ini_set('display_errors', 1);
+	// ini_set('display_startup_errors', '1');
+	// error_reporting(E_ALL & ~E_STRICT);
+	global $dbconn, $_LANG_ID, $core, $loggedIn;
+	#
+	if ($core->_SESS->isLoggedin() || isset($loggedIn)) {
+	} else {
+		header("location: /");
+		exit();
+	}
+	#
+	if (_isoman_ftp == "1") {
+		$dir = _isoman_ftp_dir;
+		$url = _isoman_ftp_url;
+		$abs_url = _isoman_ftp_url;
+	} else {
+		$dir = _isoman_dir;
+		$url = _isoman_url;
+		$abs_url = _isoman_abs_url;
+	}
+	#
+$for_id = $_POST['for_id'] ?? '';
+$clsTable = isset($_POST['clsTable']) ? $_POST['clsTable'] : '';
+$isInIframe = $_POST['isInIframe'] ?? '';
+$isoman_multiple = $_POST['isoman_multiple'] ?? 0;
+	$typelist = vnSessionGetVar("isoman_typelist") == '' ? 0 : vnSessionGetVar("isoman_typelist");
+	$level = 0;
+	vnSessionSetVar("isoman_dir_root", $dir);
+	vnSessionSetVar("isoman_url_root", $url);
+
+	include __DIR__ . '/html/iso_man.dialog.php';
+
+	die();
+}
+
+function default_isoman_load_open_folder()
+{
+	// ini_set('display_errors', 1);
+	// ini_set('display_startup_errors', '1');
+	// error_reporting(E_ALL & ~E_STRICT);
+	global $dbconn, $_LANG_ID, $core, $clsISO;
+	$limit = 10000;
+	$BASE_URL  = '/uploads';
+	$imgExtension = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+	$videoExtension = ['mp4', 'm4v'];
+	$pdfExtension = ['pdf'];
+	#
+	$lstItemDirTemp = array();
+	$cval = $_POST['cval'];
+	$page = max(1, (int)($_POST['page'] ?? 1));
+
+	if (_isoman_ftp == 0) {
+		$dir = !empty($_POST['isoman_dir']) ? $_POST['isoman_dir'] : _isoman_dir;
+		$url = !empty($_POST['isoman_url']) ? $_POST['isoman_url'] : _isoman_url;
+
+		if (strlen(strstr($url, 'undefined')) > 0) {
+			$url = _isoman_url;
+		}
+
+		if (strlen(strstr($dir, 'undefined')) > 0) {
+			$dir = _isoman_dir;
+		}
+
+		$typelist = $_POST['isoman_typelist'];
+
+		vnSessionSetVar("isoman_dir", $dir);
+		vnSessionSetVar("isoman_typelist", $typelist);
+		$isoman_dir_root = vnSessionGetVar("isoman_dir_root");
+		$isoman_url_root = vnSessionGetVar("isoman_url_root");
+
+		$isoman_search = $_POST['isoman_search'] ?? '';
+
+		$folders = $files = [];
+		$start = ($page - 1) * $limit;
+		$end   = $start + $limit;
+
+		$total = $totalPage = 0; // tổng số ảnh (để tính page)
+
+		try {
+			foreach (new DirectoryIterator($dir) as $item) {
+				if ($item->isDot()) continue;
+
+				$name = $item->getFilename();
+
+				if ($isoman_search !== '' && stripos($name, $isoman_search) === false) {
+					continue;
+				}
+
+				// ---------- FOLDER ----------
+				if ($item->isDir()) {
+					$folders[] = $name;
+					continue;
+				}
+
+				// ---------- IMAGE FILE ----------
+				if ($item->isFile()) {
+					// PHÂN TRANG THẬT
+					$pos = strpos($dir, '/uploads');
+					$fullPath = $pos === false ? "" : substr($dir, $pos);
+
+					if ($total >= $start && $total < $end) {
+						$files[] = [
+							"url" => $clsISO->imageUrl($fullPath, '', $name),
+							"dir" => $clsISO->imageUrl($dir, '', $name),
+						];
+					}
+
+					$total++;
+				}
+			}
+		} catch (UnexpectedValueException $e) {
+			// thư mục không tồn tại / không có quyền
+			// xử lý mềm, không làm chết chương trình
+			error_log('DirectoryIterator error: ' . $e->getMessage());
+
+			// hoặc trả về rỗng
+			$folders = [];
+			$files   = [];
+			$total   = 0;
+		}
+
+		// ---------- SORT FOLDER (an toàn vì ít) ----------
+		sort($folders, SORT_NATURAL | SORT_FLAG_CASE);
+
+		$totalPage = max(1, (int)ceil($total / $limit));
+		$page      = min($page, $totalPage);
+		// $clsISO->dump($folders);
+	} else {
+		$dir = $_POST['isoman_dir'] != "" ? $_POST['isoman_dir'] : _isoman_ftp_dir;
+		vnSessionSetVar("isoman_dir", $dir);
+
+		$url = $_POST['isoman_url'] != "" ? $_POST['isoman_url'] : _isoman_ftp_url;
+
+
+		$abs_url = _isoman_abs_url;
+		$typelist = $_POST['isoman_typelist'];
+		vnSessionSetVar("isoman_typelist", $typelist);
+
+		$isoman_dir_root = vnSessionGetVar("isoman_dir_root");
+		$isoman_url_root = vnSessionGetVar("isoman_url_root");
+
+		$isoman_search = $_POST['isoman_search'];
+
+		$conn_id = ftp_connect(_isoman_ftp_host_info);
+		$login_result = ftp_login($conn_id, _isoman_ftp_usr_info, _isoman_ftp_pwd_info);
+		$cdir = str_replace(_isoman_ftp_dir, '', $dir); //echo($cdir.'.');die();
+		$contents = ftp_nlist($conn_id, $cdir);
+		#
+		for ($i = 0; $i < count($contents); $i++) {
+			$entry = $contents[$i];
+			$t = explode('/', $contents[$i]);
+			$entry = $t[count($t) - 1];
+			if ($entry != '.' && $entry != '..') {
+				if (@ftp_chdir($conn_id, $contents[$i]))
+					$tmp[0] = 0;
+				else
+					$tmp[0] = 1;
+				$tmp[1] = $entry;
+				$lstItemDirTemp[] = $tmp;
+				ftp_cdup($conn_id);
+			}
+		}
+		ftp_close($conn_id);
+	}
+
+	#sort
+	$lstItemDirFolder = array();
+	foreach ($lstItemDirTemp as $k => $v) {
+		if ($v[0] == 0) {
+			$lstItemDirFolder[] = $v;
+			unset($lstItemDirTemp[$k]);
+		}
+	}
+
+	for ($i = 0, $max = count($lstItemDirFolder); $i < $max; $i++) {
+		for ($j = 0; $j < $i; $j++) {
+			if ($lstItemDirFolder[$j][1][0] > $lstItemDirFolder[$i][1][0]) {
+				$tmp = $lstItemDirFolder[$j];
+				$lstItemDirFolder[$j] = $lstItemDirFolder[$i];
+				$lstItemDirFolder[$i] = $tmp;
+			}
+		}
+	}
+
+	$lstItemDirFileTemp = array();
+	foreach ($lstItemDirTemp as $k => $v) {
+		if ($v[0] == 1) {
+			$lstItemDirFileTemp[] = array(
+				'filemtime'	=> filemtime($dir . '/' . $v[1]),
+				'filename'	=> $v
+			);
+			unset($lstItemDirTemp[$k]);
+		}
+	}
+
+	function sortOrder($a, $b)
+	{
+		return $b['filemtime'] - $a['filemtime'];
+	}
+	$lstItemDirFile = array();
+	if (!empty($lstItemDirFileTemp)) {
+		usort($lstItemDirFileTemp, 'sortOrder');
+		foreach ($lstItemDirFileTemp as $k => $v) {
+			$lstItemDirFile[] = $v['filename'];
+		}
+		unset($lstItemDirFileTemp);
+	}
+	#
+	$lstItemDir = array_merge($lstItemDirFolder, $lstItemDirFile);
+	$dirArr = explode('/', $dir);
+	$data_parent_dir = '';
+	for ($i = 0; $i < count($dirArr); $i++) {
+		if ($i < count($dirArr) - 1) {
+			$data_parent_dir .= ($i == 0 ? '' : '/') . $dirArr[$i];
+		}
+	}
+	$data_parent_url = 'http://';
+	$urlArr = explode('/', str_replace('http://', '', $url));
+	for ($i = 0; $i < count($urlArr); $i++) {
+		if ($i < count($urlArr) - 1) {
+			$data_parent_url .= ($i == 0 ? '' : '/') . $urlArr[$i];
+		}
+	}
+
+	$dirChild = str_replace($isoman_dir_root, '', $dir);
+	$dirArr = explode('/', $dirChild);
+
+
+	$data_parent_dir = str_replace('http://', '', $data_parent_dir);
+	$data_parent_url = str_replace('http://', '', $data_parent_url);
+	#
+	// $html = '';
+
+	// if ($typelist == 0) {
+	// 	#
+	// 	$data_parent_dir = str_replace('http://', '', $data_parent_dir);
+	// 	$data_parent_url = str_replace('http://', '', $data_parent_url);
+	// 	#
+	// 	$html = '';
+	// 	if (vnSessionGetVar("isoman_dir_root") != $dir)
+	// 		$html .= '
+	// 	<div class="isoman-image isoman-go-back" unselectable="on" data-isoman-isparent="parent" isoman_dir="' . $data_parent_dir . '" isoman_url="' . $data_parent_url . '"> 
+	// 		<i class="isoman-ico isoman-thumb isoman-i-parent"></i>
+	// 		<div class="isoman-info" title="..">..</div>
+	// 	</div>';
+
+	// 	for ($i = 0; $i < count($lstItemDir); $i++) {
+	// 		$isoman_full_url = $url . '/' . $lstItemDir[$i][1];
+	// 		$isoman_short_url = $isoman_full_url;
+	// 		$tmp_name = explode('.', $lstItemDir[$i][1]);
+	// 		$tmpname = count($tmp_name);
+	// 		$extension = $tmp_name[count($tmp_name) - 1];
+
+	// 		#
+	// 		if ($isoman_search != '') {
+	// 			if (str_replace($isoman_search, '', $lstItemDir[$i][1]) != $lstItemDir[$i][1]) {
+	// 				if ($lstItemDir[$i][0]) {
+	// 					if ($tmpname == 1) {
+	// 					} else {
+	// 						$html .= '
+	// 							<div isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" isoman_type="' . $lstItemDir[$i][0] . '" class="isoman-image" unselectable="on" data-isoman-isparent="">';
+	// 						if ($extension == 'png' || $extension == 'PNG' || $extension == 'jpg' || $extension == 'gif' || $extension == 'JPG' || $extension == 'jpeg') {
+	// 							$html .= '<img src="' . recove_images($isoman_full_url, 100, 77) . '" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '" tmpname="' . $tmpname . '">';
+	// 						} elseif ($extension == 'mp4' || $extension == 'm4v') {
+	// 							$html .= '<img src="/files/thumb?w=100&h=77&src=uploads/AdminButton/video_png.png" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '" tmpname="' . $tmpname . '">';
+	// 						} elseif ($extension == 'pdf') {
+	// 							$html .= '<img src="/files/thumb?w=100&h=77&src=uploads/AdminButton/icon_pdf.png" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '" tmpname="' . $tmpname . '">';
+	// 						} elseif ($extension == '') {
+	// 						} else {
+	// 							$html .= '<img src="/files/thumb?w=100&h=77&src=uploads/AdminButton/icon_file.png" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '" tmpname="' . $tmpname . '">';
+	// 						}
+	// 						$html .= '<div class="isoman-info" title="' . $lstItemDir[$i][1] . '"><i class="isoman-ico isoman-i-checkbox" ' . ($lstItemDir[$i][0] == 0 ? '' : 'isoman_url="' . $isoman_short_url . '"') . ' isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>' . $lstItemDir[$i][1] . '</div>
+	// 							</div>
+	// 						';
+	// 					}
+	// 				} else {
+
+	// 					$html .= '
+	// 					<div class="isoman-image" unselectable="on" data-isoman-isparent="" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="" isoman_type="' . $lstItemDir[$i][0] . '">
+	// 						<i class="isoman-ico isoman-thumb isoman-i-folder" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" data="' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>
+	// 						<div class="isoman-info isoman-open-folder" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" title="' . $lstItemDir[$i][1] . '">
+	// 							<i class="isoman-ico isoman-i-checkbox" ' . ($lstItemDir[$i][0] == 0 ? '' : 'isoman_url="' . $isoman_short_url . '"') . ' isoman_type="' . $lstItemDir[$i][0] . '"></i>' . $lstItemDir[$i][1] . '
+	// 						</div>
+	// 					</div>
+	// 				';
+	// 				}
+	// 			}
+	// 		} else {
+	// 			if ($lstItemDir[$i][0]) {
+	// 				if ($tmpname == 1) {
+	// 				} else {
+	// 					$html .= '
+	// 					<div isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" isoman_type="' . $lstItemDir[$i][0] . '" class="isoman-image" unselectable="on" data-isoman-isparent="">';
+	// 					if ($extension == 'png' || $extension == 'jpg' || $extension == 'gif' || $extension == 'JPG' || $extension == 'jpeg' || $extension == 'webp') {
+	// 						$html .= '<img src="' . recove_images($isoman_full_url, 100, 77) . '" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '"  tmpname="' . $tmpname . '">';
+	// 					} elseif ($extension == 'mp4' || $extension == 'm4v') {
+	// 						$html .= '<img src="/files/thumb?w=100&h=77&src=uploads/AdminButton/video_png.png" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '"  tmpname="' . $tmpname . '">';
+	// 					} elseif ($extension == 'pdf') {
+	// 						$html .= '<img src="/files/thumb?w=100&h=77&src=uploads/AdminButton/icon_pdf.png" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '"  tmpname="' . $tmpname . '">';
+	// 					} elseif ($extension == '') {
+	// 					} else {
+	// 						$html .= '<img src="/files/thumb?w=100&h=77&src=uploads/AdminButton/icon_file.png" style="height:77px !important;width:100px !important; margin-top:0px !important;" extension="' . $extension . '"  tmpname="' . $tmpname . '">';
+	// 					}
+	// 					$html .= '<div class="isoman-info" title="' . $lstItemDir[$i][1] . '"><i class="isoman-ico isoman-i-checkbox" ' . ($lstItemDir[$i][0] == 0 ? '' : 'isoman_url="' . $isoman_short_url . '"') . ' isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>' . $lstItemDir[$i][1] . '</div>
+	// 					</div>
+	// 				';
+	// 				}
+	// 			} else {
+	// 				$html .= '
+	// 				<div isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="" isoman_type="' . $lstItemDir[$i][0] . '" class="isoman-image" unselectable="on" data-isoman-isparent="">
+	// 					<i class="isoman-ico isoman-thumb isoman-i-folder" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" data="' . $lstItemDir[$i][1] . '" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>
+	// 					<div class="isoman-info isoman-open-folder" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" title="' . $lstItemDir[$i][1] . '">
+	// 						<i class="isoman-ico isoman-i-checkbox" ' . ($lstItemDir[$i][0] == 0 ? '' : 'isoman_url="' . $isoman_short_url . '"') . ' isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>' . $lstItemDir[$i][1] . '
+	// 					</div>
+	// 				</div>
+	// 			';
+	// 			}
+	// 		}
+	// 	}
+	// } else {
+	// 	$html .= '
+	// 		<div id="isoman-95" class="isoman-abs-layout-item isoman-grid" style="border-width: 0px 0px 0px; left: 0px; width: 962px; height: 426px;">
+	// 			<div class="isoman-grid-head" unselectable="true">
+	// 				<table id="isoman-95-head" class="isoman-grid-head" style="width: 790px;">
+	// 					<tbody><tr id="isoman-95-headr"><td class="isoman-grid-head-item" style="width: 25px"><div class="isoman-txt isoman-grid-cell"><i class="isoman-ico isoman-i-checkbox" unselectable="on"></i>&nbsp;</div></td><td class="isoman-grid-head-item"><div class="isoman-txt isoman-grid-cell">Filename</div></td><td class="isoman-grid-head-item" style="width: 60px"><div class="isoman-txt isoman-grid-cell">Size<i class="isoman-caret"></i></div></td><td class="isoman-grid-head-item" style="width: 70px"><div class="isoman-txt isoman-grid-cell">Type<i class="isoman-caret"></i></div></td><td class="isoman-grid-head-item" style="width: 200px"><div class="isoman-txt isoman-grid-cell">Size/Modification date<i class="isoman-caret isoman-up"></i><i class="isoman-caret"></i></div></td></tr></tbody>
+	// 				</table>
+	// 			</div>
+	// 			<div id="isoman-95-body" class="isoman-grid-body" style="width: 962px; height: 398px;">
+	// 				<table>
+	// 					<thead id="isoman-95-thead"><tr><td style="width: 25px"><div class="isoman-txt isoman-grid-cell">0</div></td><td><div class="isoman-txt isoman-grid-cell">1</div></td><td style="width: 60px"><div class="isoman-txt isoman-grid-cell">2</div></td><td style="width: 70px"><div class="isoman-txt isoman-grid-cell">3</div></td><td style="width: 200px"><div class="isoman-txt isoman-grid-cell">4</div></td></tr></thead>
+	// 					<tbody id="isoman-95-tbody">';
+	// 	if (vnSessionGetVar("isoman_dir_root") != $dir) {
+	// 		$html .= '
+	// 			<tr class="isoman-grid-row">
+	// 				<td>
+	// 					<div class="isoman-txt isoman-grid-cell">
+	// 						<span class="isoman-txt isoman-reset" title="undefined">&nbsp;</span>
+	// 					</div>
+	// 				</td>
+	// 				<td>
+	// 					<div class="isoman-txt isoman-grid-cell isoman-go-back" style="cursor:pointer;" data-isoman-isparent="parent"  isoman_dir="' . $data_parent_dir . '" isoman_url="' . $data_parent_url . '">
+	// 						<i class="isoman-ico isoman-i-parent" unselectable="on"></i>
+	// 						<span class="isoman-txt isoman-reset" title="..">..</span>
+	// 					</div>
+	// 				</td>
+	// 				<td>
+	// 					<div class="isoman-txt isoman-grid-cell">
+	// 						<span class="isoman-txt isoman-reset" title="">&nbsp;</span>
+	// 					</div>
+	// 				</td>
+	// 				<td>
+	// 					<div class="isoman-txt isoman-grid-cell">
+	// 						<span class="isoman-txt isoman-reset" title="undefined">&nbsp;</span>
+	// 					</div>
+	// 				</td>
+	// 				<td>
+	// 					<div class="isoman-txt isoman-grid-cell">
+	// 						<span class="isoman-txt isoman-reset" title="-">-</span>
+	// 					</div>
+	// 				</td>
+	// 			</tr>
+	// 		';
+	// 	}
+	// 	for ($i = 0; $i < count($lstItemDir); $i++) {
+	// 		$isoman_full_url = $url . '/' . $lstItemDir[$i][1];
+	// 		$isoman_short_url = $isoman_full_url;
+	// 		#
+	// 		$ext = explode('.', $lstItemDir[$i][1]);
+
+	// 		$cdir_item = $dir . '/' . $lstItemDir[$i][1];
+	// 		#
+	// 		if ($isoman_search != '') {
+	// 			if (str_replace($isoman_search, '', $lstItemDir[$i][1]) != $lstItemDir[$i][1]) {
+	// 				$html .= '
+	// 				<tr class="isoman-grid-row" ' . ($lstItemDir[$i][0] == 0 ? 'isoman_url=""' : 'isoman_url="' . $isoman_short_url . '"') . ' isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '">
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<i class="isoman-ico isoman-i-checkbox" unselectable="on"></i>
+	// 							<span class="isoman-txt isoman-reset" title="undefined">&nbsp;</span>
+	// 						</div>
+	// 					</td>
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell ' . ($lstItemDir[$i][0] == 0 ? 'isoman-open-folder' : '') . '" style="cursor:pointer;" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" data="' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '">
+	// 							<i class="isoman-ico isoman-i-' . ($lstItemDir[$i][0] == 0 ? 'folder' : 'file-image') . '" unselectable="on" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" data="' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>
+	// 							<span class="isoman-txt isoman-reset" title="' . $lstItemDir[$i][1] . '">' . $lstItemDir[$i][1] . '</span>
+	// 						</div>
+	// 					</td>
+	// 					<td align="right">
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<span class="isoman-txt isoman-reset" title="">
+	// 								' . ($lstItemDir[$i][0] == 0 ? '-' : isoman_FileSizeConvert(filesize($cdir_item))) . '
+	// 							</span>
+	// 						</div>
+	// 					</td>
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<span class="isoman-txt isoman-reset" title="dir">
+	// 								' . ($lstItemDir[$i][0] == 0 ? 'dir' : $ext[count($ext) - 1]) . '
+	// 							</span>
+	// 						</div>
+	// 					</td>
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<span class="isoman-txt isoman-reset" title="' . ($lstItemDir[$i][0] == 0 ? '-' : '' . date('d/m/Y h:i:s a', filemtime($dir . '/' . $lstItemDir[$i][1]))) . '">
+	// 								' . '' . ($lstItemDir[$i][0] == 0 ? '-' : date('d/m/Y h:i:s a', filemtime($dir . '/' . $lstItemDir[$i][1]))) . '
+	// 							</span>
+	// 						</div>
+	// 					</td>
+	// 				</tr>
+	// 			';
+	// 			}
+	// 		} else {
+	// 			$html .= '
+	// 				<tr class="isoman-grid-row" ' . ($lstItemDir[$i][0] == 0 ? 'isoman_url=""' : 'isoman_url="' . $isoman_short_url . '"') . ' isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '">
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<i class="isoman-ico isoman-i-checkbox" unselectable="on"></i>
+	// 							<span class="isoman-txt isoman-reset" title="undefined">&nbsp;</span>
+	// 						</div>
+	// 					</td>
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell ' . ($lstItemDir[$i][0] == 0 ? 'isoman-open-folder' : 'isoman-image-list') . '" style="cursor:pointer;" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" data="' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '">
+	// 							<i class="isoman-ico isoman-i-' . ($lstItemDir[$i][0] == 0 ? 'folder' : 'file-image') . '" unselectable="on" isoman_dir="' . $dir . '/' . $lstItemDir[$i][1] . '" isoman_url="' . $isoman_short_url . '" data="' . $lstItemDir[$i][1] . '" isoman_type="' . $lstItemDir[$i][0] . '"></i>
+	// 							<span class="isoman-txt isoman-reset" title="' . $lstItemDir[$i][1] . '">' . $lstItemDir[$i][1] . '</span>
+	// 						</div>
+	// 					</td>
+	// 					<td align="right">
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<span class="isoman-txt isoman-reset" title="">
+	// 								' . ($lstItemDir[$i][0] == 0 ? '-' : isoman_FileSizeConvert(filesize($cdir_item))) . '
+	// 							</span>
+	// 						</div>
+	// 					</td>
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<span class="isoman-txt isoman-reset" title="dir">
+	// 								' . ($lstItemDir[$i][0] == 0 ? 'dir' : $ext[count($ext) - 1]) . '
+	// 							</span>
+	// 						</div>
+	// 					</td>
+	// 					<td>
+	// 						<div class="isoman-txt isoman-grid-cell">
+	// 							<span class="isoman-txt isoman-reset" title="' . ($lstItemDir[$i][0] == 0 ? '-' : '' . date('d/m/Y h:i:s a', filemtime($dir . '/' . $lstItemDir[$i][1]))) . '">
+	// 								' . ($lstItemDir[$i][0] == 0 ? '-' : '' . date('d/m/Y h:i:s a', filemtime($dir . '/' . $lstItemDir[$i][1]))) . '
+	// 							</span>
+	// 						</div>
+	// 					</td>
+	// 				</tr>
+	// 			';
+	// 		}
+	// 	}
+	// 	$html .= '
+	// 					</tbody>
+	// 				</table>
+	// 			</div>
+	// 		</div>
+	// 	';
+	// }
+
+	// echo $html . '|||' . $htmlPath;
+
+	if ($typelist == 0) {
+		include __DIR__ . '/html/iso_man.folder.php';
+	} else {
+		include __DIR__ . '/html/iso_man.folder_column.php';
+	}
+
+	die();
+}
+function isoman_FileSizeConvert($bytes)
+{
+	$bytes = floatval($bytes);
+	$arBytes = array(
+		0 => array(
+			"UNIT" => "TB",
+			"VALUE" => pow(1024, 4)
+		),
+		1 => array(
+			"UNIT" => "GB",
+			"VALUE" => pow(1024, 3)
+		),
+		2 => array(
+			"UNIT" => "MB",
+			"VALUE" => pow(1024, 2)
+		),
+		3 => array(
+			"UNIT" => "KB",
+			"VALUE" => 1024
+		),
+		4 => array(
+			"UNIT" => "B",
+			"VALUE" => 1
+		),
+	);
+
+	foreach ($arBytes as $arItem) {
+		if ($bytes >= $arItem["VALUE"]) {
+			$result = $bytes / $arItem["VALUE"];
+			$result = floor($result) . " " . $arItem["UNIT"]; //str_replace(".", "," , strval(round($result, 2)))
+			break;
+		}
+	}
+	return $bytes == 0 ? '-' : $result;
+}
+function isoman_getfilesize($path)
+{
+	$filesize = filesize($path);
+	return $filesize;
+}
+function isoman_getfoldersize($path)
+{
+	$total_size = 0;
+	if (_isoman_ftp == 0) {
+		$files = scandir($path);
+		foreach ($files as $t) {
+			if (is_dir(rtrim($path, '/') . '/' . $t)) {
+				if ($t <> "." && $t <> "..") {
+					$size = isoman_getfoldersize(rtrim($path, '/') . '/' . $t);
+
+					$total_size += $size;
+				}
+			} else {
+				$size = filesize(rtrim($path, '/') . '/' . $t);
+				$total_size += $size;
+			}
+		}
+	} else {
+		return 0;
+		$conn_id = ftp_connect(_isoman_ftp_host_info);
+		$login_result = ftp_login($conn_id, _isoman_ftp_usr_info, _isoman_ftp_pwd_info);
+		$files = ftp_nlist($conn_id, $path);
+		foreach ($files as $t) {
+			if (is_dir(rtrim($path, '/') . '/' . $t)) {
+				if ($t <> "." && $t <> "..") {
+					$size = isoman_getfoldersize(rtrim($path, '/') . '/' . $t);
+
+					$total_size += $size;
+				}
+			} else {
+				$size = ftp_size($conn_id, rtrim($path, '/') . '/' . $t);
+				$total_size += $size;
+			}
+		}
+	}
+	return $total_size;
+}
+function default_isoman_upload_file()
+{
+    global $core, $_frontIsLoggedin_user_id, $datastore_folder, $clsISO;
+
+    $currentDir = vnSessionGetVar("isoman_dir");
+    $filename = '';
+
+    if (isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST") {
+
+        $list_files = $_FILES['attachments'];
+
+        if (_isoman_ftp == 0) {
+
+            // ====== Upload LOCAL ======
+            if (!empty($list_files['name'])) {
+
+                for ($i = 0; $i < count($list_files['name']); $i++) {
+
+                    $filezise = isoman_getfilesize($list_files['tmp_name'][$i]);
+
+                    if ($filezise < 100048576 && is_uploaded_file($list_files['tmp_name'][$i])) {
+
+                        $ftmp_name = $list_files['tmp_name'][$i];
+
+                        $fname = str_replace('&', '-', $list_files['name'][$i]);
+                        $fname = $clsISO->replaceSpaceFolder($fname);
+
+                        // Giới hạn tên file
+                        if (strlen($fname) > 180) {
+                            $tmpname = explode('.', $fname);
+                            $extension = array_pop($tmpname);
+                            $fname = substr(implode('.', $tmpname), 0, 180) . '.' . $extension;
+                        }
+
+                        // Đường dẫn file đích - GIỮ NGUYÊN ĐUÔI
+                        $destination = $currentDir . "/" . $fname;
+
+                        if (!is_writable($currentDir)) {
+                            echo '_NOT_VALID';
+                            die();
+                        }
+
+                        // Upload file nguyên bản
+                        if (@copy($ftmp_name, $destination)) {
+
+                            @chmod($destination, 0644);
+
+                            clearstatcache(true, $destination);
+
+                            $filename = $destination;
+                        }
+                    }
+                }
+            }
+
+        } else {
+
+            // ====== Upload FTP ======
+            if (!empty($list_files['name'])) {
+
+                $conn_id = ftp_connect(_isoman_ftp_host_info);
+                $login_result = ftp_login(
+                    $conn_id,
+                    _isoman_ftp_usr_info,
+                    _isoman_ftp_pwd_info
+                );
+
+                $dir = str_replace(
+                    vnSessionGetVar("isoman_dir_root"),
+                    '',
+                    $currentDir
+                );
+
+                for ($i = 0; $i < count($list_files['name']); $i++) {
+
+                    $filezise = isoman_getfilesize($list_files['tmp_name'][$i]);
+
+                    if ($filezise < 5048576 && is_uploaded_file($list_files['tmp_name'][$i])) {
+
+                        $ftmp_name = $list_files['tmp_name'][$i];
+
+                        $fname = str_replace('&', '-', $list_files['name'][$i]);
+                        $fname = $clsISO->replaceSpaceFolder($fname);
+
+                        // Giới hạn tên file
+                        if (strlen($fname) > 180) {
+                            $tmpname = explode('.', $fname);
+                            $extension = array_pop($tmpname);
+                            $fname = substr(implode('.', $tmpname), 0, 180) . '.' . $extension;
+                        }
+
+                        $dir = str_replace('//', '', '/' . $dir);
+
+                        @ftp_chdir($conn_id, $dir);
+
+                        // Upload nguyên file, GIỮ NGUYÊN ĐUÔI
+                        if (@ftp_put(
+                            $conn_id,
+                            $fname,
+                            $ftmp_name,
+                            FTP_BINARY
+                        )) {
+
+                            @ftp_chmod($conn_id, 0644, $fname);
+
+                            $filename = $currentDir . "/" . $fname;
+                        }
+                    }
+                }
+
+                ftp_close($conn_id);
+            }
+        }
+    }
+
+    echo $filename;
+    die();
+}
+
+function default_isoman_delete_dir()
+{
+	// ini_set('display_errors', 1);
+	// ini_set('display_startup_errors', '1');
+	// error_reporting(E_ALL & ~E_STRICT);
+	global $core, $_frontIsLoggedin_user_id, $datastore_folder;
+	#
+	$isoman_dir_root = vnSessionGetVar("isoman_dir_root");
+	$isoman_dir = isset($_POST['isoman_dir']) ? $_POST['isoman_dir'] : '';
+	#
+	if (isset($isoman_dir) && !empty($isoman_dir)) {
+		$log_isoman_dir = array(
+			'isoman_dir_root' => $isoman_dir_root,
+			'isoman_dir' => $isoman_dir,
+		);
+		$isoman_dir = rtrim($isoman_dir, '|');
+		$isoman_dir = explode('|', $isoman_dir);
+		#
+		for ($i = 0; $i < count($isoman_dir); $i++) {
+			if (str_replace($isoman_dir_root, '', $isoman_dir[$i]) != $isoman_dir[$i]) {
+				if (_isoman_ftp == 0) {
+					if (!@is_writable($isoman_dir_root)) {
+						echo ('_NOT_VALID_WRITE');
+						die();
+					}
+					if (!@is_writable($isoman_dir_root)) {
+						echo ('_NOT_VALID_WRITE');
+						die();
+					}
+					if (is_dir($isoman_dir[$i])) {
+						if (isoman_is_dir_empty($isoman_dir[$i])) {
+							//Chỉ xóa đc folder trống
+							if (@rmdir($isoman_dir[$i])) {
+								echo '_DELETED';
+								die;
+							} else {
+								echo '_NO_PERMISSION'; // Không có quyền xóa
+								die;
+							}
+						} else {
+							echo ('_NOT_EMPTY');
+							die();
+						}
+					} else {
+						unlink($isoman_dir[$i]);
+					}
+				} else {
+					$conn_id = ftp_connect(_isoman_ftp_host_info);
+					$login_result = ftp_login($conn_id, _isoman_ftp_usr_info, _isoman_ftp_pwd_info);
+					#
+					$dir = str_replace($isoman_dir_root, '', $isoman_dir[$i]);
+					$dir = str_replace('//', '', '/' . $dir);
+					$tmp = explode('/', $dir);
+					$dir_up = '';
+					for ($j = 0; $j < count($tmp) - 1; $j++) {
+						$dir_up .= '/' . $tmp[$j];
+					}
+					@ftp_chdir($conn_id, $dir_up);
+					if (@ftp_chdir($conn_id, $tmp[count($tmp) - 1])) {
+						@ftp_cdup($conn_id);
+						@ftp_rmdir($conn_id, $tmp[count($tmp) - 1]);
+						rmdir_recurse($isoman_dir[$i]);
+					} else {
+						@ftp_delete($conn_id, $tmp[count($tmp) - 1]);
+					}
+					ftp_close($conn_id);
+				}
+			}
+		}
+
+		$_loged_id = $core->_SESS->user_id;
+		$clsLog = new Log();
+		$clsLog->logAction('delete', 'file', $_loged_id, $log_isoman_dir);
+	}
+	echo ('_DELETED');
+	die();
+}
+function isoman_is_dir_empty($dir)
+{
+	return 1;
+	if (!is_readable($dir)) return NULL;
+	return (count(scandir($dir)) == 2);
+}
+function default_isoman_load_one_folder()
+{
+	global $dbconn, $_LANG_ID, $core;
+	#
+	$dir = $_POST['isoman_dir'];
+	$url = $_POST['isoman_url'];
+	$abs_url = $_POST['abs_url'];
+	$for_id = $_POST['for_id'];
+	$folder_name = $_POST['folder_name_dir'];
+	$isoman_dir_root = vnSessionGetVar("isoman_dir_root");
+	$root_name = '';
+	if ($folder_name != '') {
+		$tmp = explode('/', $folder_name);
+		$root_name = $tmp[count($tmp) - 1];
+	}
+	#
+	$html = '
+	<div class="headPop"> 
+		<a href="javascript:void();" class="closeEv close_pop"></a> 
+		<b>' . ($root_name == '' ? 'Create' : 'Rename') . ' Folder</b> 
+	</div> 	
+	<div style="width:300px;">
+		Folder Name: 
+		<input type="text" id="isoman_folder_name"  value="' . $root_name . '" />
+	</div>
+	<div class="modal-footer"> 
+		<button class="btn btn-success isoman-update-folder" isoman_root_name="' . $root_name . '" isoman_dir_root="' . $isoman_dir_root . '" isoman_url="' . $url . '" isoman_dir="' . $dir . '" isoman_abs_url="' . $abs_url . '" isoman_for_id="' . $for_id . '">Save</button> 
+		<button class="btn btn-warning close_pop" data-dismiss="modal" aria-hidden="true">Close</button> 
+	</div>
+	';
+	#
+	echo $html;
+	die();
+}
+function default_isoman_update_one_folder()
+{
+	/*ini_set('display_errors', 1);
+	ini_set('display_startup_errors', '1');
+	error_reporting(E_ALL & ~E_STRICT);*/
+	global $dbconn, $_LANG_ID, $core, $clsISO;
+
+	$dir = isset($_POST['isoman_dir']) ? $_POST['isoman_dir'] : '';
+	$folder_name = isset($_POST['folder_name']) ? $clsISO->replaceSpaceFolder($_POST['folder_name']) : '';
+	$isoman_dir_root = vnSessionGetVar("isoman_dir_root");
+	$isoman_type = isset($_POST['isoman_type']) ? $_POST['isoman_type'] : '';
+
+	// Log thông tin (tùy chọn)
+	$log_isoman_dir = array(
+		'isoman_dir_root' => $isoman_dir_root,
+		'isoman_type' => $isoman_type,
+		'dir' => $dir,
+		'folder_name' => $folder_name,
+	);
+
+	// Kiểm tra đầu vào hợp lệ
+	if (empty($dir) || empty($folder_name)) {
+		echo ('_INVALID_INPUT');
+		die();
+	}
+
+	// Nếu không dùng FTP
+	if (_isoman_ftp == 0) {
+		if (!@is_writable($isoman_dir_root)) {
+			echo ('_NOT_VALID_WRITE');
+			die();
+		} else {
+			$new_folder_path = rtrim($dir, '/') . '/' . $folder_name;
+			if (file_exists($new_folder_path)) {
+				echo ('_FOLDER_EXISTS');
+				die();
+			}
+
+			if (@mkdir($new_folder_path, 0777, true)) {
+				chmod($new_folder_path, 0777);
+				echo 1; // Thành công
+			} else {
+				echo ('_CREATE_FAILED');
+			}
+		}
+	}
+	// Nếu dùng FTP
+	else {
+		$conn_id = ftp_connect(_isoman_ftp_host_info);
+		$login_result = ftp_login($conn_id, _isoman_ftp_usr_info, _isoman_ftp_pwd_info);
+
+		if (!$conn_id || !$login_result) {
+			echo ('_FTP_CONNECT_FAILED');
+			die();
+		}
+
+		$remote_dir = str_replace($isoman_dir_root, '', $dir);
+		$remote_folder = $remote_dir . '/' . $folder_name;
+
+		if (@ftp_mkdir($conn_id, $remote_folder)) {
+			ftp_chmod($conn_id, 0777, $remote_folder);
+			echo 1;
+		} else {
+			echo ('_FTP_CREATE_FAILED');
+		}
+
+		ftp_close($conn_id);
+	}
+
+	// Ghi log
+	$_loged_id = $core->_SESS->user_id;
+	$clsLog = new Log();
+	$clsLog->logAction('create', 'folder', $_loged_id, $log_isoman_dir);
+
+	die();
+}
+
+function default_isoman_paste()
+{
+	global $dbconn, $_LANG_ID, $core;
+	#
+	$isoman_dir_root = vnSessionGetVar("isoman_dir_root");
+	$dir = isset($_POST['isoman_dir']) ? $_POST['isoman_dir'] : '';
+	$paste_isoman_dir = isset($_POST['paste_isoman_dir']) ? $_POST['paste_isoman_dir'] : '';
+	$isoman_paste_type = isset($_POST['isoman_paste_type']) ? $_POST['isoman_paste_type'] : '';
+	$action = isset($_POST['isoman_paste_action']) ? $_POST['isoman_paste_action'] : '';
+	#
+	$html = '';
+	if (isset($paste_isoman_dir) && !empty($paste_isoman_dir)) {
+		$paste_isoman_dir = rtrim($paste_isoman_dir, '|');
+		$paste_isoman_dir = explode('|', $paste_isoman_dir);
+		#
+		for ($i = 0; $i < count($paste_isoman_dir); $i++) {
+			$tmp = explode('/', $paste_isoman_dir[$i]);
+			$folder_name = $tmp[count($tmp) - 1];
+			#
+			if (_isoman_ftp == 0) {
+				if (!@is_writable($isoman_dir_root)) {
+					echo ('_NOT_VALID_WRITE');
+					die();
+				} else {
+					if ($isoman_paste_type == 0) {
+						if (is_dir($dir . '/' . $folder_name)) {
+						} else {
+							if ($action == 'copy') {
+								if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+									mkdir($dir . '/' . $folder_name);
+									recurse_copy($paste_isoman_dir[$i], $dir . '/' . $folder_name);
+									chmod_r($dir . '/' . $folder_name, 0777);
+								}
+							} else {
+								if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+									mkdir($dir . '/' . $folder_name);
+									recurse_copy($paste_isoman_dir[$i], $dir . '/' . $folder_name);
+									chmod_r($dir . '/' . $folder_name, 0777);
+									rmdir_recurse($paste_isoman_dir[$i]);
+								}
+							}
+						}
+					} else {
+						if ($action == 'copy') {
+							if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+								copy($paste_isoman_dir[$i], $dir . '/' . $folder_name);
+								chmod($dir . '/' . $folder_name, 0777);
+							} else {
+								$tmpname = explode('.', $folder_name);
+								$extension = $tmpname[count($tmpname) - 1];
+								$folder_namecopy = str_replace('.' . $extension, '', $folder_name) . '(1).' . $extension;
+								copy($paste_isoman_dir[$i], $dir . '/' . $folder_namecopy);
+								chmod($dir . '/' . $folder_name, 0777);
+							}
+						} else {
+							if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+								copy($paste_isoman_dir[$i], $dir . '/' . $folder_name);
+								chmod($dir . '/' . $folder_name, 0777);
+								unlink($paste_isoman_dir[$i]);
+							}
+						}
+					}
+				}
+			} else {
+				$conn_id = ftp_connect(_isoman_ftp_host_info);
+				$login_result = ftp_login($conn_id, _isoman_ftp_usr_info, _isoman_ftp_pwd_info);
+				$dir = str_replace($isoman_dir_root, '', $dir);
+				$dir = str_replace('//', '', '/' . $dir);
+				@ftp_chdir($conn_id, $dir);
+				if ($isoman_paste_type == 0) {
+					if (is_dir($dir . '/' . $folder_name)) {
+					} else {
+						if ($action == 'copy') {
+							if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+							} else {
+							}
+						} else {
+							if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+							}
+						}
+					}
+				} else {
+					if ($action == 'copy') {
+						if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+							ftp_put($conn_id, $folder_name, $paste_isoman_dir[$i], FTP_BINARY);
+						} else {
+							$tmpname = explode('.', $folder_name);
+							$extension = $tmpname[count($tmpname) - 1];
+							$folder_namecopy = str_replace('.' . $extension, '', $folder_name) . '(1).' . $extension;
+							ftp_put($conn_id, $folder_namecopy, $paste_isoman_dir[$i], FTP_BINARY);
+						}
+					} else {
+						if ($paste_isoman_dir[$i] != $dir . '/' . $folder_name) {
+							ftp_put($conn_id, $folder_name, $paste_isoman_dir[$i], FTP_BINARY);
+							$paste_dir = str_replace($isoman_dir_root, '', $paste_isoman_dir[$i]);
+							ftp_delete($conn_id, $paste_dir);
+						}
+					}
+				}
+				#
+				ftp_close($conn_id);
+			}
+		}
+	}
+
+	echo $html;
+	die();
+}
+function is_ftp_dir($itempath)
+{
+	if ($itempath[0] !== "/") {
+		$itempath = "/" . $itempath;
+	}
+
+	$conn_id = ftp_connect(_isoman_ftp_host_info);
+	$login_result = ftp_login($conn_id, _isoman_ftp_usr_info, _isoman_ftp_pwd_info);
+
+	$contents = ftp_nlist($conn_id, "$itempath");
+
+	if (!empty($contents[0])) {
+		$check = str_replace($itempath, "", $contents[0]);
+		if (!empty($check)) {
+			return true;
+		}
+	}
+	ftp_close($conn_id);
+}
+function rmdir_recurse($path)
+{
+	$path = rtrim($path, '/') . '/';
+	$handle = opendir($path);
+	while (false !== ($file = readdir($handle))) {
+		if ($file != '.' and $file != '..') {
+			$fullpath = $path . $file;
+			if (is_dir($fullpath)) rmdir_recurse($fullpath);
+			else unlink($fullpath);
+		}
+	}
+	closedir($handle);
+	rmdir($path);
+}
+function recurse_copy($src, $dst)
+{
+	$dir = opendir($src);
+	mkdir($dst);
+	while (false !== ($file = readdir($dir))) {
+		if (($file != '.') && ($file != '..')) {
+			if (is_dir($src . '/' . $file)) {
+				recurse_copy($src . '/' . $file, $dst . '/' . $file);
+			} else {
+				copy($src . '/' . $file, $dst . '/' . $file);
+			}
+		}
+	}
+	closedir($dir);
+}
+function chmod_r($path, $filemode)
+{
+	$dp = opendir($path);
+	while ($file = readdir($dp)) {
+		if ($file != "." and $file != "..") {
+			if (is_dir($file)) {
+				chmod($file, $filemode);
+			} else {
+				chmod($path . "/" . $file, $filemode);
+			}
+			chmod($path, $filemode);
+			chmod_r($path . "/" . $file, $filemode);
+		}
+	}
+	closedir($dp);
+}
+function recove_images($path, $w, $h)
+{
+	global $core, $clsISO;
+
+	if (empty($path)) {
+		return '';
+	}
+
+	$path = html_entity_decode((string)$path, ENT_QUOTES, 'UTF-8');
+	$path = str_replace('\\', '/', $path);
+
+	$documentRoot = isset($_SERVER['DOCUMENT_ROOT'])
+		? rtrim(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']), '/')
+		: '';
+
+	if (
+		$documentRoot !== ''
+		&& strpos($path, $documentRoot . '/') === 0
+	) {
+		$path = substr($path, strlen($documentRoot));
+	}
+
+	if (!preg_match('#^https?://#i', $path)) {
+		$path = '/' . ltrim($path, '/');
+	}
+
+	$urlPath = parse_url($path, PHP_URL_PATH);
+	$extension = strtolower(pathinfo((string)$urlPath, PATHINFO_EXTENSION));
+
+	/*
+	 * WebP vừa upload đã tối ưu sẵn. Dùng trực tiếp file gốc để tránh
+	 * endpoint /files/thumb giữ cache lỗi hoặc chưa hỗ trợ WebP ổn định.
+	 */
+	if ($extension === 'webp') {
+		$localPath = '';
+
+		if ($documentRoot !== '' && !preg_match('#^https?://#i', $path)) {
+			$localPath = $documentRoot . '/' . ltrim((string)$urlPath, '/');
+		}
+
+		$version = (
+			$localPath !== ''
+			&& is_file($localPath)
+		) ? (int)@filemtime($localPath) : time();
+
+		return $path
+			. (strpos($path, '?') === false ? '?' : '&')
+			. 'v='
+			. $version;
+	}
+
+	$parsedPath = $clsISO->parseImageURL($path);
+
+	return '/files/thumb?w='
+		. max(1, (int)$w)
+		. '&h='
+		. max(1, (int)$h)
+		. '&src='
+		. rawurlencode($parsedPath);
+}
+
+
+
+function isSafePath($requestedPath, $rootDir)
+{
+    // =========================
+    // ROOT VALIDATION
+    // =========================
+
+    $realRoot = realpath($rootDir);
+
+    if ($realRoot === false || !is_dir($realRoot)) {
+        return false;
+    }
+
+    $realRoot = rtrim(str_replace('\\', '/', $realRoot), '/');
+
+    // =========================
+    // EMPTY PATH
+    // =========================
+
+    if (empty($requestedPath)) {
+        return $realRoot;
+    }
+
+    // =========================
+    // DECODE PATH
+    // =========================
+
+    $requestedPath = html_entity_decode($requestedPath, ENT_QUOTES, 'UTF-8');
+    $requestedPath = rawurldecode($requestedPath);
+
+    // remove null byte
+    $requestedPath = str_replace("\0", '', $requestedPath);
+
+    // normalize slash
+    $requestedPath = str_replace('\\', '/', $requestedPath);
+
+    // remove duplicate slash
+    $requestedPath = preg_replace('#/+#', '/', $requestedPath);
+
+    // =========================
+    // BUILD FULL PATH
+    // =========================
+
+    // absolute path
+    if (strpos($requestedPath, $realRoot) === 0) {
+
+        $fullPath = $requestedPath;
+
+    } else {
+
+        $fullPath = $realRoot . '/' . ltrim($requestedPath, '/');
+    }
+
+    // normalize
+    $fullPath = str_replace('\\', '/', $fullPath);
+
+    // =========================
+    // REALPATH CHECK
+    // =========================
+
+    $realPath = realpath($fullPath);
+
+    // Nếu folder chưa tồn tại
+    if ($realPath === false) {
+
+        $parentDir = dirname($fullPath);
+
+        $realParent = realpath($parentDir);
+
+        if ($realParent === false) {
+            return false;
+        }
+
+        $realParent = str_replace('\\', '/', $realParent);
+
+        // check parent nằm trong root
+        if (
+            $realParent !== $realRoot &&
+            strpos($realParent . '/', $realRoot . '/') !== 0
+        ) {
+            return false;
+        }
+
+        return $fullPath;
+    }
+
+    // =========================
+    // FINAL SECURITY CHECK
+    // =========================
+
+    $realPath = rtrim(str_replace('\\', '/', $realPath), '/');
+
+    // bắt buộc phải là:
+    // /root/uploads/xxx
+    // KHÔNG phải:
+    // /root/uploads_hack
+
+    if (
+        $realPath !== $realRoot &&
+        strpos($realPath . '/', $realRoot . '/') !== 0
+    ) {
+        return false;
+    }
+
+    return $realPath;
+}
+function sanitizeFilename($filename) {
+    // Loại bỏ ký tự nguy hiểm
+    $filename = preg_replace('/[^a-zA-Z0-9._\-\s]/', '', $filename);
+    $filename = trim($filename);
+    // Giới hạn độ dài
+    $filename = substr($filename, 0, 150);
+    return $filename;
+}

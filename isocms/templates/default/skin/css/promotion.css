@@ -1,0 +1,350 @@
+.main_promotion{
+    margin-top: 90px;
+}
+.box_check_promotion,.box_check_sort,.check_show_list{
+    margin: 0;
+    /*padding: 2rem;*/
+    /*box-sizing: border-box;*/
+    display: inline-block;
+    border: none;
+    /*border: solid 1px #ccc;*/
+    min-width: 0;
+    background-color: #fff;
+}
+.box_check_promotion .toggle,.check_show_list .toggle,.box_check_sort .toggle_sort {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+.box_check_promotion .toggle input,.check_show_list .toggle input,.box_check_sort .toggle_sort input {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: -9999px;
+}
+.box_check_promotion .toggle input + label,.check_show_list .toggle input + label,.box_check_sort .toggle_sort input + label {
+    margin: 0;
+    padding: 0.75rem 2rem;
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    border: solid 1px #ddd;
+    background-color: #fff;
+    font-size: 1.4rem;
+    line-height: 140%;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    transition: border-color 0.15s ease-out, color 0.25s ease-out, background-color 0.15s ease-out, box-shadow 0.15s ease-out;
+    /* ADD THESE PROPERTIES TO SWITCH FROM AUTO WIDTH TO FULL WIDTH */
+    /*flex: 0 0 50%; display: flex; justify-content: center; align-items: center;*/
+    /* ----- */
+}
+.box_check_promotion .toggle input + label:first-of-type,.check_show_list .toggle input + label:first-of-type,.box_check_sort .toggle_sort input + label:first-of-type {
+    border-radius: 6px 0 0 6px;
+    border-right: none;
+}
+.box_check_promotion .toggle input + label:last-of-type,.check_show_list .toggle input + label:last-of-type,.box_check_sort .toggle_sort input + label:last-of-type {
+    border-radius: 0 6px 6px 0;
+    border-left: none;
+}
+.box_check_promotion .toggle input:hover + label,.check_show_list .toggle input:hover + label,.box_check_sort .toggle_sort input:hover + label {
+    border-color: #213140;
+}
+.box_check_promotion .toggle input:checked + label,.check_show_list .toggle input:checked + label,.box_check_sort .toggle_sort input:checked + label {
+    background-color: #4b9dea;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+    border-color: #4b9dea;
+    z-index: 1;
+}
+.box_check_promotion .toggle input:focus + label,.check_show_list .toggle input:focus + label,.box_check_sort .toggle_sort input:focus + label {
+    outline: dotted 1px #ccc;
+    outline-offset: 0.45rem;
+}
+.box_check_sort .toggle_sort label {
+    /*margin: 0 10px !important;*/
+}
+.box_check_sort .toggle_sort input + label:first-of-type{
+    border-radius: 6px;
+    border-right: solid 1px #ddd;
+    margin-left: 10px;
+}
+.box_check_sort .toggle_sort input + label:last-of-type{
+    border-radius: 6px;
+    border-left: solid 1px #ddd;
+    margin-left: 10px;
+}
+.box_check_sort .toggle_sort input:hover + label{
+    border-color: #213140;
+}
+.box_check_sort .toggle_sort input:checked + label{
+    border-color: #f16f30;
+    background-color: #f16f30;
+    box-shadow: 0 0 10px rgba(241, 111, 48, 0.5);
+}
+@media (max-width: 800px) {
+    .box_check_promotion .toggle input + label,.box_check_sort .toggle_sort input + label {
+        padding: 0.75rem 0.25rem;
+        flex: 0 0 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.check_show_list{display: inline-block;float: right}
+.check_show_list .toggle input:checked + label{
+    border-radius: unset;    background-color: #4b9dea;    border-color: #4b9dea
+}
+.check_show_list .toggle input:hover + label{
+    border-color: #e0e0e0;
+    background-color: #e0e0e0;
+}
+.check_show_list .toggle input + label:last-of-type{
+    border-radius: unset;
+
+}
+.box_counter_all .box_counter_tour,.box_counter_all .box_counter_cruise,.box_counter_all .box_counter_hotel,.box_option_find_box{
+    padding: 10px;
+    box-shadow: 0 0 10px #dcdcdc;
+    margin-bottom: 10px;
+}
+.box_counter_all .box_counter_tour .counter_find_tour,.box_counter_all .box_counter_cruise .counter_find_cruise,.box_counter_all .box_counter_hotel .counter_find_hotel{
+    float: right;
+    display: inline-block;
+    width: calc(100% - 56px);
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 21px;
+    font-weight: bold;
+}
+.box_counter_all .box_counter_tour i,.box_counter_all .box_counter_cruise i,.box_counter_all .box_counter_hotel i{
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 50px;
+    border: 1px solid #f16f30;
+    color: #f16f30;
+    margin-left: 5px;
+}
+.box_counter_all .box_counter_cruise i{
+    border: 1px solid #4b9dea;
+    color: #4b9dea;
+}
+.box_counter_all .box_counter_hotel i{
+    border: 1px solid #eab175;
+    color: #eab175;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+    font-size: 30px !important;
+}
+#slider-range {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    height: 6px;
+    border: 0;
+    background: #e9e9e9;
+}
+.ui-slider .ui-widget-header {
+    background: #f16f30;
+}
+.ui-slider .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f16f30;
+    border-radius: 100%;
+    outline: 0;
+    top: -7px;
+}
+.findBox .w50 {
+    width: 50%;
+    float: left;
+}
+.box_duration_find_box,.box_country_find_box,.box_country_travel_style,.box_country_travel_acti,.box_country_find_cruise_cat{
+    padding: 15px;
+}
+.box_duration_find_box h3,.box_country_find_box h3,.box_country_travel_style h3,.box_country_travel_acti h3,.box_country_find_cruise_cat h3{
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+.findBox ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.label-cbx {
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+.label-cbx:hover {
+    color: #20C2E0;
+}
+.label-cbx input:checked + .checkbox {
+    border-color: #fff;
+}
+.label-cbx input:checked + .checkbox svg path {
+    fill: #fff;
+}
+.label-cbx input:checked + .checkbox svg polyline {
+    stroke-dashoffset: 0;
+}
+.label-cbx:hover .checkbox svg path {
+    stroke-dashoffset: 0;
+}
+.label-cbx .checkbox {
+    position: relative;
+    top: 2px;
+    float: left;
+    margin: 0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #d8d8d8;
+    border-radius: 3px;
+
+}
+.label-cbx .checkbox svg {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+.label-cbx .checkbox svg path {
+    fill: none;
+    stroke: #20C2E0;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 71px;
+    stroke-dashoffset: 71px;
+    transition: all 0.6s ease;
+}
+.label-cbx .checkbox svg polyline {
+    fill: none;
+    stroke: #cc7b7b;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 18px;
+    stroke-dashoffset: 18px;
+    transition: all 0.3s ease;
+}
+.label-cbx > span {
+    pointer-events: none;
+    vertical-align: middle;
+}
+
+.cntr {
+   /* position: absolute;
+    top: 45%;
+    left: 0;*/
+    width: 100%;
+    /*text-align: center;*/
+}
+
+.invisible {
+    position: absolute;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+.content_promotion_load{
+    padding-top: 25px;
+}
+.content_item_pro{
+    padding: 15px 0;
+}
+.content_item_pro .body_item_top{
+    height: 120px !important;
+    overflow: hidden;
+}
+.content_item_pro .body_item_top h3{
+    line-height: 24px;
+}
+.content_item_pro .body_item_top h3 a{
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    display: inline-block;
+    width: 100%;
+    line-height: 24px;
+}
+.content_item_pro .body_item_top .discount_text_item_pro{
+    font-size: 16px;
+    color: #f58220;
+    padding-left: 25px;
+    line-height: 21px;
+    position: relative;
+    margin: 5px 0;
+}
+.content_item_pro .body_item_top .discount_text_item_pro:before{
+    width: 20px;
+    height: 17px;
+    position: absolute;
+    content: '';
+    background: url(../images/img_isocms/spite_home_2019.png) no-repeat;
+    background-position: 0 0;
+    top: 2px;
+    left: 0;
+}
+.content_item_pro .duration{
+    font-size: 16px;
+    color: #333;
+    padding-left: 25px;
+    line-height: 21px;
+    position: relative;
+    margin: 5px 0;
+    font-weight: 700;
+}
+.content_item_pro .duration:before{
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    content: '';
+    background: url(../images/img_isocms/spite_home_2019.png) no-repeat;
+    background-position: -2px -23px;
+    top: 1px;
+    left: 0;
+}
+.content_item_pro .body_item_bottom {
+    padding-top: 8px;
+    display: inline-block;
+    width: 100%;
+    border-top: 1px dotted #ccc;
+    height: 51px;
+}
+.content_item_pro .tour_rate {
+    display: inline-block;
+    width: 150px;
+    float: left
+}
+.content_item_pro .tour_price {
+    display: inline-block;
+    width: calc(100% - 150px);
+    float: left;
+    color: #a21417;
+    font-weight: 700;
+    line-height: 1.3;
+}
+.child_cat{
+    padding-left: 15px !important;
+}
+.title_promotion_page{
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    padding-bottom: 30px;
+}

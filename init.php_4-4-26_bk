@@ -1,0 +1,76 @@
+<?php
+/*======================================================================*\
+|| #################################################################### ||
+|| # The database configurations of the ISOCMS                        # ||
+|| # ISOCMS By VietISO (support@vietiso.com)        			      # ||
+|| # ---------------------------------------------------------------- # ||
+|| # All PHP code in this file is ©2007-2025 VietISO JSC.             # ||
+|| # ---------------- ISOCMS IS NOT FREE SOFTWARE ----------------    # ||
+|| # http://www.vietiso.com | http://www.vietiso.com/license.html     # ||
+|| #################################################################### ||
+\*======================================================================*/
+
+require(ABSPATH . '/config.php');
+
+#Library
+$customLibArray = array();
+if (is_dir(DIR_LIBRARYS)) {
+    if ($dh = opendir(DIR_LIBRARYS)) {
+        while (($file = readdir($dh)) !== false) {
+            if (substr($file, -3) == 'php')
+                array_push($customLibArray, $file);
+        }
+        closedir($dh);
+    }
+}
+
+foreach ($customLibArray as $customCls) {
+    require_once(DIR_LIBRARYS . "/" . $customCls);
+}
+#Session
+$SESSION_NAME = "ISOCMS_SESSION";
+$SESSION_PATH = "/tmp";
+$SESSION_COOKIE = 1; //1: user cookie, 0: no cookie
+$SESSION_TIME_OUT = 5 * 24 * 3600;
+#Session Start
+require_once DIR_COMMON . "/vnSession.php";
+require_once DIR_COMMON . "/clsIniManager.php";
+#Initialize session
+if (!vnSessionSetup()) {
+    trigger_error('Session setup failed', E_USER_ERROR);
+    exit();
+}
+#Cookie Start
+require_once DIR_COMMON . "/clsCookie.php";
+#Setup cookie
+$COOKIE_NAME = 'ISOCMS_COOKIES';
+$COOKIE_TIME_OUT = 5 * 24 * 3600;
+$clsCookie = new VnCookie($COOKIE_NAME, $COOKIE_TIME_OUT);
+$clsCookie->extractAll();
+#Stdio
+require_once DIR_COMMON . "/clsStdio.php";
+$stdio = new Stdio();
+if (!in_array($stdio->GET("mod"), ['lang_front', 'lang'])) {
+    $_GET = $stdio->parse_incoming(true);
+    $_POST = $stdio->parse_incoming(false);
+}
+
+if (!empty($_FILES)) {
+    // Áp dụng cho tất cả $_FILES
+    foreach ($_FILES as $key => $file) {
+        $stdio->secureFiles($_FILES[$key]);
+    }
+}
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+setcookie(session_name(), session_id(), [
+    'expires' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => true,
+    'HttpOnly' => true,
+    'samesite' => 'Lax'
+]);

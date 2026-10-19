@@ -1,0 +1,29 @@
+# =============================================
+# BẢO MẬT THƯ MỤC admin/lang - Ngăn chạy PHP
+# =============================================
+
+# Tắt directory listing
+Options -Indexes
+
+# Cấm thực thi tất cả file PHP trong thư mục này và thư mục con
+<Files *.php>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Hoặc cách hiện đại hơn (Apache 2.4+)
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.php$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+
+# Chỉ cho phép một số file ngôn ngữ hợp lệ (nếu cần)
+<FilesMatch "^(en|vn)\.php$">
+    Require all granted
+</FilesMatch>
+
+# Bảo vệ thêm các file nguy hiểm
+<FilesMatch "^(result|test|admin|wp-styling|\.sys_cache|\.kyta_protect|acpid\.socket|chankro)\.">
+    Require all denied
+</FilesMatch>

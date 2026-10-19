@@ -1,0 +1,27 @@
+.page_container{background: white}
+.section_faq_page ul,  .section_faq_page ol{
+	padding-left: 2rem;
+}
+.section_faq_page ul li, .section_faq_page ol li {
+	list-style-type: disc;
+}
+.section_faq_top{background: #fff7d7; padding: 60px 0 45px; margin-bottom: 40px;}
+.section_faq_top h1{font-size: 40px; font-weight: bold;}
+h1.titlePage{font-size:32px;margin:0 0 23px}
+.accordion{padding: 0}
+.accordion .card{border: 0; border-bottom: 1px solid #ccc; border-radius:  0;}
+.accordion .card-header{padding: 18px 0;background: #FFF;border: 0;border-radius: 0;}
+.accordion .card h3 a{font-size: 20px; line-height: 24px; font-weight: 600; color: #1c1c1c; display: inline-block; width: 100%; padding-right: 35px; text-align: left;position: relative;cursor: pointer}
+.accordion .card h3 a i{font-size: 24px; line-height: 24px; font-weight: bold; position: absolute; right: 0; top:-4px}
+.accordion .card h3 a.collapsed .fa:before{content: "\f107" !important;}
+.accordion .card-body{text-align: justify; padding: 0; border: 0}
+.collapse .card-body{display: none}
+.collapse.show .card-body{display: block}
+
+.formatTextStandard h3{padding-top:10px;padding-bottom:15px}
+.formatTextStandard p{padding:0;margin: 0}
+.faqs_default_body .tinymce_Content p {
+    margin: 0;
+    line-height: 22px;
+    padding-bottom: 2%;
+}

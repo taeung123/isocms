@@ -1,0 +1,30 @@
+.iso-swal{
+    border-radius:24px;
+    padding:40px;
+    width:500px;
+}
+
+.iso-swal-title{
+    font-size:32px;
+    font-weight:700;
+}
+
+.iso-btn{
+    min-width:180px;
+    height:48px;
+    border-radius:10px;
+}
+
+.iso-btn-primary{
+    background:var(--primary-18-babd);
+    color:var(--chroma-ffffff);
+}
+
+.iso-btn-secondary{
+    background:var(--secondary-e-8-f-8-f-8);
+}
+
+.iso-alert-actions {
+    display: flex;
+    gap: 12px;
+}

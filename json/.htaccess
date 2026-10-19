@@ -1,0 +1,10 @@
+# Dùng cho: /logs/ /tmp/ /cache/ /json/ /ratelimit/
+# Block toàn bộ truy cập từ web
+
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+</IfModule>

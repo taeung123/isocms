@@ -1,0 +1,886 @@
+.banner {
+    position: relative;
+}
+.banner .bg_opacity {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+.banner .breadcrumb-main {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+.banner .breadcrumb-main .breadcrumb {
+    padding: 25px 0;
+    background: none;
+    margin: 0;
+}
+.bg_banner {
+    position: relative;
+    display: inline-block !important;
+    width: 100% !important;
+}
+.breadcrumb li {
+    margin-right: 5px;
+}
+.breadcrumb li,
+.breadcrumb li a {
+    color: #fff;
+    font-size: 16px;
+    line-height: 18px;
+}
+.content_banner {
+    position: absolute;
+    width: 100%;
+    max-width: 750px;
+    height: 220px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: calc(50% - 105px);
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+}
+.content_banner h1 {
+    font-size: 40px;
+    font-weight: 700;
+}
+.content_banner .intro {
+    height: 100px;
+    overflow: hidden;
+}
+.header_box {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.header_box h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+.ebook_box {
+    display: inline-block;
+    padding: 80px 0 60px;
+    background: #fff;
+    width: 100%;
+}
+.resource_box {
+    display: inline-block;
+    padding: 80px 0 60px;
+    background: #fff;
+    width: 100%;
+}
+.dvd_box {
+    display: inline-block;
+    padding: 80px 0 60px;
+    background: #f8f8f8;
+    width: 100%;
+}
+.video_box {
+    display: inline-block;
+    padding: 80px 0 60px;
+    background: #0e553d;
+    width: 100%;
+}
+.video_box .header_box h2 {
+    color: #fff;
+}
+.list_ebook_box .col-resource:nth-child(4n + 4),
+.list_dvd_box .col-resource:nth-child(4n + 4) {
+    clear: left;
+}
+.resource_item{
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.resource_item .photo img {
+    border-radius: 3px 3px 0 0;
+}
+.resource_item .body {
+    padding: 18px 20px 20px;
+    background: #fff;
+    box-shadow: 0 0 6px #ccc;
+    border-radius: 0 0 3px 3px;
+}
+.resource_item .body h3 {
+    margin-bottom: 0;
+}
+.resource_item .body h3 a {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+.resource_item .body .time_post {
+    color: #0e553d;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 5px;
+}
+.resource_item .body .intro {
+    font-size: 14px;
+    line-height: 21px;
+    color: #666;
+    height: 42px;
+    overflow: hidden;
+}
+.resource_item .body .btn_link {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+.resource_item .body .btn_link a {
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    background: #0e553d;
+    border-radius: 3px;
+    color: #fff;
+    line-height: 40px;
+    font-weight: 600;
+}
+.load_more_resource {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.load_more_resource a {
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    background: #0e553d;
+    color: #fff;
+    border-radius: 3px;
+    display: block;
+    margin: 0 auto;
+}
+.boxAnnualReport {
+    margin-top: -264px;
+    position: relative;
+}
+.AnnualReport_caption {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    padding-right: 44px;
+}
+.AnnualReport_caption h2,
+.AnnualReport_caption .h2_caption {
+    font-size: 38px;
+    font-weight: 700;
+    float: right;
+    margin-bottom: 20px;
+}
+.listAnnualReport {
+    background: #fff;
+    padding: 75px 28px;
+}
+.listAnnualReport .annual_report_item {
+    margin-bottom: 78px;
+    display: inline-block;
+    border-bottom: 2px solid #3b9dd3;
+    padding-bottom: 1px;
+    width: 100%;
+}
+.listAnnualReport .annual_report_item .photo {
+    display: inline-block;
+    float: left;
+    padding-right: 30px;
+}
+.annual_report_item .body {
+    width: calc(100% - 263px);
+    float: left;
+}
+.annual_report_item .body .body_top h3,
+.annual_report_item .body .body_top .title_report {
+    font-size: 18px;
+    color: #0d3e74;
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+.annual_report_item .body .body_top .date {
+    font-size: 16px;
+    color: #3b9dd3;
+    margin-bottom: 38px;
+}
+.annual_report_item .body .body_top .intro {
+    padding-bottom: 24px;
+}
+.annual_report_item .body .body_bot .down_en span:first-child {
+    font-weight: 700;
+}
+.annual_report_item .body .body_bot .down_en {
+    border-bottom: none !important;
+}
+.annual_report_item .body .body_bot .down_vn span:first-child {
+    font-weight: 700;
+}
+.annual_report_item .body .body_bot .download {
+    background: url(../images/icon/download-copy-2.png) no-repeat 1px;
+    float: right;
+    padding-left: 25px;
+}
+.annual_report_item .body .body_bot .download a {
+    color: #3b9dd3;
+}
+.annual_report_item .body .body_top .date .fa {
+    margin-right: 5px;
+}
+.annual_report_item .body .body_bot .dow {
+    padding: 13px 0;
+    border-bottom: 1px solid #d7d7d7;
+    border-top: 1px solid #d7d7d7;
+}
+.boxAnnualReport .view_more .view {
+    padding: 11px 70px 11px 25px;
+    background: #0c254e;
+    font-size: 18px;
+    position: relative;
+}
+.boxAnnualReport .view_more .view a {
+    color: #fff;
+}
+.boxAnnualReport .view_more .caret_down {
+    color: #fff;
+    padding: 15px 17px;
+    background: #0c254e;
+    margin-left: 1px;
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 44px;
+    border-left: 1px solid #fff;
+}
+.boxDownload {
+    margin-top: -264px;
+    position: relative;
+}
+.Download_caption {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+}
+.Download_caption h2 {
+    font-size: 38px;
+    font-weight: 700;
+    float: right;
+    margin-bottom: 20px;
+    padding-right: 24px;
+}
+.listBook .row {
+    margin-left: -30px !important;
+    margin-right: -30px !important;
+}
+.listBook .col-md-3 {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+.listDownload {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 50px 28px 0;
+}
+.listDownload .item_download {
+    margin-bottom: 58px;
+}
+.listDownload .item_download .title {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 32px;
+    font-weight: 700;
+}
+.listDownload .clear_left:nth-child(4n + 1) {
+    clear: left;
+}
+.form_search_book {
+    position: relative;
+    margin: 0 0 52px;
+}
+.form_search_book .btn_submit_form {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 49px;
+    width: 49px;
+    border: none !important;
+    background: url(../images/icon/search.png) no-repeat 1px;
+}
+.form_search_book .form-control {
+    height: 49px !important;
+    border-radius: 30px;
+    font-size: 16px;
+    padding-left: 20px;
+}
+.form_search_book .btn_submit_form:focus {
+    outline: none !important;
+}
+#pagination {
+    text-align: center;
+    margin-bottom: 47px;
+}
+#pagination ul .active a {
+    border-radius: 3px;
+    background: #ececec;
+}
+#pagination ul li a {
+    font-size: 14px;
+    border-radius: 2 !important;
+    border: none;
+    color: #333;
+    padding: 0;
+    margin-right: 5px;
+    height: 38px;
+    width: 38px;
+    text-align: center;
+    line-height: 38px;
+}
+#pagination ul li .directional {
+    color: #a6aab5;
+    background: #0c254e;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.boxEventMaterial {
+    margin-top: -255px;
+    position: relative;
+}
+.boxEventMaterial .container {
+    max-width: 1000px !important;
+}
+.EventMaterial_caption {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+}
+.EventMaterial_caption h1 {
+    font-size: 38px;
+    font-weight: 700;
+    float: right;
+    margin-bottom: 15px;
+    padding-right: 32px;
+    text-align: right;
+}
+.EventMaterial_caption h2 {
+    font-size: 38px;
+    font-weight: 700;
+    float: right;
+    margin-bottom: 15px;
+    padding-right: 32px;
+}
+.item_download_event {
+    margin-bottom: 38px;
+    border-bottom: 1px solid #ccc;
+    display: inline-block;
+    padding: 0 25px 35px;
+    width: 100%;
+}
+.listDownload_event .row:last-child .item_download_event {
+    border-bottom: 0;
+}
+.listDownload_event {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 50px 15px 0;
+    min-height: 250px;
+}
+.item_download_event .body .title {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px 0;
+}
+.item_download_event .body .intro {
+    padding-bottom: 15px;
+}
+.item_download_event .body .date {
+    color: #3b9dd3;
+    line-height: 30px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+}
+.item_download_event .body .venue {
+    padding-bottom: 25px;
+}
+.item_download_event .body .down_load {
+    padding: 12px;
+    background: var(--main-bg-color);
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px
+}
+.item_download_event .photo {
+    display: inline-block;
+    width: 220px;
+    margin-right: 40px;
+    float: left;
+}
+.item_download_event .body {
+    display: inline-block;
+    width: calc(100% - 260px);
+    float: left;
+}
+.main_page {
+    margin-top: -262px;
+    position: relative;
+    font-size: 18px;
+}
+.main_page .content_banner2 {
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+}
+.main_page .content_banner2 h2,
+.main_page .content_banner2 .h2_caption {
+    font-size: 38px;
+    font-weight: 700;
+    float: right;
+}
+.list_news_box {
+    background: #fff;
+    padding: 64px 28px 0;
+}
+/* .list_news_box .new_item {
+    display: inline-block;
+    width: 100%;
+} */
+.list_news_box .new_item .body {
+    padding: 15px 11px;
+    /* display: inline-block;
+    width: 100%; */
+}
+.list_news_box .new_item .body_top h3,
+.list_news_box .new_item .body_top .title_news {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.list_news_box .new_item .body_top .date {
+    padding-bottom: 5px;
+    display: block;
+    font-size: 16px;
+}
+.list_news_box .new_item .body_top p {
+    font-size: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.list_news_box .new_item .body_bottom a {
+    color: #1b3359;
+    font-size: 14px;
+}
+.list_news_box .new_item .body_bottom {
+    text-align: right;
+}
+.pagination > li > a,
+.pagination > li > span {
+}
+.list_news_box .new_item {
+    margin-bottom: 30px;
+}
+.detail_event {
+    background: #fff;
+    margin-top: -195px;
+    position: relative;
+    padding: 60px 30px 45px;
+}
+.detail_event .detail .venue {
+    max-width: 500px;
+    line-height: 24px;
+}
+.detail_event .detail .body .Register {
+    width: 130px;
+    padding: 0 28px;
+    border-top: 2px solid #004297;
+    border-bottom: 2px solid #004297;
+    border-right: 2px solid #004297;
+    text-align: center;
+    margin-left: 54px;
+    margin-top: 50px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    position: relative;
+}
+.detail_event .detail .body .Register a {
+    font-weight: 700;
+}
+.detail_event .detail .body .Register:before {
+    content: " ";
+    width: 65px;
+    height: 65px;
+    left: -56px;
+    top: -10px;
+    position: absolute;
+    background: url(../images/icon/icon_check.png) no-repeat -16px -17px;
+    right: 0;
+}
+.detail_event .detail .link a {
+    color: #0771e3;
+    font-weight: 100;
+}
+.breadcrumb-main {
+    position: absolute;
+    top: 0;
+    background: none;
+    color: #fff !important;
+    z-index: 3;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+.breadcrumb-main li a {
+    color: #fff;
+}
+.breadcrumb {
+    background: none;
+    padding: 25px 0;
+}
+.detail_event h3 {
+    position: relative;
+}
+.h3_title span {
+    font-size: 32px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    display: -webkit-box;
+}
+.h3_title span:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 78%;
+    bottom: -12px;
+    height: 3px;
+    z-index: 2;
+    background: #3b9dd3;
+}
+.h3_title span:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -12px;
+    height: 3px;
+    z-index: 1;
+    background: #e1e1e1;
+}
+.detail_event .photo {
+    margin: 45px 0;
+}
+.detail_event .body {
+    width: 100%;
+    overflow: hidden;
+}
+.detail_event .content {
+    text-align: justify;
+}
+.detail_event .detail .date i {
+    padding-right: 5px;
+}
+.slide_Event {
+    padding-bottom: 65px;
+}
+.detail_event .detail span {
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+.slide_Event h3 {
+    position: relative;
+}
+.slide_Event .list_item {
+    display: inline-block;
+    height: 462px;
+}
+.slide_Event .list_item .body_top h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.slide_Event .list_item .body_top p {
+    font-size: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.slide_Event .list_item .body {
+    padding: 15px 12px;
+    display: inline-block;
+    width: 100%;
+}
+.slide_Event .list_item .body_top .date {
+    padding-bottom: 5px;
+    display: block;
+    font-size: 16px;
+}
+.slide_Event .list_item .body .intro {
+    max-height: 75px;
+    overflow: hidden;
+}
+.slide_Event .list_item .body_bottom {
+    text-align: right;
+}
+.slide_Event .list_item .body_bottom a {
+    color: #0c254e;
+    font-size: 14px;
+}
+.pb30 {
+    padding-bottom: 30px;
+}
+.hnv_trvs_main_tour_paginate {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 24px 0
+}
+.pagination .page {
+    border: 1px solid var(--primary-18-babd, #18BABD);
+    color: var(--primary-18-babd, #18BABD);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 30px;
+    margin-left: 15px;
+}
+.pagination .current, .pagination .page:hover {
+    background: var(--primary-18-babd, #18BABD);
+    color: #fff;
+}
+.page_sale_kits .hnv_breadcrumb{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    margin-top: 24px !important;
+}
+.page_sale_kits .hnv_breadcrumb .container {
+    max-width: 1000px;
+}
+@media (max-width: 1199px) {
+    .listBook .row {
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+    }
+    .listBook .col-md-3 {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .item_download_event {
+        margin-bottom: 25px;
+        padding: 0 15px 25px;
+    }
+    .item_download_event .photo {
+        margin-right: 20px;
+    }
+    .item_download_event .body {
+        width: calc(100% - 240px);
+    }
+    .item_download_event .body .intro {
+        max-height: 115px;
+        overflow: hidden;
+        padding-bottom: 0;
+    }
+}
+@media (max-width: 1023px) {
+    .listBook .row {
+        margin-left: -10px !important;
+        margin-right: -10px !important;
+    }
+    .listBook .col-md-3 {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .content_banner {
+        display: none;
+    }
+    .header_box {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .header_box h2 {
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+    .ebook_box,
+    .dvd_box,
+    .video_box {
+        padding: 60px 0 40px;
+    }
+    .banner .bg_opacity {
+        height: 175px;
+    }
+    .listAnnualReport {
+        padding: 30px 0;
+    }
+    .boxAnnualReport {
+        margin-top: -130px;
+    }
+    .listDownload .clear_left:nth-child(4n + 1) {
+        clear: unset;
+    }
+    .listDownload .clear_left:nth-child(3n + 1) {
+        clear: left;
+    }
+}
+@media (max-width: 767px) {
+    .EventMaterial_caption h2 {
+        padding-right: 0;
+        text-align: center;
+    }
+    .EventMaterial_caption h1 {
+        padding-right: 0;
+        text-align: right;
+        color: #000000
+    }
+    .boxEventMaterial {
+        margin-top: 0
+    }
+    .AnnualReport_caption h2 {
+        margin-bottom: 5px;
+    }
+    .AnnualReport_caption {
+        padding-right: 0;
+    }
+    .Download_caption h2 {
+        margin-bottom: 5px;
+    }
+    .boxDownload {
+        margin-top: -100px;
+    }
+    .listDownload {
+        padding: 30px 0 0;
+    }
+    .form_search_book {
+        margin: 0 0 20px;
+    }
+    .listDownload .item_download {
+        margin-bottom: 40px;
+    }
+    .listAnnualReport .annual_report_item .photo {
+        display: inline-block;
+        float: unset;
+        padding-right: 0;
+        width: 100%;
+    }
+    .annual_report_item .body {
+        width: 100%;
+    }
+    .main_page {
+        margin-top: -100px;
+    }
+    .list_news_box {
+        background: #fff;
+        padding: 30px 0 0;
+    }
+    /* .list_news_box .new_item {
+        height: auto;
+    } */
+    .listDownload .clear_left:nth-child(3n + 1) {
+        clear: unset;
+    }
+    .listDownload .clear_left:nth-child(2n + 1) {
+        clear: left;
+    }
+    .listBook .row {
+        margin-left: -8px !important;
+        margin-right: -8px !important;
+    }
+    .listBook .col-md-3 {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+}
+@media (max-width: 550px) {
+    .full_width_550 {
+        width: 100% !important;
+    }
+}
+@media (max-width: 480px) {
+    .ebook_box,
+    .dvd_box {
+        padding: 30px 0 10px;
+    }
+    .video_box {
+        padding: 30px 0;
+    }
+    .col-xs-6.col-resource {
+        width: 100% !important;
+    }
+    .resource_item .body {
+        padding: 15px 10px;
+    }
+    .item_download_event .photo {
+        width: 100%;
+        float: none;
+        margin-right: 0;
+    }
+    .item_download_event .body {
+        width: 100%;
+        float: none;
+    }
+}
+@media (max-width: 380px) {
+    .full_width_380 {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .banner {
+        position: relative;
+        min-height: 300px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .list_ebook_box .row,
+    .list_dvd_box .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .list_ebook_box .col-md-6,
+    .list_ebook_box .col-md-3,
+    .list_dvd_box .col-md-6,
+    .list_dvd_box .col-md-3 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .resource_item .body {
+        padding: 10px 15px;
+        background: #fff;
+        box-shadow: 0 0 6px #ccc;
+        border-radius: 0 0 3px 3px;
+    }
+    .resource_item .body .btn_link {
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+    }
+}

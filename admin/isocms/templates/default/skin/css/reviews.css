@@ -1,0 +1,389 @@
+.box_white {
+    background: #fff;
+}
+
+.box-col {
+    margin-bottom: 16px
+}
+
+.view_all {
+    color: #1756C8;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration-line: underline !important;
+}
+
+.page_review .row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.page_review .row>* {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.box_chart {
+    padding: 20px;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.box_chart .head_box_chart {
+    margin-bottom: 20px;
+}
+
+.box_chart .title_box_chart,
+.title_box {
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.box_chart .box_text_chart {
+    width: 50%;
+    padding: 22px
+}
+
+.box_chart .box_right_chart_all {
+    max-width: 50%
+}
+
+.box_chart_all {
+    max-width: 100%;
+    width: 231px;
+    height: 231px;
+}
+
+.box_text_total {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.box_text_total .number_total,
+.box_star .score_star {
+    color: #000;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 3px;
+}
+
+.box_text_total .txt_total {
+    color: #656565;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.item_chart {
+    color: #666;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.item_chart:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.item_chart .lbl_item_chart:before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.item_chart .lbl_item_chart.tour:before {
+    background: #0D66E0;
+}
+
+.item_chart .lbl_item_chart.cruise:before {
+    background: #8B5DE8;
+}
+
+.item_chart .lbl_item_chart.hotel:before {
+    background: #EAAC1F;
+}
+
+.item_chart .lbl_item_chart.voucher:before {
+    background: #DF56CF;
+}
+
+.item_chart .lbl_item_chart.public:before {
+    background: #068A2B;
+}
+
+.item_chart .lbl_item_chart.private:before {
+    background: #F58321;
+}
+
+.item_chart .lbl_item_chart {
+    padding-left: 27px;
+    position: relative;
+}
+
+.box_chart_tour,
+.box_chart_cruise,
+.box_chart_hotel,
+.box_chart_voucher {
+    width: 332px;
+    height: 255px;
+    max-width: calc(100% - 120px);
+}
+
+.box_chart_month {
+    width: 100%;
+    height: 255px
+}
+
+.box_chart_cruise,
+.box_chart_hotel {
+    width: 355px
+}
+
+.box_star {
+    text-align: center;
+    width: 120px;
+}
+
+.box_rate {
+    width: 100px
+}
+
+.box_star .txt_review {
+    color: #656565;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.rate_star {
+    width: 97px;
+    height: 18px;
+    background: url(/isocms/templates/default/skin/images/rate-2023.png) repeat-x 0 -23px;
+    margin-right: 5px;
+    text-align: left;
+}
+
+.rate_star span {
+    display: inline-block;
+    height: 18px;
+    background: url(/isocms/templates/default/skin/images/rate-2023.png) repeat-x 0 -23px;
+    margin-right: 5px;
+    text-align: left;
+    background-position: 0 0 !important;
+}
+
+.box_table_review {
+    border-radius: 8px;
+    margin-top: 16px;
+    overflow: hidden
+}
+
+.box_table_review .box_head_tab_reviews .nav_tab_reviews>li>a {
+    padding: 25px 5px 25px 0px;
+    color: #666;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    border: unset;
+}
+
+.box_table_review .box_head_tab_reviews .nav_tab_reviews>li {
+    margin-right: 40px;
+}
+
+.box_table_review .box_head_tab_reviews .nav_tab_reviews>li.active>a,
+.box_table_review .box_head_tab_reviews .nav_tab_reviews>li>a:hover,
+.box_table_review .box_head_tab_reviews .nav_tab_reviews>li.active>a:hover {
+    border: 0;
+    border-bottom: 4px solid #F58321;
+    font-weight: 700;
+}
+
+.box_table_review .box_head_tab_reviews {
+    padding: 0px 25px;
+}
+
+.box_table_review .box_head_tab_reviews .nav_tab_reviews {
+    border-bottom: 0;
+    margin-left: 0px;
+}
+
+.tbl-grid thead tr th:first-child,
+.tbl-grid tbody tr td:first-child {
+    padding-left: 25px !important
+}
+
+/*.box_table_review .txt_name_services {
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    margin-bottom: 4px;
+}*/
+
+.box_table_review .txt_name_services a {
+    color: #1756C8;
+}
+
+.box_table_review .txt_info {
+    color: #666;
+    font-family: Arial;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.box_table_review .tbl-grid thead tr th {
+    color: #454545;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.box_table_review .status_review {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    width: 100px;
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 3px;
+}
+
+.box_table_review .status_review:hover {
+    opacity: 0.8;
+}
+
+.box_table_review .status_review.private {
+    color: #F58321;
+    background: rgba(245, 131, 33, 0.10);
+}
+
+.box_table_review .status_review.public {
+    color: #068A2B;
+    background: rgba(6, 138, 43, 0.10);
+}
+
+.box_table_review .icon_action.edit_review {
+    margin-right: 8px
+}
+
+.box_table_review .table-striped>tbody>tr:nth-of-type(odd),
+.box_table_review .tbl-grid tr:hover {
+    background: inherit
+}
+
+.box_table_review .type_review {
+    padding: 4px 8px;
+    border-radius: 80px;
+    color: #FFF;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.box_table_review .type_review.hotel {
+    background: #0BA7FF;
+}
+
+.box_table_review .type_review.tour {
+    background: #F58321;
+}
+
+.box_table_review .type_review.cruise {
+    background: #9568FF;
+}
+
+.box_table_review .type_review.voucher {
+    background: #2BC844;
+}
+
+@media screen and (max-width:991px) and (min-width:768px) {
+    /*.page_all_reviews .tbl-grid thead tr th, .page_all_reviews .tbl-grid tbody tr td {
+		padding: 8px 6px !important;
+	}*/
+}
+
+@media screen and (max-width:767px) {
+
+    .page_all_reviews .table_responsive>thead>tr th.name_responsive {
+        width: 100%
+    }
+
+    .table_responsive>tbody>tr td:before {
+        left: 15px
+    }
+
+    .page_review .tbl-grid thead tr th:first-child,
+    .page_review .tbl-grid tbody tr td:first-child {
+        padding-left: 15px !important
+    }
+
+    .page_all_reviews .table_responsive>tbody>tr td:first-child {
+        display: block;
+    }
+
+    .box_table_review .box_head_tab_reviews .nav_tab_reviews {
+        width: max-content;
+    }
+
+    .box_scroll {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        margin-bottom: 10px;
+    }
+
+    .box_table_review .box_head_tab_reviews {
+        margin-bottom: 20px;
+        justify-content: flex-end !important;
+    }
+
+    .box_scroll::-webkit-scrollbar {
+        height: 10px;
+        background: #ccc;
+    }
+}
+
+@media screen and (max-width:575px) {
+
+    .box_chart .box_right_chart_all,
+    .box_chart_all,
+    .box_chart_tour,
+    .box_chart_cruise,
+    .box_chart_hotel,
+    .box_chart_voucher,
+    .box_chart .box_text_chart {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .box_star {
+        margin-left: auto;
+    }
+}

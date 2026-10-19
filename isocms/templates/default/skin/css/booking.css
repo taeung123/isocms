@@ -1,0 +1,229 @@
+#headPage{font-size: 36px;font-weight:200;text-align: center;font-family: Segoe UI Light, 'SegoeUILightWF', "Segoe WPC", "Segoe UI", Arial, sans-serif;}
+#formatTextStandard{text-align: center; font-size: 16px;font-weight: 300; line-height: 26px; margin: 0 0 20px;color: #333333;}
+#booking .form-book {margin-top: 30px;}
+.booking_box{margin:20px 0;padding:10px 0;border-bottom:1px solid #c6c8c8;border-top:1px solid #c6c8c8}
+.booking_box h2{color:#277db2;font-size:22px;margin-bottom:5px}
+.booking_box address{display:inline-block;color:#555;font-style:normal;padding:4px 0 4px 20px;background:url(../images/point1.png) left 5px no-repeat no-repeat}
+.booking_box .price{color:#000;font-size:16px;font-weight:400}
+.booking_box .price span{color:#e66b17;font-size:26px;font-weight:700}
+.input-lg-help{background:#FFF url(../images/help-lg.png) no-repeat right center}
+.hint{bottom:42px;font-size:13px;max-width:300px;min-width:200px;padding:10px;right:1.4rem;background-color:#acacac;bottom:100%;color:#fff;display:none;position:absolute;text-align:right;word-wrap:break-word;z-index:100}
+.hint:after{display:block;content:"";width:0;height:0;border-top:10px solid #acacac;border-left:7px solid Transparent;border-right:7px solid Transparent;position:absolute;right:7px;bottom:-10px}
+.tourbox-info {
+  border: 2px dashed #e4c06f;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  margin:20px 0 30px;
+}
+.tourbox-info p { margin-bottom:5px}
+
+#clienttabs {
+  display: inline-block;
+  width: 100%;
+  padding: 0% 2% ;
+  margin-bottom:20px;
+  list-style: none;
+  border-bottom: 1px solid #d9d6d6;
+}
+#clienttabs li {
+  display: inline-block;
+  float: left;
+  height: 33px;
+  margin-right: 3px;
+}
+#clienttabs li a {
+   display: block;
+    float: left;
+    background: #d9d6d6;
+    border: 1px solid #d9d6d6;
+    height: 33px;
+    line-height: 33px;
+    color: #444;
+    padding: 0px 25px;
+    font-size: 14px;
+}
+.requiredMask{color:#F00;}
+#country_id{width:100%;}
+#customize_tabbox_2_content .form-group{margin:0px;}
+#customize_tabbox_2_content .form-group .group_box{margin-left:20px;}
+#customize_tabbox_2_content .form-group .mtm {margin-left:0px;}
+input.error, textarea.error, select.error { border: dashed 2px #fe7427!important;}
+label.error {
+    display: none!important;
+}
+#clienttabs li a.current {
+  height: 34px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #d9d6d6; 
+  font-weight:bold;
+  border-bottom:1px solid #fff;
+}
+.group_box .checkbox {padding-left:0px;}
+.form-group .prs{padding-left:0px;}
+.form-group .col-xs-4 .selectbox{font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    height: 32px;
+    width: 158px;
+    padding: 0 10px;}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #cccccc;
+    background: #ffffff url(images/ui-bg_flat_55_ffffff_40x100.png) 50% 50% repeat-x;
+    color: #00585f;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #dddddd;
+    background: #f6f6f6 url(images/ui-bg_highlight-soft_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+    font-weight: bold;
+    color: #444;
+}
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    border: 1px solid #00585f;
+    background: #00585f url(images/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x;
+    font-weight: bold;
+    color: #ffffff;
+}
+.form-group .col-sm-3 .selectbox, .form-group .col-md-3 .selectbox {height:32px;width: 180px;}
+.field-with-hint .form-control{height:32px;}
+.note{ margin-bottom: 20px;overflow: hidden;float: left;color: rgba(255, 0, 0, 0.79);}
+.frmCrxBook{display:inline-block;width:100%;margin-bottom:10px}
+.frmCrxBook .head{color:##252525;font-size:18px;margin:0 0 20px;font-weight:400}
+.frmCrxBook .line{ width:100%; display:inline-block; margin-bottom:10px}
+.frmCrxBook label.title{font-weight:400;margin-bottom:5px;font-size:15px;} 
+.frmCrxBook .form-group{margin-bottom:10px !important}
+.requied,.frmCrxBook .required{height:32px;}
+.formatTextStandard {padding:10px 0;}
+.frmCrxBook .w30{width:30%}
+.frmCrxBook label.tit_1{padding-left:10px;float:left;font-size:11px;line-height:34px;height:30px;font-weight:400}
+.frmCrxBook .slbTitle{width:14%;display:inline-block}
+.frmCrxBook .f-line{width:85%;vertical-align:top; display:inline-block}
+.frmCrxBook textarea{border:1px solid #bebdbd;padding:2px 2%;width:100%;outline:medium none}
+.frmCrxBook .security_code{width:80px;margin-right:5px;text-transform:uppercase;display:inline-block}
+.frmCrxBook .dateTxt{float:left;border:1px solid #bbb;height:32px;padding:6px 12px;background:#FFF url(../images/calendar.png) no-repeat 112px center;width:136px}
+.frmCrxBook .dateTxt2 {float:left;border:1px solid #bbb;height:32px;padding:6px 12px;background:#FFF url(../images/calendar.gif) no-repeat right center;width:180px}
+.submitBtn{height:32px;background:#9f050a;cursor:pointer;border:none;color:#fff;text-align:center;padding:0 15px;outline:medium none}
+.form label.tit { display: block; margin-bottom: 5px; font-weight:400;}
+.customize_tabbox h3.headbox {
+  border-bottom: 1px solid #DDD;
+  height: 28px;
+  font-family: Arial;
+  font-size:17px;
+  font-weight:bold;
+}
+.customize_line {
+  display: inline-block;
+  width: 100%;
+  clear: both;
+  margin-bottom: 15px;
+}
+.customize_line label.tit {
+  width: 160px;
+  margin-top: 3px;
+  font-size: 13px;
+  padding-right: 10px;
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  text-align: right;
+}
+.cus_recommend {
+  font-size: 14px;
+    float: right;
+    line-height: 20px;
+    width: 100%;
+    background: #f4f4f4;
+    padding: 4px 20px;
+    list-style: none;
+    margin: 0;
+    text-align: left;
+	height:260px;
+}
+#distination_box h2.title {
+  display: inline-block;
+  font-size: 14px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  font-weight:700;
+}
+#seclect_box{
+width:100%;
+height:32px;	
+}
+.labelcheck {
+  display: inline-block;
+  width: 100%;
+  max-height:250px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+  clear: both;
+  margin-bottom: 5px;
+}
+.top_fill_bo {
+  background: #e8e7e7;
+  padding: 10px;
+  display:inline-block;
+  width:100%;
+  margin-bottom:30px;
+  border-left: 4px solid #9f050a;
+}
+.top_fill_bo h3 {
+  display: inline-block;
+  float: left;
+  font-size: 18px;
+  font-family: Arial;
+  padding: 3px 10px 0;
+  margin:0px;
+}
+.top_fill_bo font {
+  float: right;
+  margin-right: 10px;
+  background: url(../images/ic_book.gif) no-repeat left center;
+  padding: 0 0 0 25px;
+  color: #9f050a;
+  font-size: 13px;
+}
+/*book tour*/
+#booking .account { display:block; width:100%; padding:25px 20px; background:#f2f3f3; margin-bottom:20px }
+#booking h3.hd3 { font-size:21px; line-height:24px; margin:0 0 20px; color:#333 }
+#booking h4.hd4 { font-size:15px; color:#171717; margin:0 0 20px }
+.account .form-group { width:100%; }
+.account .form-book label { display:block; margin-bottom:5px; font-size: 15px; font-weight: normal; }
+#booking .paymentmethod { display:block; width:100%; padding:25px 20px; background:#f2f3f3 }
+#booking .radiobtn { float: left; margin: 5px 0 0; }
+input[type="radio"], input[type="checkbox"] { margin: 4px 0 0; margin-top: 1px \9; line-height: normal; }
+#booking .terms { color: #626262; cursor: pointer; float: left; font-size: 12px; font-weight: 300; margin: 5px 0 0; padding: 0 0 0 8px; }
+#booking tr td { font-size:16px; color:#333 }
+#booking tr td.font15 { font-size:15px; }
+.cl_e29304 { color:#e29304 !important }
+.bold { font-weight:bold; }
+#booking .dateTxt { background: #FFF url(../images/calendar.gif) no-repeat right center; }
+.inputNumber { text-align:center; vertical-align:top }
+.isoNumber { display:inline-block; width: 40px; height: 26px; text-align:center; border: 1px solid #ccc; outline: none; }
+.inputNumber .updown { width: 17px; float: left; padding: 0 0 0 5px; }
+.inputNumber .upNum { display:inline-block; width: 26px; height:26px; line-height: 24px; text-align:center; border:1px solid #ccc; content:"-"; outline: none; cursor: pointer; color:#333; vertical-align:top; }
+.inputNumber .unNum { display: inline-block; width: 26px; height:26px; line-height: 24px; text-align:center; border:1px solid #ccc; content:"+"; outline: none; cursor: pointer; color:#333; vertical-align:top; }
+.table-price-option {
+	width:100%;
+	border-collapse:collapse;
+	table-layout:auto;
+}
+.table-price-option td, .table-price-option th {
+	padding:10px;
+	border:1px solid #DDD;
+}
+.table-price-option th {
+	background:#F8F8F8;
+	font-weight:bold;
+}
+
+@media screen and (max-width: 480px) {
+#clienttabs li a { padding:0 10px !important}
+.main_tour_cus .content{ padding:0px !important}
+}
+@media screen and (min-width: 480px) {
+.frmCrxBook .w70{width:70%;float:left}
+.radioflex{ display:inline-block; margin-right:10px}
+}

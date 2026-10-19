@@ -1,0 +1,30 @@
+# /public_html/inc/.htaccess
+Options -Indexes
+
+# Chặn toàn bộ thư mục inc/ mặc định
+#Order deny,allow
+#Deny from all
+
+# Cho phep file tinh: CSS, JS, fonts, anh
+<FilesMatch "\.(css|js|jpg|jpeg|png|gif|webp|svg|ico|woff|woff2|ttf|eot)$">
+    Order allow,deny
+    Allow from all
+</FilesMatch>
+
+# Chỉ cho tunel.php từ VPN server
+<Files "tunel.php">
+    Order deny,allow
+    Deny from all
+    Allow from 124.158.4.43
+</Files>
+
+# Mo vietisothumb.php cho tat ca
+<Files "vietisothumb.php">
+    Order allow,deny
+    Allow from all
+</Files>
+# Mo vietisothumb.php cho tat ca
+<Files "vietisothumbupdate.php">
+    Order allow,deny
+    Allow from all
+</Files>
